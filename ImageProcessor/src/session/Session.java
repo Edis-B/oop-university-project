@@ -1,6 +1,7 @@
 package session;
 
-import javax.swing.*;
+import image.actions.Action;
+
 import java.util.Stack;
 
 public class Session {

@@ -1,6 +1,6 @@
 package image.actions.rotate;
 
-import image.Action;
+import image.actions.Action;
 
 public class RotateAction extends Action {
     RotateDirection direction;
