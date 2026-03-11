@@ -3,6 +3,7 @@ package cli;
 import cli.commands.image.*;
 
 public enum CommandTypes {
+    //
     GRAYSCALE("grayscale", GrayscaleCommand.class),
     MONOCHROME("monochrome", MonochromeCommand.class),
     NEGATIVE("negative", NegativeCommand.class),

@@ -1,6 +1,7 @@
 package cli;
 
 import cli.commands.Command;
+
 import java.util.Scanner;
 
 public class CommandLineInterface {
@@ -11,15 +12,15 @@ public class CommandLineInterface {
     }
 
     public void start(Scanner sc) throws IllegalArgumentException {
-            var input = sc.nextLine().trim();
-            String[] tokens = input.split("\\s+");
-            String commandName = tokens[0];
+        var input = sc.nextLine().trim();
+        String[] tokens = input.split("\\s+");
+        String commandName = tokens[0];
 
-            Command cmd = registry.getCommand(commandName);
-            if (cmd != null) {
-                cmd.execute(tokens);
-            } else {
-                throw new IllegalArgumentException("Invalid command.");
-            }
+        Command cmd = registry.getCommand(commandName);
+        if (cmd != null) {
+            cmd.execute(tokens);
+        } else {
+            throw new IllegalArgumentException("Invalid command.");
+        }
     }
 }

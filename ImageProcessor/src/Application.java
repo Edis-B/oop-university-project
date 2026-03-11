@@ -1,12 +1,12 @@
 import cli.CommandLineInterface;
-import cli.CommandRegistry;
+import cli.CommandRegistryEnum;
 
 import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
         try {
-            CommandRegistry cmdRegistry = new CommandRegistry();
+            CommandRegistryEnum cmdRegistry = new CommandRegistryEnum();
             cmdRegistry.discoverCommands();
 
             CommandLineInterface cli = new CommandLineInterface(cmdRegistry);
