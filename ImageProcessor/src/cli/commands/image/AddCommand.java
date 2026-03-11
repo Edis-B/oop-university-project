@@ -1,4 +1,6 @@
-package cli.commands;
+package cli.commands.image;
+
+import cli.commands.Command;
 
 public class AddCommand extends Command {
     @Override
