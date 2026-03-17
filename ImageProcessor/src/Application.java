@@ -13,7 +13,7 @@ public class Application {
             CommandLineInterface cli = new CommandLineInterface(cmdRegistry);
 
             Scanner sc = new Scanner(System.in);
-            SessionManager sessionManager = null;
+            SessionManager sessionManager = new SessionManager();
 
             while (true) try {
                 cli.start(sc, sessionManager);

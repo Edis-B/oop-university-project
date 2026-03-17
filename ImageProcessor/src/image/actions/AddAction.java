@@ -1,20 +1,21 @@
 package image.actions;
 
 import exceptions.ApplicationException;
+import image.formats.ImageContext;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class LoadAction extends Action {
+public class AddAction extends Action {
     String filePath;
 
-    public LoadAction(String filePath) {
+    public AddAction(String filePath) {
         this.filePath = filePath;
     }
 
     @Override
-    public void execute() {
+    public void execute(ImageContext imageContext) {
         File imageFile = new File(filePath);
         try (Scanner sc = new Scanner(imageFile)) {
             while (sc.hasNext())

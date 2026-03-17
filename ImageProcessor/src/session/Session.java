@@ -14,4 +14,8 @@ public class Session {
     public void undoAction() {
         commandHistory.pop();
     }
+
+    public Stack<Action> getCommandHistory() {
+        return commandHistory;
+    }
 }
