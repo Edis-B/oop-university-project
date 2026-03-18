@@ -18,17 +18,21 @@ public class FormatExtractor {
         signatureList.add(fs);
     }
 
-    public String extract(BufferedInputStream bis) throws IOException {
-        byte[] bytes = new byte[16];
-        int bytesRead = bis.read(bytes, 0, 16);
+    public String extract(BufferedInputStream bis) {
+        try {
+            byte[] bytes = new byte[16];
+            int bytesRead = bis.read(bytes, 0, 16);
 
-        if (bytesRead == -1)
-            throw new ApplicationException("File is empty!");
+            if (bytesRead == -1)
+                throw new ApplicationException("File is empty!");
 
-        for (var signature : signatureList) {
-            if (bytesRead >= signature.getHeaderSize() && signature.matches(bytes)) {
-                return signature.getFormatId();
+            for (var signature : signatureList) {
+                if (bytesRead >= signature.getHeaderSize() && signature.matches(bytes)) {
+                    return signature.getFormatId();
+                }
             }
+        } catch (IOException e) {
+            throw new ApplicationException("IO exception occurred!");
         }
 
         throw new ApplicationException("Unsupported file type!");

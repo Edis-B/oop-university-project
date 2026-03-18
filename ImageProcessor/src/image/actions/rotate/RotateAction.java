@@ -1,7 +1,7 @@
 package image.actions.rotate;
 
 import image.actions.Action;
-import image.formats.ImageContext;
+import image.ImageContext;
 
 public class RotateAction extends Action {
     RotateDirection direction;

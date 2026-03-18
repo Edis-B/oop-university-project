@@ -1,6 +1,6 @@
 package image.actions;
 
-import image.formats.ImageContext;
+import image.ImageContext;
 
 public class NegativeAction extends Action {
     @Override

@@ -2,8 +2,8 @@ package image.parsers;
 
 import image.images_in_memory.InMemoryImage;
 
-import java.util.Scanner;
+import java.io.BufferedInputStream;
 
 public interface ImageParser {
-    InMemoryImage parse(Scanner sc);
+    InMemoryImage parse(BufferedInputStream bis);
 }

@@ -1,13 +1,21 @@
 package image.parsers.ascii;
 
-import image.images_in_memory.InMemoryPPM;
+import image.images_in_memory.InMemoryPpmAscii;
 import image.parsers.ImageParser;
 
-import java.util.Scanner;
+import java.io.BufferedInputStream;
 
 public class AsciiPpmParser implements ImageParser {
     @Override
-    public InMemoryPPM parse(Scanner sc) {
+    public InMemoryPpmAscii parse(BufferedInputStream bis) {
+        InMemoryPpmAscii image = new InMemoryPpmAscii();
 
+        image.setMagicNumber(Integer.parseInt(sc.next()));
+
+        while (sc.hasNext()) {
+
+        }
+
+        return image;
     }
 }

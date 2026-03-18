@@ -1,13 +1,13 @@
 package image.parsers.binary;
 
-import image.images_in_memory.InMemoryImage;
+import image.images_in_memory.InMemoryPpmBinary;
 import image.parsers.ImageParser;
 
-import java.util.Scanner;
+import java.io.BufferedInputStream;
 
 public class BinaryPpmParser implements ImageParser {
     @Override
-    public InMemoryImage parse(Scanner sc) {
+    public InMemoryPpmBinary parse(BufferedInputStream bis) {
         return null;
     }
 }

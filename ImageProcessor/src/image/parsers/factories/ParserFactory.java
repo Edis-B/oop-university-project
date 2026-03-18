@@ -2,9 +2,6 @@ package image.parsers.factories;
 
 import exceptions.ApplicationException;
 import image.parsers.ImageParser;
-import image.parsers.ascii.AsciiPbmParser;
-import image.parsers.ascii.AsciiPgmParser;
-import image.parsers.ascii.AsciiPpmParser;
 
 import java.util.HashMap;
 import java.util.Map;

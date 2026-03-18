@@ -1,13 +1,13 @@
 package image.parsers.ascii;
 
-import image.images_in_memory.InMemoryPGM;
+import image.images_in_memory.InMemoryPgmAscii;
 import image.parsers.ImageParser;
 
-import java.util.Scanner;
+import java.io.BufferedInputStream;
 
 public class AsciiPgmParser implements ImageParser {
     @Override
-    public InMemoryPGM parse(Scanner sc) {
+    public InMemoryPgmAscii parse(BufferedInputStream bis) {
         return null;
     }
 }

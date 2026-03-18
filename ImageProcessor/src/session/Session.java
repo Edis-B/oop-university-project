@@ -7,6 +7,8 @@ import java.util.Stack;
 public class Session {
     private final Stack<Action> commandHistory = new Stack<>();
 
+    protected Session() {}
+
     public void appendAction(Action action) {
         commandHistory.push(action);
     }

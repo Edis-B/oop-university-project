@@ -2,7 +2,7 @@ package session;
 
 import exceptions.ApplicationException;
 import image.actions.Action;
-import image.formats.ImageContext;
+import image.ImageContext;
 
 public class SessionManager {
     private Session session;
