@@ -1,4 +1,4 @@
-package image.parsers.signatures;
+package image.signatures;
 
 public interface FormatSignature {
     String getFormatId();

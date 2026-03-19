@@ -1,21 +1,17 @@
 package image.parsers.factories;
 
 import exceptions.ApplicationException;
-import image.parsers.signatures.FormatSignature;
+import image.signatures.FormatSignature;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FormatExtractor {
-    private final List<FormatSignature> signatureList = new ArrayList<>();
+    private final List<FormatSignature> signatureList;
 
-    public FormatExtractor() {
-    }
-
-    public void register(FormatSignature fs) {
-        signatureList.add(fs);
+    public FormatExtractor(List<FormatSignature> _signatureList) {
+        signatureList = _signatureList;
     }
 
     public String extract(BufferedInputStream bis) {

@@ -5,6 +5,12 @@ public class Triple<L, M, R> {
     M middle;
     R right;
 
+    public Triple(L left, M middle, R right) {
+        this.left = left;
+        this.middle = middle;
+        this.right = right;
+    }
+
     public L getLeft() {
         return left;
     }

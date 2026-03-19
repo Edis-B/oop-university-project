@@ -1,14 +1,15 @@
 package cli;
 
 import cli.commands.Command;
+import cli.commands.registry.CommandRegistryBase;
 import session.SessionManager;
 
 import java.util.Scanner;
 
 public class CommandLineInterface {
-    private final CommandRegistry registry;
+    private final CommandRegistryBase registry;
 
-    public CommandLineInterface(CommandRegistry registry) {
+    public CommandLineInterface(CommandRegistryBase registry) {
         this.registry = registry;
     }
 

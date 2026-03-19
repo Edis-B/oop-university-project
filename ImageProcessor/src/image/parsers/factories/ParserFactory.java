@@ -12,6 +12,14 @@ public class ParserFactory {
     private ParserFactory() {
     }
 
+    private static ParserFactory instance;
+    public static ParserFactory getInstance() {
+        if (instance == null)
+            instance = new ParserFactory();
+
+        return instance;
+    }
+
     public void register(String id, ImageParser imageParser) {
         formatDict.put(id, imageParser);
     }

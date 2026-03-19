@@ -16,6 +16,11 @@ public class LoadCommand extends Command {
         parserFactory = null;
     }
 
+    @Override
+    public String getName() {
+        return "load";
+    }
+
     public LoadCommand(FormatExtractor _extractor, ParserFactory _parserFactory) {
         parserFactory = _parserFactory;
         formatExtractor = _extractor;

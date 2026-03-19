@@ -5,6 +5,11 @@ import session.SessionManager;
 
 public class NegativeCommand extends Command {
     @Override
+    public String getName() {
+        return "negative";
+    }
+
+    @Override
     public void execute(String[] tokens, SessionManager sessionManager) {
 
     }

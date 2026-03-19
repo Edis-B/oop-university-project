@@ -1,4 +1,4 @@
-package image.parsers.signatures;
+package image.signatures;
 
 public class BinaryPgmSignature extends NetpbmSignature {
     @Override
