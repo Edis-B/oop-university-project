@@ -5,7 +5,7 @@ import image.parsers.ImageParser;
 
 import java.io.BufferedInputStream;
 
-public class BinaryPpmParser implements ImageParser {
+public class BinaryPpmParser extends NetpbmBinaryParser {
     @Override
     public InMemoryPpmBinary parse(BufferedInputStream bis) {
         return null;

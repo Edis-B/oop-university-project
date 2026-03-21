@@ -1,16 +1,12 @@
 package image.images_in_memory;
 
-public class InMemoryImage {
-    private int magicNumber;
+public abstract class InMemoryImage {
     private int width;
     private int height;
 
-    public int getMagicNumber() {
-        return magicNumber;
-    }
-
-    public void setMagicNumber(int magicNumber) {
-        this.magicNumber = magicNumber;
+    public InMemoryImage(int width, int height) {
+        this.width = width;
+        this.height = height;
     }
 
     public int getWidth() {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassHelper {
+    private ClassHelper() {}
     public static boolean isConcrete(Class<?> clazz) {
         int modifiers = clazz.getModifiers();
 

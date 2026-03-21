@@ -5,7 +5,7 @@ import image.parsers.ImageParser;
 
 import java.io.BufferedInputStream;
 
-public class AsciiPgmParser implements ImageParser {
+public class AsciiPgmParser extends NetpbmAsciiParser {
     @Override
     public InMemoryPgmAscii parse(BufferedInputStream bis) {
         return null;
