@@ -5,9 +5,10 @@ import image.ImageContext;
 
 import image.images_in_memory.InMemoryImage;
 
-import image.parsers.ImageParser;
+import image.parsers.contracts.ImageParser;
 import image.parsers.factories.FormatExtractor;
 import image.parsers.factories.ParserFactory;
+import image.signatures.FormatType;
 
 import java.io.*;
 
@@ -32,7 +33,7 @@ public class AddAction extends Action {
             String format = extractor.extract(bis);
             bis.reset();
 
-            ImageParser imageParser = parserFactory.getParser(format);
+            ImageParser imageParser = parserFactory.getParser(FormatType.getType(format));
             InMemoryImage newImage = imageParser.parse(bis);
 
             imageContext.insertImage(newImage);

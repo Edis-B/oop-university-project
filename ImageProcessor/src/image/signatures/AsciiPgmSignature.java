@@ -2,7 +2,7 @@ package image.signatures;
 
 public class AsciiPgmSignature extends NetpbmSignature{
     @Override
-    public String getFormatId() {
-        return "P2";
+    public FormatType getFormatType() {
+        return FormatType.ASCII_PGM;
     }
 }

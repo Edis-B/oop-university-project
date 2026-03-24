@@ -1,43 +1,43 @@
 package image.parsers.ascii;
 
+import exceptions.ApplicationException;
+import image.images_in_memory.InMemoryImage;
 import image.images_in_memory.ppm.InMemoryPpmAscii;
-import image.parsers.ImageParser;
+import image.parsers.contracts.ImageParser;
+import image.signatures.FormatType;
 import util.Color;
-import util.Triple;
 
 import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.util.Scanner;
 
 public class AsciiPpmParser extends NetpbmAsciiParser {
     @Override
-    public InMemoryPpmAscii parse(BufferedInputStream bis) throws IOException {
-        // magic
-        String magicNumber = readMagic(bis);
+    protected boolean requiresMaxValue() {
+        return true;
+    }
 
-        // width height
-        short width = (short) getNextInt(bis);
-        short height = (short) getNextInt(bis);
+    @Override
+    public FormatType getSupportedFormat() {
+        return FormatType.ASCII_PPM;
+    }
 
-        // maxValue
-        short maxColor = (short) getNextInt(bis);
+    @Override
+    protected InMemoryImage readPixels(BufferedInputStream bis, int width, int height, int maxColor) {
         InMemoryPpmAscii image = new InMemoryPpmAscii(width, height, maxColor);
 
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                Short r = (short) getNextInt(bis);
-                Short g = (short) getNextInt(bis);
-                Short b = (short) getNextInt(bis);
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                short r = (short) getNextInt(bis);
+                short g = (short) getNextInt(bis);
+                short b = (short) getNextInt(bis);
 
-                image.setPixel(x, y, new Color(r, g, b));
+                if (r == -1 || g == -1 || b == -1)
+                    throw new ApplicationException(String.format(
+                            "Unexpected EOF: Premature end of file at pixel (%d, %d).", j, i));
+
+                image.setPixel(j, i, new Color(r, g, b));
             }
         }
 
         return image;
-    }
-
-    @Override
-    public String getSupportedFormat() {
-        return "P3";
     }
 }

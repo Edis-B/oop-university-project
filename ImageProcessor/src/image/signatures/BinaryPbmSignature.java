@@ -2,7 +2,7 @@ package image.signatures;
 
 public class BinaryPbmSignature extends  NetpbmSignature{
     @Override
-    public String getFormatId() {
-        return "P4";
+    public FormatType getFormatType() {
+        return FormatType.BINARY_PBM;
     }
 }

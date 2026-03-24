@@ -4,6 +4,8 @@ import cli.commands.Command;
 import cli.commands.registry.CommandRegistryBase;
 import session.SessionManager;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class CommandLineInterface {

@@ -1,13 +1,15 @@
 package image.parsers.factories;
 
 import exceptions.ApplicationException;
-import image.parsers.ImageParser;
+import image.parsers.contracts.ImageParser;
+import image.signatures.FormatType;
 
 import java.util.HashMap;
 import java.util.Map;
 
+// Magic number (P1) -> Parser (AsciiPbmParser)
 public class ParserFactory {
-    private final Map<String, ImageParser> formatDict = new HashMap<>();
+    private final Map<FormatType, ImageParser> formatDict = new HashMap<>();
 
     private ParserFactory() {
     }
@@ -20,14 +22,14 @@ public class ParserFactory {
         return instance;
     }
 
-    public void register(String id, ImageParser imageParser) {
-        formatDict.put(id, imageParser);
+    public void register(FormatType formatType, ImageParser imageParser) {
+        formatDict.put(formatType, imageParser);
     }
 
-    public ImageParser getParser(String formatId) {
-        if (!formatDict.containsKey(formatId))
+    public ImageParser getParser(FormatType formatType) {
+        if (!formatDict.containsKey(formatType))
             throw new ApplicationException("Unknown file format");
 
-        return formatDict.get(formatId);
+        return formatDict.get(formatType);
     }
 }

@@ -3,16 +3,12 @@ package cli.commands.registry;
 import cli.commands.Command;
 import cli.commands.image.*;
 import cli.commands.session.*;
-import image.parsers.ImageParser;
-import image.parsers.ascii.AsciiPbmParser;
 import image.parsers.factories.FormatExtractor;
 import image.parsers.factories.ParserFactory;
 import image.parsers.factories.ParserRegistry;
 import image.signatures.FormatSignature;
 import image.signatures.SignatureFactory;
-import util.ClassHelper;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

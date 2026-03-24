@@ -1,8 +1,8 @@
 package image.signatures;
 
-public class BinaryPpmSignature extends NetpbmSignature{
+public class BinaryPpmSignature extends NetpbmSignature {
     @Override
-    public String getFormatId() {
-        return "P6";
+    public FormatType getFormatType() {
+        return FormatType.BINARY_PPM;
     }
 }

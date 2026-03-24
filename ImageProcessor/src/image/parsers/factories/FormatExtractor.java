@@ -24,7 +24,7 @@ public class FormatExtractor {
 
             for (var signature : signatureList) {
                 if (bytesRead >= signature.getHeaderSize() && signature.matches(bytes)) {
-                    return signature.getFormatId();
+                    return signature.getFormatType().magic;
                 }
             }
         } catch (IOException e) {

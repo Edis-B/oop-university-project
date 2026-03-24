@@ -1,11 +1,20 @@
 package image.parsers;
 
 import exceptions.ApplicationException;
+import image.images_in_memory.InMemoryImage;
+import image.parsers.contracts.ImageParser;
+import image.signatures.FormatType;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 
+import static util.NetbpmFormatHelper.skipCommentsAndWhitespace;
+
 public abstract class NetpbmParser implements ImageParser {
+    protected abstract boolean requiresMaxValue();
+    protected abstract InMemoryImage readPixels(BufferedInputStream bis, int width, int height, int maxColor);
+    public abstract FormatType getSupportedFormat();
+
     protected int getNextInt(BufferedInputStream bis) {
         skipCommentsAndWhitespace(bis);
         StringBuilder sb = new StringBuilder();
@@ -19,7 +28,7 @@ public abstract class NetpbmParser implements ImageParser {
             throw new ApplicationException("File reading error!", e);
         }
 
-        return Integer.parseInt(sb.toString());
+        return !sb.isEmpty() ? Integer.parseInt(sb.toString()) : -1;
     }
 
     protected String readMagic(BufferedInputStream bis) {
@@ -27,41 +36,32 @@ public abstract class NetpbmParser implements ImageParser {
         try {
             int b1 = bis.read();
             if (b1 != -1 && b1 != 'P') {
-                String msg = String.format("Invalid Netpbm header. Expected 'P' (80), but received: %d ('%s')", b1, (char)b1);
+                String msg = String.format("Invalid Netpbm header. Expected 'P' (80), but received: %d ('%s')", b1, (char) b1);
                 throw new ApplicationException(msg);
             }
 
             int b2 = bis.read();
             if (b2 != -1 && (b2 < '1' || b2 > '6')) {
-                String msg = String.format("Invalid Netpbm header. Expected '1' (49) - '6' (55), but received: %d ('%s')", b2, (char)b2);
+                String msg = String.format("Invalid Netpbm header. Expected '1' (49) - '6' (55), but received: %d ('%s')", b2, (char) b2);
                 throw new ApplicationException(msg);
             }
 
-            return "" + (char)b1 + (char) b2;
+            return "" + (char) b1 + (char) b2;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    protected boolean skipCommentsAndWhitespace(BufferedInputStream bis) {
-        int b;
-        while (true) try {
-            bis.mark(1);
-            b = bis.read();
-            if (b == -1) return false;
+    public InMemoryImage parse(BufferedInputStream bis) {
+        String magicNumber = readMagic(bis);
 
-            if (Character.isWhitespace(b)) {
-                continue;
-            } else if (b == '#') {
-                while ((b = bis.read()) != -1 && b != '\n' && b != '\r') ;
-            } else {
-                bis.reset();
-                break;
-            }
-        } catch (IOException e) {
-            throw new ApplicationException("File reading error!", e);
-        }
+        short width = (short) getNextInt(bis);
+        short height = (short) getNextInt(bis);
 
-        return true;
+        short maxColor = 1;
+        if (requiresMaxValue())
+            maxColor = (short) getNextInt(bis);
+
+        return readPixels(bis, width, height, maxColor);
     }
 }

@@ -25,7 +25,7 @@ public class SignatureFactory {
         List<Class<?>> classes = ClassHelper.getClassesOfPackage(asciiPbmSignature.getClass().getPackageName());
 
         for (var clazz : classes) {
-            if (!ClassHelper.isConcrete(clazz)) {
+            if (!ClassHelper.isConcrete(clazz) || clazz.isEnum()) {
                 continue;
             }
 

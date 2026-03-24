@@ -9,6 +9,6 @@ public abstract class NetpbmSignature implements FormatSignature {
         if (bytes == null || bytes.length < 2)
             return false;
 
-        return bytes[0] == (byte)'P' && bytes[1] == (byte)getFormatId().charAt(1);
+        return bytes[0] == (byte)'P' && bytes[1] == (byte) getFormatType().magic.charAt(1);
     }
 }

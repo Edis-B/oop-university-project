@@ -1,19 +1,67 @@
 package image.parsers.binary;
 
+import exceptions.ApplicationException;
+import image.images_in_memory.InMemoryImage;
 import image.images_in_memory.pbm.InMemoryPbmBinary;
-import image.parsers.ImageParser;
-import image.parsers.ascii.NetpbmAsciiParser;
+import image.signatures.FormatType;
 
 import java.io.BufferedInputStream;
+import java.io.IOException;
 
 public class BinaryPbmParser extends NetpbmBinaryParser {
     @Override
-    public InMemoryPbmBinary parse(BufferedInputStream bis) {
-        return null;
+    public FormatType getSupportedFormat() {
+        return FormatType.BINARY_PBM;
     }
 
     @Override
-    public String getSupportedFormat() {
-        return "P4";
+    protected boolean requiresMaxValue() {
+        return false;
+    }
+
+    @Override
+    protected InMemoryImage readPixels(BufferedInputStream bis, int width, int height, int maxColor) {
+        InMemoryPbmBinary image = new InMemoryPbmBinary(width, height);
+
+        int totalBits = width * height,
+                bytesPerRow = (width + 7) / 8,
+                totalBytesToRead = bytesPerRow * height;
+
+        try {
+            byte[] data = bis.readNBytes(totalBytesToRead);
+
+            if (data.length < totalBytesToRead) {
+                throw new ApplicationException("Unexpected EOF: File ended prematurely.");
+            }
+
+            boolean[] pixels = new boolean[totalBits];
+            int ctr = 0;
+
+            for (int row = 0; row < height; row++) {
+                int startByte = bytesPerRow * row;
+                for (int currBit = 0; currBit < width; currBit++) {
+                    int currByte = startByte + (currBit / 8),
+                            bitPos = currBit % 8;
+
+                    pixels[ctr++] = (data[currByte] & (128 >> bitPos)) != 0;
+                }
+            }
+
+            if (ctr < totalBits) {
+                throw new ApplicationException("Unexpected EOF: File ended prematurely.");
+            }
+
+            for (int i = 0; i < height; i++) {
+                int startIndex = i * width;
+                for (int j = 0; j < width; j++) {
+                    int index = startIndex + j;
+                    image.setPixel(j, i, pixels[index]);
+                }
+            }
+        } catch (IOException e) {
+            throw new ApplicationException("Error reading pixels", e);
+        }
+
+        return image;
     }
 }

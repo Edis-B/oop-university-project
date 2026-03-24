@@ -1,11 +1,14 @@
 package image.parsers.factories;
 
 import exceptions.ApplicationException;
-import image.parsers.ImageParser;
+import image.parsers.contracts.ImageParser;
 import image.parsers.ascii.AsciiPbmParser;
 import util.ClassHelper;
 
 import java.util.List;
+
+// Registers Parser factory (P? -> Parser) by
+// using parser.getSupportedFormat()
 
 public class ParserRegistry {
     public static void registerAll(ParserFactory factory) {
