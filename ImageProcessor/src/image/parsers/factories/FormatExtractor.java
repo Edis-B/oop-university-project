@@ -2,6 +2,7 @@ package image.parsers.factories;
 
 import exceptions.ApplicationException;
 import image.signatures.FormatSignature;
+import image.signatures.FormatType;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -14,7 +15,7 @@ public class FormatExtractor {
         signatureList = _signatureList;
     }
 
-    public String extract(BufferedInputStream bis) {
+    public FormatType extract(BufferedInputStream bis) {
         try {
             byte[] bytes = new byte[16];
             int bytesRead = bis.read(bytes, 0, 16);
@@ -24,7 +25,7 @@ public class FormatExtractor {
 
             for (var signature : signatureList) {
                 if (bytesRead >= signature.getHeaderSize() && signature.matches(bytes)) {
-                    return signature.getFormatType().magic;
+                    return signature.getFormatType();
                 }
             }
         } catch (IOException e) {

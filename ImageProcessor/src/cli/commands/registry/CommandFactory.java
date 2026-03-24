@@ -6,9 +6,11 @@ import cli.commands.session.*;
 import image.parsers.factories.FormatExtractor;
 import image.parsers.factories.ParserFactory;
 import image.parsers.factories.ParserRegistry;
+import image.service.ImageLoaderService;
 import image.signatures.FormatSignature;
 import image.signatures.SignatureFactory;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,6 @@ public class CommandFactory {
         list.add(new NegativeCommand());
         list.add(new RotateCommand());
         list.add(new UndoCommand());
-        list.add(new AddCommand());
         list.add(new SessionCommand());
         list.add(new SwitchCommand());
         list.add(new CollageCommand());
@@ -37,7 +38,10 @@ public class CommandFactory {
 
         ParserFactory pf = ParserFactory.getInstance();
         ParserRegistry.registerAll(pf);
-        list.add(new LoadCommand(fe, pf));
+
+        ImageLoaderService imageLoaderService = new ImageLoaderService(fe, pf);
+        list.add(new LoadCommand(imageLoaderService));
+        list.add(new AddCommand(imageLoaderService));
 
         list.add(new SaveCommand());
 

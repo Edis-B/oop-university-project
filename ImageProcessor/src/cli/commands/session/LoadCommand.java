@@ -3,17 +3,15 @@ package cli.commands.session;
 import cli.commands.Command;
 import exceptions.ApplicationException;
 import image.actions.AddAction;
-import image.parsers.factories.FormatExtractor;
-import image.parsers.factories.ParserFactory;
+import image.service.ImageLoaderService;
+import session.ImageWrapper;
 import session.SessionManager;
 
 public class LoadCommand extends Command {
-    private final FormatExtractor formatExtractor;
-    private final ParserFactory parserFactory;
+    private final ImageLoaderService imageLoaderService;
 
     private LoadCommand() {
-        formatExtractor = null;
-        parserFactory = null;
+        this(null);
     }
 
     @Override
@@ -21,9 +19,8 @@ public class LoadCommand extends Command {
         return "load";
     }
 
-    public LoadCommand(FormatExtractor _extractor, ParserFactory _parserFactory) {
-        parserFactory = _parserFactory;
-        formatExtractor = _extractor;
+    public LoadCommand(ImageLoaderService _imageLoaderService) {
+        imageLoaderService = _imageLoaderService;
     }
 
     @Override
@@ -35,6 +32,13 @@ public class LoadCommand extends Command {
             throw new ApplicationException("Unsupported argument count!");
 
         sessionManager.startSession();
-        sessionManager.addCommandToSession(new AddAction(tokens[1], formatExtractor, parserFactory));
+
+        String filePath = tokens[1];
+        var newImage = imageLoaderService.load(tokens[1]);
+        sessionManager.getSession().addFirst(new ImageWrapper(
+                newImage, filePath
+        ));
+
+        sessionManager.addCommandToSession(new AddAction());
     }
 }
