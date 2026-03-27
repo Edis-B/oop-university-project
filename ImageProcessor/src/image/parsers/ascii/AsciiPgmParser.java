@@ -1,8 +1,7 @@
 package image.parsers.ascii;
 
 import exceptions.ApplicationException;
-import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.pbm.InMemoryPbmAscii;
+import image.images_in_memory.InMemoryNetpbm;
 import image.images_in_memory.pgm.InMemoryPgmAscii;
 import image.signatures.FormatType;
 
@@ -20,7 +19,7 @@ public class AsciiPgmParser extends NetpbmAsciiParser {
     }
 
     @Override
-    protected InMemoryImage readPixels(BufferedInputStream bis, int width, int height, int maxColor) {
+    protected InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, int maxColor) {
         InMemoryPgmAscii image = new InMemoryPgmAscii(width, height, maxColor);
 
         for (int i = 0; i < height; i++)
@@ -30,7 +29,7 @@ public class AsciiPgmParser extends NetpbmAsciiParser {
                     throw new ApplicationException(String.format(
                             "Unexpected EOF: Premature end of file at pixel (%d, %d).", j, i));
 
-                image.setPixel(j, i, (short) b);
+                image.setPixel(i, j, (short) b);
             }
 
         return image;

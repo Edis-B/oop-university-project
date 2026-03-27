@@ -5,26 +5,29 @@ import image.actions.Action;
 import java.util.*;
 
 public class Session {
+
     private final Stack<Action> commandHistory = new Stack<>();
-    private final LinkedList<ImageWrapper> loadedImages = new LinkedList<>();
+    private final List<ImageWrapper> loadedImages = new ArrayList<>();
+    private final int id;
 
-    public LinkedList<ImageWrapper> getLoadedImages() {
-        return (LinkedList<ImageWrapper>) List.copyOf(loadedImages);
+    public int getId() {
+        return id;
     }
 
-    protected Session() {
+    public List<ImageWrapper> getLoadedImages() {
+        return (ArrayList<ImageWrapper>) List.copyOf(loadedImages);
     }
 
-    public void addFirst(ImageWrapper image) {
+    protected Session(int id) {
+        this.id = id;
+    }
+
+    public void addImage(ImageWrapper image) {
         loadedImages.addFirst(image);
     }
 
-    public void removeFirst() {
-        loadedImages.removeFirst();
-    }
-
-    public void removeLast() {
-        loadedImages.removeLast();
+    public int getImageCount() {
+        return loadedImages.size();
     }
 
     public void appendAction(Action action) {
@@ -36,6 +39,8 @@ public class Session {
     }
 
     public Stack<Action> getCommandHistory() {
-        return commandHistory;
+        Stack<Action> copy = new Stack<>();
+        copy.addAll(this.commandHistory);
+        return copy;
     }
 }

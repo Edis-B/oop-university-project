@@ -1,7 +1,7 @@
 package image.parsers.binary;
 
 import exceptions.ApplicationException;
-import image.images_in_memory.InMemoryImage;
+import image.images_in_memory.InMemoryNetpbm;
 import image.images_in_memory.pbm.InMemoryPbmBinary;
 import image.signatures.FormatType;
 
@@ -20,7 +20,7 @@ public class BinaryPbmParser extends NetpbmBinaryParser {
     }
 
     @Override
-    protected InMemoryImage readPixels(BufferedInputStream bis, int width, int height, int maxColor) {
+    protected InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, int maxColor) {
         InMemoryPbmBinary image = new InMemoryPbmBinary(width, height);
 
         int totalBits = width * height,
@@ -55,7 +55,7 @@ public class BinaryPbmParser extends NetpbmBinaryParser {
                 int startIndex = i * width;
                 for (int j = 0; j < width; j++) {
                     int index = startIndex + j;
-                    image.setPixel(j, i, pixels[index]);
+                    image.setPixel(i, j, pixels[index]);
                 }
             }
         } catch (IOException e) {

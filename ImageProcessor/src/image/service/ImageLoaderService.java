@@ -6,7 +6,6 @@ import image.parsers.factories.FormatExtractor;
 import image.parsers.factories.ParserFactory;
 import image.signatures.FormatType;
 
-import java.awt.*;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;

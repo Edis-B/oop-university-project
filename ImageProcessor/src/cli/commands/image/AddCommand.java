@@ -2,7 +2,6 @@ package cli.commands.image;
 
 import cli.commands.Command;
 import exceptions.ApplicationException;
-import image.actions.AddAction;
 import image.service.ImageLoaderService;
 import session.ImageWrapper;
 import session.SessionManager;
@@ -25,7 +24,7 @@ public class AddCommand extends Command {
 
     @Override
     public void execute(String[] tokens, SessionManager sessionManager) {
-        if (sessionManager.getSession() == null)
+        if (sessionManager.getCurrentSession() == null)
             throw new ApplicationException("Cannot add image - not in session!");
 
         if (tokens.length != 2)
@@ -33,10 +32,8 @@ public class AddCommand extends Command {
 
         String filePath = tokens[1];
         var newImage = imageLoaderService.load(tokens[1]);
-        sessionManager.getSession().addFirst(new ImageWrapper(
-                newImage, filePath
+        sessionManager.getCurrentSession().addImage(new ImageWrapper(
+            newImage, filePath
         ));
-
-        sessionManager.addCommandToSession(new AddAction());
     }
 }

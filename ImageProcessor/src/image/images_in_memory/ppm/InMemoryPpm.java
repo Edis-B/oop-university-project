@@ -1,23 +1,32 @@
 package image.images_in_memory.ppm;
 
-import image.images_in_memory.InMemoryImage;
+import image.images_in_memory.InMemoryNetpbm;
+import image.images_in_memory.RgbImage;
 import util.Color;
 
-public abstract class InMemoryPpm extends InMemoryImage {
-    private final int maxValue;
+public abstract class InMemoryPpm extends InMemoryNetpbm implements RgbImage {
     private final Color[][] pixels;
 
     public InMemoryPpm(int width, int height, int maxValue) {
-        super(width, height);
-        this.maxValue = maxValue;
         this.pixels = new Color[width][height];
+        super(width, height);
     }
 
-    public void setPixel(int i, int j, Color val) {
-        pixels[i][j] = val;
+    public InMemoryPpm(int width, int height) {
+        this.pixels = new Color[width][height];
+        super(width, height);
     }
 
-    public Color getPixel(int i, int j) {
-        return pixels[i][j];
+    @Override
+    public int getDefaultValue() {
+        return 255;
+    }
+
+    public void setPixel(int h, int w, Color val) {
+        pixels[h][w] = val;
+    }
+
+    public Color getPixel(int h, int w) {
+        return pixels[h][w];
     }
 }

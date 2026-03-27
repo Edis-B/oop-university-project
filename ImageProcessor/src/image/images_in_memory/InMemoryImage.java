@@ -1,8 +1,10 @@
 package image.images_in_memory;
 
+import image.signatures.FormatType;
+
 public abstract class InMemoryImage {
-    private int width;
-    private int height;
+    protected final int width;
+    protected final int height;
 
     public InMemoryImage(int width, int height) {
         this.width = width;
@@ -13,15 +15,9 @@ public abstract class InMemoryImage {
         return width;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
     public int getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
+    public abstract FormatType getFormat();
 }

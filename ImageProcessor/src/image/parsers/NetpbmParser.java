@@ -1,7 +1,7 @@
 package image.parsers;
 
 import exceptions.ApplicationException;
-import image.images_in_memory.InMemoryImage;
+import image.images_in_memory.InMemoryNetpbm;
 import image.parsers.contracts.ImageParser;
 import image.signatures.FormatType;
 
@@ -12,8 +12,8 @@ import static util.NetbpmFormatHelper.skipCommentsAndWhitespace;
 
 public abstract class NetpbmParser implements ImageParser {
     protected abstract boolean requiresMaxValue();
-    protected abstract InMemoryImage readPixels(BufferedInputStream bis, int width, int height, int maxColor);
     public abstract FormatType getSupportedFormat();
+    protected abstract InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, int maxColor);
 
     protected int getNextInt(BufferedInputStream bis) {
         skipCommentsAndWhitespace(bis);
@@ -52,7 +52,7 @@ public abstract class NetpbmParser implements ImageParser {
         }
     }
 
-    public InMemoryImage parse(BufferedInputStream bis) {
+    public InMemoryNetpbm parse(BufferedInputStream bis) {
         String magicNumber = readMagic(bis);
 
         short width = (short) getNextInt(bis);

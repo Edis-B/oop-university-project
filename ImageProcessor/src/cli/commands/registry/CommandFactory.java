@@ -9,14 +9,15 @@ import image.parsers.factories.ParserRegistry;
 import image.service.ImageLoaderService;
 import image.signatures.FormatSignature;
 import image.signatures.SignatureFactory;
+import logging.ConsoleLoggingProvider;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommandFactory {
     public List<Command> createAllCommands() {
         List<Command> list = new ArrayList<>();
+        ConsoleLoggingProvider clp = new ConsoleLoggingProvider();
 
         // Image Manipulation
         list.add(new GrayscaleCommand());
@@ -40,7 +41,7 @@ public class CommandFactory {
         ParserRegistry.registerAll(pf);
 
         ImageLoaderService imageLoaderService = new ImageLoaderService(fe, pf);
-        list.add(new LoadCommand(imageLoaderService));
+        list.add(new LoadCommand(imageLoaderService, clp));
         list.add(new AddCommand(imageLoaderService));
 
         list.add(new SaveCommand());

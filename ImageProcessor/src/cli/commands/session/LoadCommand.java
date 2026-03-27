@@ -2,16 +2,19 @@ package cli.commands.session;
 
 import cli.commands.Command;
 import exceptions.ApplicationException;
-import image.actions.AddAction;
+import image.images_in_memory.InMemoryImage;
+import image.images_in_memory.InMemoryNetpbm;
 import image.service.ImageLoaderService;
+import logging.ConsoleLoggingProvider;
 import session.ImageWrapper;
 import session.SessionManager;
 
 public class LoadCommand extends Command {
     private final ImageLoaderService imageLoaderService;
+    private final ConsoleLoggingProvider consoleLoggingProvider;
 
     private LoadCommand() {
-        this(null);
+        this(null, null);
     }
 
     @Override
@@ -19,26 +22,31 @@ public class LoadCommand extends Command {
         return "load";
     }
 
-    public LoadCommand(ImageLoaderService _imageLoaderService) {
+    public LoadCommand(ImageLoaderService _imageLoaderService, ConsoleLoggingProvider _consoleLogginProvider) {
         imageLoaderService = _imageLoaderService;
+        consoleLoggingProvider = _consoleLogginProvider;
     }
 
     @Override
     public void execute(String[] tokens, SessionManager sessionManager) {
-        if (sessionManager.getSession() != null)
+        if (sessionManager.getCurrentSession() != null)
             throw new ApplicationException("Already in session!");
 
-        if (tokens.length != 2)
-            throw new ApplicationException("Unsupported argument count!");
+        if (tokens.length == 1)
+            throw new ApplicationException("Please enter at least 1 image!");
 
-        sessionManager.startSession();
+        consoleLoggingProvider.sendMessageNewline(
+            String.format(
+                "Session with ID: %d started", sessionManager.newSession()
+            )
+        );
 
-        String filePath = tokens[1];
-        var newImage = imageLoaderService.load(tokens[1]);
-        sessionManager.getSession().addFirst(new ImageWrapper(
+        for (int i = 1; i < tokens.length; i++) {
+            String filePath = tokens[i];
+            InMemoryImage newImage = imageLoaderService.load(tokens[1]);
+            sessionManager.getCurrentSession().addImage(new ImageWrapper(
                 newImage, filePath
-        ));
-
-        sessionManager.addCommandToSession(new AddAction());
+            ));
+        }
     }
 }

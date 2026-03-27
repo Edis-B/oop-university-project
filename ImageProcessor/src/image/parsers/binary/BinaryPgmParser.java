@@ -1,8 +1,7 @@
 package image.parsers.binary;
 
 import exceptions.ApplicationException;
-import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.pbm.InMemoryPbmBinary;
+import image.images_in_memory.InMemoryNetpbm;
 import image.images_in_memory.pgm.InMemoryPgmBinary;
 import image.signatures.FormatType;
 
@@ -21,7 +20,7 @@ public class BinaryPgmParser extends NetpbmBinaryParser {
     }
 
     @Override
-    protected InMemoryImage readPixels(BufferedInputStream bis, int width, int height, int maxColor) {
+    protected InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, int maxColor) {
         InMemoryPgmBinary image = new InMemoryPgmBinary(width, height, maxColor);
 
         for (int i = 0; i < height; i++)
@@ -34,7 +33,7 @@ public class BinaryPgmParser extends NetpbmBinaryParser {
                         throw new ApplicationException(String.format(
                                 "Unexpected EOF: Premature end of file at pixel (%d, %d).", j, i));
 
-                    image.setPixel(j, i, (short) b);
+                    image.setPixel(i, j, (short) b);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

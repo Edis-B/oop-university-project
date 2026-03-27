@@ -1,4 +1,4 @@
-package cli.commands.image;
+package cli.commands.session;
 
 import cli.commands.Command;
 import session.SessionManager;
