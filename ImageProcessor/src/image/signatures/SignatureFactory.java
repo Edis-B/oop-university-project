@@ -1,13 +1,13 @@
 package image.signatures;
 
+import exceptions.ApplicationException;
 import util.ClassHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SignatureFactory {
-    private SignatureFactory() {
-    }
+    private SignatureFactory() { }
 
     public static SignatureFactory instance;
 
@@ -36,9 +36,8 @@ public class SignatureFactory {
                     FormatSignature sig = (FormatSignature) unknownObject;
                     signatures.add(sig);
                 }
-
             } catch (Exception e) {
-                System.out.println("Could not create: " + clazz.getSimpleName());
+                throw new ApplicationException("Could not create: " + clazz.getSimpleName());
             }
         }
 

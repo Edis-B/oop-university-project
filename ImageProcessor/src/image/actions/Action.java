@@ -1,9 +1,12 @@
 package image.actions;
 
 import image.ImageContext;
+import session.ImageWrapper;
+
+import java.util.List;
 
 public abstract class Action {
-    private final int imageCount;
+    protected final int imageCount;
 
     public Action(int imageCount) {
         this.imageCount = imageCount;

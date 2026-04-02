@@ -1,20 +1,46 @@
 package image;
 
 import image.images_in_memory.InMemoryImage;
+import session.ImageWrapper;
+import util.FileNameHelper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ImageContext {
-    private final List<InMemoryImage> images = new ArrayList<>();
+    private final List<ImageWrapper> imageArray = new ArrayList<>();
+    private final Map<String, ImageWrapper> nameMap = new HashMap<>();
 
     public ImageContext() { }
 
-    public List<InMemoryImage> getImages() {
-        return images;
+    public String insertImage(InMemoryImage image, String filePath) {
+        String fileName = FileNameHelper.extractFileName(filePath);
+
+        while (nameMap.containsKey(fileName)) {
+            fileName = FileNameHelper.incrementFileNumbering(fileName);
+        }
+
+        ImageWrapper newWrapper = new ImageWrapper(
+            image, filePath, fileName
+        );
+
+        imageArray.add(newWrapper);
+        nameMap.put(fileName, newWrapper);
+
+        return fileName;
     }
 
-    public void insertImage(InMemoryImage image) {
-        images.add(image);
+    public int getImageCount() {
+        return imageArray.size();
+    }
+
+    public List<ImageWrapper> getImageArray() {
+        return imageArray;
+    }
+
+    public ImageWrapper getImageByName(String name) {
+        return nameMap.get(name);
     }
 }

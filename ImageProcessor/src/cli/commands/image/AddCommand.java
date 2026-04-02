@@ -32,8 +32,8 @@ public class AddCommand extends Command {
 
         String filePath = tokens[1];
         var newImage = imageLoaderService.load(tokens[1]);
-        sessionManager.getCurrentSession().addImage(new ImageWrapper(
+        sessionManager.insertImageIntoSession(
             newImage, filePath
-        ));
+        );
     }
 }

@@ -3,9 +3,9 @@ package cli.commands.registry;
 import cli.commands.Command;
 import cli.commands.image.*;
 import cli.commands.session.*;
-import image.parsers.factories.FormatExtractor;
-import image.parsers.factories.ParserFactory;
-import image.parsers.factories.ParserRegistry;
+import image.parsers.factory.FormatExtractor;
+import image.parsers.factory.ParserFactory;
+import image.parsers.factory.ParserDiscoverer;
 import image.service.ImageLoaderService;
 import image.signatures.FormatSignature;
 import image.signatures.SignatureFactory;
@@ -38,7 +38,7 @@ public class CommandFactory {
         FormatExtractor fe = new FormatExtractor(imageSignatures);
 
         ParserFactory pf = ParserFactory.getInstance();
-        ParserRegistry.registerAll(pf);
+        ParserDiscoverer.registerAll(pf);
 
         ImageLoaderService imageLoaderService = new ImageLoaderService(fe, pf);
         list.add(new LoadCommand(imageLoaderService, clp));

@@ -2,8 +2,8 @@ package image.service;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.parsers.factories.FormatExtractor;
-import image.parsers.factories.ParserFactory;
+import image.parsers.factory.FormatExtractor;
+import image.parsers.factory.ParserFactory;
 import image.signatures.FormatType;
 
 import java.io.BufferedInputStream;

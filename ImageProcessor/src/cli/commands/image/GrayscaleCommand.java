@@ -12,6 +12,6 @@ public class GrayscaleCommand extends Command {
 
     @Override
     public void execute(String[] tokens, SessionManager sessionManager) {
-        sessionManager.addCommandToSession(new GrayscaleAction(sessionManager.getCurrentSession().getImageCount()));
+        sessionManager.addCommandToSession(new GrayscaleAction(sessionManager.getCurrentSessionImageCount()));
     }
 }

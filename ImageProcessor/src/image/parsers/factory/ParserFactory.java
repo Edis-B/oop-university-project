@@ -1,4 +1,4 @@
-package image.parsers.factories;
+package image.parsers.factory;
 
 import exceptions.ApplicationException;
 import image.parsers.contracts.ImageParser;
@@ -7,7 +7,7 @@ import image.signatures.FormatType;
 import java.util.HashMap;
 import java.util.Map;
 
-// Magic number (P1) -> Parser (AsciiPbmParser)
+// FormatType -> Parser
 public class ParserFactory {
     private final Map<FormatType, ImageParser> formatDict = new HashMap<>();
 

@@ -19,11 +19,11 @@ public class ClassHelper {
         return !isInterface && !isAbstract;
     }
 
-    public static List<Class<?>> getClassesOfPackage(String packageName) {
+    public static List<Class<?>> getClassesOfPackage(String packageName, String includedSubstring) {
         try {
             String path = packageName.replace('.', '/');
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            var resource = classLoader.getResource(path);
+            var resource     = classLoader.getResource(path);
 
             if (resource == null) return new ArrayList<>();
 
@@ -32,12 +32,15 @@ public class ClassHelper {
 
             for (File file : directory.listFiles()) {
                 if (file.getName().endsWith(".class")) {
-                    String className = packageName + '.' + file.getName().replace(".class", "");
-                    classes.add(Class.forName(className));
+                    String fileName = file.getName().replace(".class", "");
 
+                    if (includedSubstring == null || fileName.contains(includedSubstring)) {
+                        String className = packageName + '.' + fileName;
+                        classes.add(Class.forName(className));
+                    }
                 } else if (file.isDirectory()) {
                     String subPackageName = packageName + "." + file.getName();
-                    classes.addAll(getClassesOfPackage(subPackageName));
+                    classes.addAll(getClassesOfPackage(subPackageName, includedSubstring));
                 }
             }
             return classes;
@@ -46,6 +49,10 @@ public class ClassHelper {
         } catch (Exception e) {
             throw new ApplicationException("Error scanning package!");
         }
+    }
+
+    public static List<Class<?>> getClassesOfPackage(String packageName) {
+        return getClassesOfPackage(packageName, "");
     }
 
     public static String getParentPackage(String packageName) {

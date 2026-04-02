@@ -11,6 +11,6 @@ public class UndoCommand extends Command {
 
     @Override
     public void execute(String[] tokens, SessionManager sessionManager) {
-
+        sessionManager.getCurrentSession().undoAction();
     }
 }

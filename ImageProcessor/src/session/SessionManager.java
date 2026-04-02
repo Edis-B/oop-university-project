@@ -3,6 +3,7 @@ package session;
 import exceptions.ApplicationException;
 import image.actions.Action;
 import image.ImageContext;
+import image.images_in_memory.InMemoryImage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,8 +44,16 @@ public class SessionManager {
         session.appendAction(action);
     }
 
+    public void insertImageIntoSession(InMemoryImage image, String fileName) {
+        session.addImage(image, fileName);
+    }
+
+    public int getCurrentSessionImageCount() {
+        return session.getImageCount();
+    }
+
     public ImageContext executeActions() {
-        ImageContext imageContext = new ImageContext();
+        ImageContext imageContext = session.getImageContext();
         var commandActions = session.getCommandHistory();
 
         for (var action : commandActions) {
