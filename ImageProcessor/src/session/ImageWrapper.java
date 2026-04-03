@@ -5,7 +5,7 @@ import image.images_in_memory.InMemoryImage;
 import java.util.Objects;
 
 public final class ImageWrapper {
-    private final InMemoryImage image;
+    private InMemoryImage image;
     private final String originalFilePath;
     private final String name;
 
@@ -17,6 +17,10 @@ public final class ImageWrapper {
 
     public InMemoryImage getImage() {
         return image;
+    }
+
+    public void setImage(InMemoryImage image) {
+        this.image = image;
     }
 
     public String getOriginalFilePath() {

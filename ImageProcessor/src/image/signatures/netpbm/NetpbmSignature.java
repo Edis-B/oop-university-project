@@ -1,4 +1,6 @@
-package image.signatures;
+package image.signatures.netpbm;
+
+import image.signatures.FormatSignature;
 
 public abstract class NetpbmSignature implements FormatSignature {
     @Override

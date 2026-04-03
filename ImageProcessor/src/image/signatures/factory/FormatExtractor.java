@@ -1,4 +1,4 @@
-package image.parsers.factory;
+package image.signatures.factory;
 
 import exceptions.ApplicationException;
 import image.signatures.FormatSignature;

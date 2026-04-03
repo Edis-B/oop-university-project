@@ -1,13 +1,16 @@
-package image.signatures;
+package image.signatures.factory;
 
 import exceptions.ApplicationException;
+import image.signatures.netpbm.AsciiPbmSignature;
+import image.signatures.FormatSignature;
 import util.ClassHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SignatureFactory {
-    private SignatureFactory() { }
+    private SignatureFactory() {
+    }
 
     public static SignatureFactory instance;
 
@@ -19,25 +22,20 @@ public class SignatureFactory {
     }
 
     public List<FormatSignature> getSignatures() {
-        List<FormatSignature> signatures = new ArrayList<>();
         AsciiPbmSignature asciiPbmSignature = new AsciiPbmSignature();
-
         List<Class<?>> classes = ClassHelper.getClassesOfPackage(asciiPbmSignature.getClass().getPackageName());
 
+        List<FormatSignature> signatures = new ArrayList<>();
         for (var clazz : classes) {
-            if (!ClassHelper.isConcrete(clazz) || clazz.isEnum()) {
-                continue;
-            }
-
-            try {
-                Object unknownObject = clazz.getDeclaredConstructor().newInstance();
-
-                if (unknownObject instanceof FormatSignature) {
-                    FormatSignature sig = (FormatSignature) unknownObject;
-                    signatures.add(sig);
+            if (ClassHelper.isConcrete(clazz) &&
+                    FormatSignature.class.isAssignableFrom(clazz)) {
+                try {
+                    var formatSignatureObj = clazz
+                            .asSubclass(FormatSignature.class).getConstructor().newInstance();
+                    signatures.add(formatSignatureObj);
+                } catch (Exception e) {
+                    throw new ApplicationException("Error creating FormatSignature!", e);
                 }
-            } catch (Exception e) {
-                throw new ApplicationException("Could not create: " + clazz.getSimpleName());
             }
         }
 

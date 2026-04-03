@@ -1,6 +1,7 @@
 package image.grayscaling;
 
 import exceptions.ApplicationException;
+import image.images_in_memory.InMemoryImage;
 import image.images_in_memory.RgbImage;
 import image.images_in_memory.ppm.InMemoryPpm;
 import image.images_in_memory.ppm.InMemoryPpmAscii;
@@ -10,12 +11,15 @@ import util.Color;
 
 import java.util.List;
 
-public class PpmGrayscaler implements Grayscaler {
+public class PpmGrayscaler implements Grayscaler<InMemoryPpm> {
+
+    public PpmGrayscaler() {
+    }
+
     @Override
-    public RgbImage grayscale(RgbImage rgbImage) {
-        InMemoryPpm original = (InMemoryPpm) rgbImage;
-        int height = original.getHeight(),
-                width = original.getWidth(),
+    public InMemoryImage grayscale(InMemoryPpm original) {
+        int width = original.getWidth(),
+                height = original.getHeight(),
                 maxVal = original.getMaxValue();
 
         InMemoryPpm grayImage;
@@ -28,9 +32,10 @@ public class PpmGrayscaler implements Grayscaler {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 Color oldColor = original.getPixel(j, i);
-                short avg = (short) ((oldColor.getRed() + oldColor.getGreen() + oldColor.getBlue()) / 3);
+                short gray =
+                        (short) (oldColor.getRed() * 0.299 + oldColor.getGreen() * 0.587 + oldColor.getBlue() * 0.114);
 
-                grayImage.setPixel(j, i, new Color(avg, avg, avg));
+                grayImage.setPixel(j, i, new Color(gray, gray, gray));
             }
         }
 

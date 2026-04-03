@@ -1,4 +1,6 @@
-package image.signatures;
+package image.signatures.netpbm;
+
+import image.signatures.FormatType;
 
 public class BinaryPgmSignature extends NetpbmSignature {
     @Override

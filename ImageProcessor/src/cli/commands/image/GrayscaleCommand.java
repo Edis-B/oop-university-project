@@ -2,9 +2,17 @@ package cli.commands.image;
 
 import cli.commands.Command;
 import image.actions.GrayscaleAction;
+import image.grayscaling.factory.GrayscalerFactory;
+import image.grayscaling.factory.GrayscalerRegistry;
 import session.SessionManager;
 
 public class GrayscaleCommand extends Command {
+    private final GrayscalerFactory grayscalerFactory;
+
+    public GrayscaleCommand(GrayscalerFactory grayscalerFactory) {
+        this.grayscalerFactory = grayscalerFactory;
+    }
+
     @Override
     public String getName() {
         return "grayscale";
@@ -12,6 +20,9 @@ public class GrayscaleCommand extends Command {
 
     @Override
     public void execute(String[] tokens, SessionManager sessionManager) {
-        sessionManager.addCommandToSession(new GrayscaleAction(sessionManager.getCurrentSessionImageCount()));
+        sessionManager.addCommandToSession(
+                new GrayscaleAction(sessionManager.getCurrentSessionImageCount(),
+                        grayscalerFactory)
+        );
     }
 }

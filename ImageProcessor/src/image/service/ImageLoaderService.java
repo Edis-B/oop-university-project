@@ -2,7 +2,7 @@ package image.service;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.parsers.factory.FormatExtractor;
+import image.signatures.factory.FormatExtractor;
 import image.parsers.factory.ParserFactory;
 import image.signatures.FormatType;
 
