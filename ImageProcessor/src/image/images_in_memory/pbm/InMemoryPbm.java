@@ -10,7 +10,7 @@ public abstract class InMemoryPbm extends InMemoryNetpbm {
         super(width, height);
     }
 
-    public InMemoryPbm(int width, int height, int maxValue) {
+    public InMemoryPbm(int width, int height, short maxValue) {
         pixels = new boolean[width][height];
         super(width, height, maxValue);
     }
@@ -24,7 +24,7 @@ public abstract class InMemoryPbm extends InMemoryNetpbm {
     }
 
     @Override
-    public int getDefaultValue() {
+    public short getDefaultValue() {
         return 1;
     }
 }

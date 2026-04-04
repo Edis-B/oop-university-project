@@ -7,7 +7,7 @@ import util.Color;
 public abstract class InMemoryPpm extends InMemoryNetpbm implements RgbImage {
     private final Color[][] pixels;
 
-    public InMemoryPpm(int width, int height, int maxValue) {
+    public InMemoryPpm(int width, int height, short maxValue) {
         this.pixels = new Color[width][height];
         super(width, height);
     }
@@ -18,7 +18,7 @@ public abstract class InMemoryPpm extends InMemoryNetpbm implements RgbImage {
     }
 
     @Override
-    public int getDefaultValue() {
+    public short getDefaultValue() {
         return 255;
     }
 

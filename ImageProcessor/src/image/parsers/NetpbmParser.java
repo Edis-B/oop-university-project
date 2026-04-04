@@ -13,7 +13,7 @@ import static util.NetbpmFormatHelper.skipCommentsAndWhitespace;
 public abstract class NetpbmParser implements ImageParser {
     protected abstract boolean requiresMaxValue();
     public abstract FormatType getSupportedFormat();
-    protected abstract InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, int maxColor);
+    protected abstract InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, short maxColor);
 
     protected int getNextInt(BufferedInputStream bis) {
         skipCommentsAndWhitespace(bis);

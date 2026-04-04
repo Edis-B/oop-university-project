@@ -3,7 +3,7 @@ package image.images_in_memory.ppm;
 import image.signatures.FormatType;
 
 public class InMemoryPpmBinary extends InMemoryPpm {
-    public InMemoryPpmBinary(int width, int height, int maxValue) {
+    public InMemoryPpmBinary(int width, int height, short maxValue) {
         super(width, height, maxValue);
     }
 

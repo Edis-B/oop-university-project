@@ -3,9 +3,9 @@ package image.images_in_memory;
 import exceptions.ApplicationException;
 
 public abstract class InMemoryNetpbm extends InMemoryImage {
-    protected final int maxValue;
+    protected final short maxValue;
 
-    public InMemoryNetpbm(int width, int height, int maxValue) {
+    public InMemoryNetpbm(int width, int height, short maxValue) {
         super(width, height);
         if (maxValue > getDefaultValue())
             throw new ApplicationException("Color value bigger than expected!");
@@ -18,9 +18,9 @@ public abstract class InMemoryNetpbm extends InMemoryImage {
         this.maxValue = getDefaultValue();
     }
 
-    public abstract int getDefaultValue();
+    public abstract short getDefaultValue();
 
-    public int getMaxValue() {
+    public short getMaxValue() {
         return maxValue;
     }
 }

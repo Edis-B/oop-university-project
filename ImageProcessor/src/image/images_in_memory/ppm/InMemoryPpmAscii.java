@@ -3,7 +3,7 @@ package image.images_in_memory.ppm;
 import image.signatures.FormatType;
 
 public class InMemoryPpmAscii extends InMemoryPpm {
-    public InMemoryPpmAscii(int width, int height, int maxValue) {
+    public InMemoryPpmAscii(int width, int height, short maxValue) {
         super(width, height, maxValue);
     }
 

@@ -27,9 +27,6 @@ public class GrayscalerFactory {
     }
 
     public Grayscaler<?> getGrayscaler(FormatType formatType) {
-        if (!grayscalerMap.containsKey(formatType))
-            throw new ApplicationException("Unknown file format");
-
         return grayscalerMap.get(formatType);
     }
 }

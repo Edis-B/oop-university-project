@@ -20,7 +20,7 @@ public class BinaryPbmParser extends NetpbmBinaryParser {
     }
 
     @Override
-    protected InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, int maxColor) {
+    protected InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, short maxColor) {
         InMemoryPbmBinary image = new InMemoryPbmBinary(width, height);
 
         int totalBits = width * height,

@@ -5,6 +5,8 @@ import cli.commands.image.*;
 import cli.commands.session.*;
 import image.grayscaling.factory.GrayscalerFactory;
 import image.grayscaling.factory.GrayscalerRegistry;
+import image.monochroming.factory.MonochromerFactory;
+import image.monochroming.factory.MonochromerRegistry;
 import image.signatures.factory.FormatExtractor;
 import image.parsers.factory.ParserFactory;
 import image.parsers.factory.ParserDiscoverer;
@@ -26,7 +28,9 @@ public class CommandFactory {
         GrayscalerRegistry.registerAll(grayscalerFactory);
         list.add(new GrayscaleCommand(grayscalerFactory));
 
-        list.add(new MonochromeCommand());
+        MonochromerFactory monochromerFactory = MonochromerFactory.getInstance();
+        MonochromerRegistry.registerAll(monochromerFactory);
+        list.add(new MonochromeCommand(monochromerFactory));
 
         list.add(new NegativeCommand());
 

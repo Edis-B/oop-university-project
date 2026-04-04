@@ -7,7 +7,7 @@ public class InMemoryPbmBinary extends InMemoryPbm {
         super(width, height);
     }
 
-    public InMemoryPbmBinary(int width, int height, int maxValue) {
+    public InMemoryPbmBinary(int width, int height, short maxValue) {
         super(width, height, maxValue);
     }
 

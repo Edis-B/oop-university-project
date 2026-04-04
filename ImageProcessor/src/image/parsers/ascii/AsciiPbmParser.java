@@ -14,7 +14,7 @@ public class AsciiPbmParser extends NetpbmAsciiParser {
     }
 
     @Override
-    protected InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, int maxColor) {
+    protected InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, short maxColor) {
         InMemoryPbmAscii image = new InMemoryPbmAscii(width, height);
 
         for (int i = 0; i < height; i++)

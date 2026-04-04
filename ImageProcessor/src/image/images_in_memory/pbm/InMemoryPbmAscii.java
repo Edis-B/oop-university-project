@@ -7,7 +7,7 @@ public class InMemoryPbmAscii extends InMemoryPbm {
         super(width, height);
     }
 
-    public InMemoryPbmAscii(int width, int height, int maxValue) {
+    public InMemoryPbmAscii(int width, int height, short maxValue) {
         super(width, height, maxValue);
     }
 

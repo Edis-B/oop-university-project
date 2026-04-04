@@ -19,7 +19,7 @@ public class AsciiPgmParser extends NetpbmAsciiParser {
     }
 
     @Override
-    protected InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, int maxColor) {
+    protected InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, short maxColor) {
         InMemoryPgmAscii image = new InMemoryPgmAscii(width, height, maxColor);
 
         for (int i = 0; i < height; i++)

@@ -19,8 +19,9 @@ public class PpmGrayscaler implements Grayscaler<InMemoryPpm> {
     @Override
     public InMemoryImage grayscale(InMemoryPpm original) {
         int width = original.getWidth(),
-                height = original.getHeight(),
-                maxVal = original.getMaxValue();
+                height = original.getHeight();
+
+        short maxVal = original.getMaxValue();
 
         InMemoryPpm grayImage;
         switch (original.getFormat()) {
@@ -35,7 +36,7 @@ public class PpmGrayscaler implements Grayscaler<InMemoryPpm> {
                 short gray =
                         (short) (oldColor.getRed() * 0.299 + oldColor.getGreen() * 0.587 + oldColor.getBlue() * 0.114);
 
-                grayImage.setPixel(j, i, new Color(gray, gray, gray));
+                grayImage.setPixel(i, j, new Color(gray, gray, gray));
             }
         }
 
