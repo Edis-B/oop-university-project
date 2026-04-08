@@ -1,4 +1,4 @@
-package image.monochroming;
+package image.transformations.monochroming;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
@@ -11,18 +11,12 @@ import java.util.List;
 
 public class PgmMonochromer implements Monochromer<InMemoryPgm> {
     @Override
-    public InMemoryImage monochrome(InMemoryPgm original) {
-        long graySum = 0;
+    public InMemoryImage transform(InMemoryPgm original) {
         int width = original.getWidth(),
                 height = original.getHeight();
 
         short maxVal = original.getMaxValue();
 
-        for (int i = 0; i < height; i++)
-            for (int j = 0; j < width; j++)
-                graySum += original.getPixel(j, i);
-
-        int threshold = Math.toIntExact(graySum / (width * height));
         InMemoryPgm monochromeImage;
         switch (original.getFormat()) {
             case ASCII_PGM -> monochromeImage = new InMemoryPgmAscii(width, height, maxVal);
@@ -30,6 +24,7 @@ public class PgmMonochromer implements Monochromer<InMemoryPgm> {
             default -> throw new ApplicationException("Improper image file to grayscale!");
         }
 
+        short threshold = getThreshold(original);
         for (int i = 0; i < height; i++)
             for (int j = 0; j < width; j++) {
                 var pixel = monochromeImage.getPixel(i, j);
@@ -37,6 +32,18 @@ public class PgmMonochromer implements Monochromer<InMemoryPgm> {
             }
 
         return monochromeImage;
+    }
+
+    private short getThreshold(InMemoryPgm image) {
+        int width = image.getWidth(),
+                height = image.getHeight();
+
+        long graySum = 0;
+        for (int i = 0; i < height; i++)
+            for (int j = 0; j < width; j++)
+                graySum += image.getPixel(j, i);
+
+        return (short) Math.toIntExact(graySum / (width * height));
     }
 
     @Override

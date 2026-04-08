@@ -2,8 +2,8 @@ package image.actions;
 
 import image.ImageContext;
 import image.images_in_memory.InMemoryImage;
-import image.monochroming.Monochromer;
-import image.monochroming.factory.MonochromerFactory;
+import image.transformations.monochroming.Monochromer;
+import image.transformations.monochroming.factory.MonochromerFactory;
 import session.ImageWrapper;
 
 import java.util.List;
@@ -36,6 +36,7 @@ public class MonochromeAction extends Action {
             ImageWrapper imageWrapper) {
         @SuppressWarnings("unchecked")
         T castedImage = (T) imageWrapper.getImage();
-        imageWrapper.setImage(monochromer.monochrome(castedImage));
+
+        imageWrapper.setImage(monochromer.transform(castedImage));
     }
 }

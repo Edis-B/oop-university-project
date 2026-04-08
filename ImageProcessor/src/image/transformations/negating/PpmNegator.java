@@ -1,4 +1,4 @@
-package image.negating;
+package image.transformations.negating;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PpmNegator implements Negator<InMemoryPpm> {
     @Override
-    public InMemoryImage monochrome(InMemoryPpm original) {
+    public InMemoryImage transform(InMemoryPpm original) {
         int width = original.getWidth(),
                 height = original.getHeight();
 

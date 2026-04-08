@@ -1,4 +1,4 @@
-package image.monochroming;
+package image.transformations.monochroming;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
@@ -11,23 +11,13 @@ import util.Color;
 import java.util.List;
 
 public class PpmMonochromer implements Monochromer<InMemoryPpm> {
-
     @Override
-    public InMemoryImage monochrome(InMemoryPpm original) {
-        long graySum = 0;
+    public InMemoryImage transform(InMemoryPpm original) {
         int width = original.getWidth(),
                 height = original.getHeight();
 
         short maxVal = original.getMaxValue();
 
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                Color color = original.getPixel(j, i);
-                graySum += calculateLuminance(color);
-            }
-        }
-
-        int threshold = Math.toIntExact(graySum / (width * height));
         InMemoryPpm monochromeImage;
         switch (original.getFormat()) {
             case ASCII_PPM -> monochromeImage = new InMemoryPpmAscii(width, height, maxVal);
@@ -35,6 +25,7 @@ public class PpmMonochromer implements Monochromer<InMemoryPpm> {
             default -> throw new ApplicationException("Improper image file to grayscale!");
         }
 
+        short threshold = getThreshold(original);
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 Color color = original.getPixel(j, i);
@@ -49,6 +40,21 @@ public class PpmMonochromer implements Monochromer<InMemoryPpm> {
         }
 
         return monochromeImage;
+    }
+
+    private short getThreshold(InMemoryPpm original) {
+        int width = original.getWidth(),
+                height = original.getHeight();
+
+        long graySum = 0;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                Color color = original.getPixel(j, i);
+                graySum += calculateLuminance(color);
+            }
+        }
+
+        return (short) (graySum / (width * height));
     }
 
     private short calculateLuminance(Color color) {

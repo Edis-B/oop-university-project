@@ -1,13 +1,11 @@
 package image.actions;
 
 import image.ImageContext;
-import image.grayscaling.Grayscaler;
-import image.grayscaling.factory.GrayscalerFactory;
+import image.transformations.grayscaling.Grayscaler;
+import image.transformations.grayscaling.factory.GrayscalerFactory;
 import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.RgbImage;
 import session.ImageWrapper;
 
-import java.awt.*;
 import java.util.List;
 
 public class GrayscaleAction extends Action {
@@ -24,9 +22,7 @@ public class GrayscaleAction extends Action {
         for (int i = 0; i < imageCount; i++) {
             InMemoryImage currImage = imageWrappers.get(i).getImage();
 
-            if (!(currImage instanceof RgbImage))
-                continue;
-
+            Class<? extends InMemoryImage> cl = currImage.getClass();
             Grayscaler<? extends InMemoryImage> grayscaler = grayscalerFactory.getGrayscaler(currImage.getFormat());
 
             applyGrayscale(grayscaler, imageWrappers.get(i));
@@ -36,10 +32,11 @@ public class GrayscaleAction extends Action {
     private <T extends InMemoryImage> void applyGrayscale(
             Grayscaler<T> grayscaler,
             ImageWrapper imageWrapper) {
+        InMemoryImage currentImage = imageWrapper.getImage();
 
         @SuppressWarnings("unchecked")
         T specificImage = (T) imageWrapper.getImage();
 
-        imageWrapper.setImage(grayscaler.grayscale(specificImage));
+        imageWrapper.setImage(grayscaler.transform(specificImage));
     }
 }

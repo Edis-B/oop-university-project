@@ -1,10 +1,9 @@
 package image.images_in_memory.ppm;
 
 import image.images_in_memory.InMemoryNetpbm;
-import image.images_in_memory.RgbImage;
 import util.Color;
 
-public abstract class InMemoryPpm extends InMemoryNetpbm implements RgbImage {
+public abstract class InMemoryPpm extends InMemoryNetpbm {
     private final Color[][] pixels;
 
     public InMemoryPpm(int width, int height, short maxValue) {

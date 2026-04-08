@@ -1,8 +1,7 @@
-package image.monochroming.factory;
+package image.transformations.monochroming.factory;
 
-import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.monochroming.Monochromer;
+import image.transformations.monochroming.Monochromer;
 import image.signatures.FormatType;
 
 import java.util.HashMap;

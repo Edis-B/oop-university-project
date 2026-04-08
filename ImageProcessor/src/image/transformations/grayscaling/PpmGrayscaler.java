@@ -1,8 +1,7 @@
-package image.grayscaling;
+package image.transformations.grayscaling;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.RgbImage;
 import image.images_in_memory.ppm.InMemoryPpm;
 import image.images_in_memory.ppm.InMemoryPpmAscii;
 import image.images_in_memory.ppm.InMemoryPpmBinary;
@@ -17,7 +16,7 @@ public class PpmGrayscaler implements Grayscaler<InMemoryPpm> {
     }
 
     @Override
-    public InMemoryImage grayscale(InMemoryPpm original) {
+    public InMemoryImage transform(InMemoryPpm original) {
         int width = original.getWidth(),
                 height = original.getHeight();
 

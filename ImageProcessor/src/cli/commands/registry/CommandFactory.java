@@ -3,10 +3,12 @@ package cli.commands.registry;
 import cli.commands.Command;
 import cli.commands.image.*;
 import cli.commands.session.*;
-import image.grayscaling.factory.GrayscalerFactory;
-import image.grayscaling.factory.GrayscalerRegistry;
-import image.monochroming.factory.MonochromerFactory;
-import image.monochroming.factory.MonochromerRegistry;
+import image.transformations.grayscaling.factory.GrayscalerFactory;
+import image.transformations.grayscaling.factory.GrayscalerRegistry;
+import image.transformations.monochroming.factory.MonochromerFactory;
+import image.transformations.monochroming.factory.MonochromerRegistry;
+import image.transformations.negating.factory.NegatorFactory;
+import image.transformations.negating.factory.NegatorRegistry;
 import image.signatures.factory.FormatExtractor;
 import image.parsers.factory.ParserFactory;
 import image.parsers.factory.ParserDiscoverer;
@@ -32,7 +34,9 @@ public class CommandFactory {
         MonochromerRegistry.registerAll(monochromerFactory);
         list.add(new MonochromeCommand(monochromerFactory));
 
-        list.add(new NegativeCommand());
+        NegatorFactory negatorFactory = NegatorFactory.getInstance();
+        NegatorRegistry.registerAll(negatorFactory);
+        list.add(new NegativeCommand(negatorFactory));
 
         list.add(new RotateCommand());
 

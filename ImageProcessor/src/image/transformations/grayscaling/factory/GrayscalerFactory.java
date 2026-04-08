@@ -1,7 +1,6 @@
-package image.grayscaling.factory;
+package image.transformations.grayscaling.factory;
 
-import exceptions.ApplicationException;
-import image.grayscaling.Grayscaler;
+import image.transformations.grayscaling.Grayscaler;
 import image.images_in_memory.InMemoryImage;
 import image.signatures.FormatType;
 

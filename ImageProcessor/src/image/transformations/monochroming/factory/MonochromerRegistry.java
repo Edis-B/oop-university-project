@@ -1,9 +1,9 @@
-package image.monochroming.factory;
+package image.transformations.monochroming.factory;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.monochroming.Monochromer;
-import image.monochroming.PpmMonochromer;
+import image.transformations.monochroming.Monochromer;
+import image.transformations.monochroming.PpmMonochromer;
 import image.signatures.FormatType;
 import util.ClassHelper;
 
