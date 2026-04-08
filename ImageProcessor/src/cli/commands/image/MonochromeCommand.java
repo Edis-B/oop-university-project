@@ -2,7 +2,7 @@ package cli.commands.image;
 
 import cli.commands.Command;
 import image.actions.MonochromeAction;
-import image.transformations.monochroming.factory.MonochromerFactory;
+import image.transformations.factory.monochroming.MonochromerFactory;
 import session.SessionManager;
 
 public class MonochromeCommand extends Command {

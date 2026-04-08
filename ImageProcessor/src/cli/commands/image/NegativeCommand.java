@@ -2,7 +2,7 @@ package cli.commands.image;
 
 import cli.commands.Command;
 import image.actions.NegativeAction;
-import image.transformations.negating.factory.NegatorFactory;
+import image.transformations.factory.negating.NegatorFactory;
 import session.SessionManager;
 
 public class NegativeCommand extends Command {

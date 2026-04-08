@@ -1,4 +1,4 @@
-package image.transformations.grayscaling.factory;
+package image.transformations.factory.grayscaling;
 
 import exceptions.ApplicationException;
 import image.transformations.grayscaling.Grayscaler;
