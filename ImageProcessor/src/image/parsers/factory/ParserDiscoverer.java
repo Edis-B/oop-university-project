@@ -1,8 +1,7 @@
 package image.parsers.factory;
 
 import exceptions.ApplicationException;
-import image.parsers.contracts.ImageParser;
-import image.parsers.ascii.AsciiPbmParser;
+import image.parsers.ImageParser;
 import util.ClassHelper;
 
 import java.util.List;
@@ -12,17 +11,16 @@ import java.util.List;
 
 public class ParserDiscoverer {
     public static void registerAll(ParserFactory factory) {
-        AsciiPbmParser asciiPbmParser = new AsciiPbmParser();
-        List<Class<?>> smt = ClassHelper.getClassesOfPackage(ClassHelper.getParentPackage(asciiPbmParser.getClass().getPackage().getName()));
-        for (Class<?> clazz : smt) {
-            if (!ClassHelper.isConcrete(clazz) || !ImageParser.class.isAssignableFrom(clazz))
-                continue;
+        var parserPackage = ImageParser.class.getPackageName();
 
+        List<Class<ImageParser>> smt = ClassHelper.getClassesImplementationsInPackage(
+                parserPackage,
+                ImageParser.class
+        );
+
+        for (Class<?> clazz : smt) {
             try {
                 Object unknownObject = clazz.getConstructor().newInstance();
-                if (!(unknownObject instanceof ImageParser))
-                    continue;
-
                 ImageParser ip = (ImageParser) unknownObject;
                 factory.register(ip.getSupportedFormat(), ip);
             } catch (Exception e) {

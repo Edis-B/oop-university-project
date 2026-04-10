@@ -1,7 +1,7 @@
 package image.parsers.factory;
 
 import exceptions.ApplicationException;
-import image.parsers.contracts.ImageParser;
+import image.parsers.ImageParser;
 import image.signatures.FormatType;
 
 import java.util.HashMap;

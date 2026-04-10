@@ -1,24 +1,20 @@
 package image.images_in_memory.ppm;
 
-import image.images_in_memory.InMemoryNetpbm;
+import image.images_in_memory.InMemoryImage;
+import image.images_in_memory.InMemoryMaxValuable;
 import util.Color;
 
-public abstract class InMemoryPpm extends InMemoryNetpbm {
+public abstract class InMemoryPpm extends InMemoryMaxValuable {
     private final Color[][] pixels;
 
     public InMemoryPpm(int width, int height, short maxValue) {
         this.pixels = new Color[width][height];
-        super(width, height);
+        super(width, height, maxValue);
     }
 
     public InMemoryPpm(int width, int height) {
         this.pixels = new Color[width][height];
         super(width, height);
-    }
-
-    @Override
-    public short getDefaultValue() {
-        return 255;
     }
 
     public void setPixel(int h, int w, Color val) {
@@ -27,5 +23,10 @@ public abstract class InMemoryPpm extends InMemoryNetpbm {
 
     public Color getPixel(int h, int w) {
         return pixels[h][w];
+    }
+
+    @Override
+    public short getDefaultValue() {
+        return 255;
     }
 }

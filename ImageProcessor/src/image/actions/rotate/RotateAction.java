@@ -1,17 +1,24 @@
 package image.actions.rotate;
 
+import exceptions.ApplicationException;
 import image.actions.Action;
-import image.ImageContext;
+import image.transformations.ImageTransformer;
+import image.transformations.factory.RotatorFactory;
 
 public class RotateAction extends Action {
-    RotateDirection direction;
+    private final RotateDirection direction;
 
-    public RotateAction(int imageCount) {
-        super(imageCount);
+    public RotateAction(int imageCount, RotateDirection direction, RotatorFactory rotatorFactory) {
+        super(imageCount, rotatorFactory);
+        this.direction = direction;
     }
 
     @Override
-    public void execute(ImageContext imageContext) {
-
+    protected ImageTransformer<?> getTransformerInstance(Class<? extends ImageTransformer<?>> imageTransformer) {
+        try {
+            return imageTransformer.getConstructor(byte.class).newInstance(direction.cwSpins);
+        } catch (Exception e) {
+            throw new ApplicationException("Couldn't instantiate Rotator!", e);
+        }
     }
 }

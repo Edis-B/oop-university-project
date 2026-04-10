@@ -1,19 +1,18 @@
 package image.actions;
 
-import image.ImageContext;
+import session.ImageContext;
 import image.images_in_memory.InMemoryImage;
 import image.transformations.ImageTransformer;
 import image.transformations.factory.TransformerFactory;
-import image.transformations.grayscaling.Grayscaler;
 import session.ImageWrapper;
 
 import java.util.List;
 
 public abstract class Action {
     protected final int imageCount;
-    protected final TransformerFactory transformerFactory;
+    protected final TransformerFactory<? extends ImageTransformer<?>> transformerFactory;
 
-    public Action(int imageCount, TransformerFactory transformerFactory) {
+    public Action(int imageCount, TransformerFactory<?> transformerFactory) {
         this.imageCount = imageCount;
         this.transformerFactory = transformerFactory;
     }
@@ -27,14 +26,16 @@ public abstract class Action {
         for (int i = 0; i < imageCount; i++) {
             InMemoryImage currImage = imageWrappers.get(i).getImage();
 
-            Class<? extends InMemoryImage> clazz = currImage.getClass();
-
-            ImageTransformer<? extends InMemoryImage> imageTransformer =
+            Class<? extends ImageTransformer<?>> transformerClass =
                     transformerFactory.getTransformer(currImage.getFormat());
+
+            ImageTransformer<?> imageTransformer = getTransformerInstance(transformerClass);
 
             applyTransformation(imageTransformer, imageWrappers.get(i));
         }
     }
+
+    protected abstract ImageTransformer<?> getTransformerInstance(Class<? extends ImageTransformer<?>> imageTransformer);
 
     private <T extends InMemoryImage> void applyTransformation(
             ImageTransformer<T> imageTransformer,

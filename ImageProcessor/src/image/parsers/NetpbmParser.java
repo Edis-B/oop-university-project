@@ -1,8 +1,7 @@
 package image.parsers;
 
 import exceptions.ApplicationException;
-import image.images_in_memory.InMemoryNetpbm;
-import image.parsers.contracts.ImageParser;
+import image.images_in_memory.InMemoryImage;
 import image.signatures.FormatType;
 
 import java.io.BufferedInputStream;
@@ -12,8 +11,10 @@ import static util.NetbpmFormatHelper.skipCommentsAndWhitespace;
 
 public abstract class NetpbmParser implements ImageParser {
     protected abstract boolean requiresMaxValue();
+
     public abstract FormatType getSupportedFormat();
-    protected abstract InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, short maxColor);
+
+    protected abstract InMemoryImage readPixels(BufferedInputStream bis, int width, int height, short maxColor);
 
     protected int getNextInt(BufferedInputStream bis) {
         skipCommentsAndWhitespace(bis);
@@ -36,13 +37,13 @@ public abstract class NetpbmParser implements ImageParser {
         try {
             int b1 = bis.read();
             if (b1 != -1 && b1 != 'P') {
-                String msg = String.format("Invalid Netpbm header. Expected 'P' (80), but received: %d ('%s')", b1, (char) b1);
+                String msg = String.format("Invalid Netpbm header. Expected 'P' (80), but received: '%s' (%d)", (char) b1, b1);
                 throw new ApplicationException(msg);
             }
 
             int b2 = bis.read();
             if (b2 != -1 && (b2 < '1' || b2 > '6')) {
-                String msg = String.format("Invalid Netpbm header. Expected '1' (49) - '6' (55), but received: %d ('%s')", b2, (char) b2);
+                String msg = String.format("Invalid Netpbm header. Expected '1' (49) - '6' (55), but received: '%s' (%d)", (char) b2, b2);
                 throw new ApplicationException(msg);
             }
 
@@ -52,7 +53,7 @@ public abstract class NetpbmParser implements ImageParser {
         }
     }
 
-    public InMemoryNetpbm parse(BufferedInputStream bis) {
+    public InMemoryImage parse(BufferedInputStream bis) {
         String magicNumber = readMagic(bis);
 
         short width = (short) getNextInt(bis);

@@ -15,12 +15,10 @@ public class PbmNegator implements Negator<InMemoryPbm> {
         int width = original.getWidth(),
                 height = original.getHeight();
 
-        short maxVal = original.getMaxValue();
-
         InMemoryPbm negativeImage;
         switch (original.getFormat()) {
-            case ASCII_PGM -> negativeImage = new InMemoryPbmAscii(width, height, maxVal);
-            case BINARY_PGM -> negativeImage = new InMemoryPbmBinary(width, height, maxVal);
+            case ASCII_PGM -> negativeImage = new InMemoryPbmAscii(width, height);
+            case BINARY_PGM -> negativeImage = new InMemoryPbmBinary(width, height);
             default -> throw new ApplicationException("Improper image file to negative!");
         }
 
@@ -35,6 +33,9 @@ public class PbmNegator implements Negator<InMemoryPbm> {
 
     @Override
     public List<FormatType> getSupportedFormats() {
-        return List.of();
+        return List.of(
+                FormatType.ASCII_PBM,
+                FormatType.BINARY_PBM
+        );
     }
 }

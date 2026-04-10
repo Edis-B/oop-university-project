@@ -2,7 +2,6 @@ package session;
 
 import exceptions.ApplicationException;
 import image.actions.Action;
-import image.ImageContext;
 import image.images_in_memory.InMemoryImage;
 
 import java.util.HashMap;

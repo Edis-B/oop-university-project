@@ -20,4 +20,6 @@ public abstract class InMemoryImage {
     }
 
     public abstract FormatType getFormat();
+
+    public abstract InMemoryImage createBlank(int width, int height);
 }

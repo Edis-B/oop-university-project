@@ -5,7 +5,6 @@ import exceptions.ApplicationException;
 import java.util.Objects;
 
 public enum FormatType {
-
     ASCII_PBM("P1"),
     ASCII_PGM("P2"),
     ASCII_PPM("P3"),

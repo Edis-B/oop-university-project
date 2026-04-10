@@ -5,7 +5,7 @@ import cli.commands.Command;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class CommandRegistryBase {
+public abstract class AbstractCommandFactory {
     protected final Map<String, Command> commands = new HashMap<>();
 
     public abstract void discoverCommands() throws Exception;

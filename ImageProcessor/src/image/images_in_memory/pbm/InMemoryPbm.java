@@ -1,18 +1,14 @@
 package image.images_in_memory.pbm;
 
-import image.images_in_memory.InMemoryNetpbm;
+import image.images_in_memory.InMemoryImage;
+import image.images_in_memory.InMemoryMaxValuable;
 
-public abstract class InMemoryPbm extends InMemoryNetpbm {
+public abstract class InMemoryPbm extends InMemoryImage {
     private final boolean[][] pixels;
 
     public InMemoryPbm(int width, int height) {
         pixels = new boolean[width][height];
         super(width, height);
-    }
-
-    public InMemoryPbm(int width, int height, short maxValue) {
-        pixels = new boolean[width][height];
-        super(width, height, maxValue);
     }
 
     public void setPixel(int h, int w, boolean val) {
@@ -21,10 +17,5 @@ public abstract class InMemoryPbm extends InMemoryNetpbm {
 
     public boolean getPixel(int h, int w) {
         return pixels[h][w];
-    }
-
-    @Override
-    public short getDefaultValue() {
-        return 1;
     }
 }

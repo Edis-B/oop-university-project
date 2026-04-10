@@ -3,10 +3,8 @@ package cli.commands.session;
 import cli.commands.Command;
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.InMemoryNetpbm;
 import image.service.ImageLoaderService;
 import logging.ConsoleLoggingProvider;
-import session.ImageWrapper;
 import session.SessionManager;
 
 public class LoadCommand extends Command {

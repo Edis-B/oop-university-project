@@ -1,16 +1,22 @@
 package image.actions;
 
-import image.ImageContext;
-import image.transformations.factory.TransformerFactory;
-import image.transformations.grayscaling.Grayscaler;
-import image.transformations.factory.grayscaling.GrayscalerFactory;
-import image.images_in_memory.InMemoryImage;
-import session.ImageWrapper;
+import exceptions.ApplicationException;
+import image.transformations.ImageTransformer;
+import image.transformations.factory.GrayscalerFactory;
 
-import java.util.List;
+import java.lang.reflect.InvocationTargetException;
 
 public class GrayscaleAction extends Action {
     public GrayscaleAction(int imageCount, GrayscalerFactory transformerFactory) {
         super(imageCount, transformerFactory);
+    }
+
+    @Override
+    protected ImageTransformer<?> getTransformerInstance(Class<? extends ImageTransformer<?>> imageTransformer) {
+        try {
+            return imageTransformer.getConstructor().newInstance();
+        } catch (Exception e) {
+            throw new ApplicationException("Couldn't instantiate Grayscaler");
+        }
     }
 }

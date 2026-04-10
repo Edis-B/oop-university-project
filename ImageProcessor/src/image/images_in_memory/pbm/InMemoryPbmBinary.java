@@ -1,5 +1,6 @@
 package image.images_in_memory.pbm;
 
+import image.images_in_memory.InMemoryImage;
 import image.signatures.FormatType;
 
 public class InMemoryPbmBinary extends InMemoryPbm {
@@ -7,12 +8,13 @@ public class InMemoryPbmBinary extends InMemoryPbm {
         super(width, height);
     }
 
-    public InMemoryPbmBinary(int width, int height, short maxValue) {
-        super(width, height, maxValue);
-    }
-
     @Override
     public FormatType getFormat() {
         return FormatType.BINARY_PBM;
+    }
+
+    @Override
+    public InMemoryImage createBlank(int width, int height) {
+        return new InMemoryPbmBinary(width, height);
     }
 }

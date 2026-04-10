@@ -36,6 +36,9 @@ public class PgmNegator implements Negator<InMemoryPgm> {
 
     @Override
     public List<FormatType> getSupportedFormats() {
-        return List.of();
+        return List.of(
+                FormatType.ASCII_PGM,
+                FormatType.BINARY_PGM
+        );
     }
 }

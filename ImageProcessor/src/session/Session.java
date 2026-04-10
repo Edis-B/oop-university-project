@@ -1,6 +1,5 @@
 package session;
 
-import image.ImageContext;
 import image.actions.Action;
 import image.images_in_memory.InMemoryImage;
 

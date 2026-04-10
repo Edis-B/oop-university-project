@@ -1,6 +1,7 @@
 package cli.commands.image;
 
 import cli.commands.Command;
+import common.constants.ErrorMessages;
 import exceptions.ApplicationException;
 import image.service.ImageLoaderService;
 import session.ImageWrapper;
@@ -28,7 +29,7 @@ public class AddCommand extends Command {
             throw new ApplicationException("Cannot add image - not in session!");
 
         if (tokens.length != 2)
-            throw new ApplicationException("Unsupported argument count!");
+            throw new ApplicationException(ErrorMessages.unsupportedArgumentCount);
 
         String filePath = tokens[1];
         var newImage = imageLoaderService.load(tokens[1]);

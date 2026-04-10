@@ -1,8 +1,9 @@
 package cli.commands.image;
 
 import cli.commands.Command;
+import exceptions.ApplicationException;
 import image.actions.MonochromeAction;
-import image.transformations.factory.monochroming.MonochromerFactory;
+import image.transformations.factory.MonochromerFactory;
 import session.SessionManager;
 
 public class MonochromeCommand extends Command {
@@ -19,8 +20,13 @@ public class MonochromeCommand extends Command {
 
     @Override
     public void execute(String[] tokens, SessionManager sessionManager) {
+        if (sessionManager.getCurrentSession() == null)
+            throw new ApplicationException("Cannot apply transformation - not in session!");
+
         sessionManager.addCommandToSession(
-                new MonochromeAction(sessionManager.getCurrentSessionImageCount(), monochromerFactory)
+                new MonochromeAction(
+                        sessionManager.getCurrentSessionImageCount(),
+                        monochromerFactory)
         );
     }
 }

@@ -1,8 +1,9 @@
 package image.images_in_memory.pgm;
 
-import image.images_in_memory.InMemoryNetpbm;
+import image.images_in_memory.InMemoryImage;
+import image.images_in_memory.InMemoryMaxValuable;
 
-public abstract class InMemoryPgm extends InMemoryNetpbm {
+public abstract class InMemoryPgm extends InMemoryMaxValuable {
     private final short[][] pixels;
 
     public InMemoryPgm(int width, int height, short maxValue) {
@@ -15,16 +16,16 @@ public abstract class InMemoryPgm extends InMemoryNetpbm {
         super(width, height);
     }
 
-    @Override
-    public short getDefaultValue() {
-        return 255;
-    }
-
     public void setPixel(int h, int w, short val) {
         pixels[h][w] = val;
     }
 
     public short getPixel(int h, int w) {
         return pixels[h][w];
+    }
+
+    @Override
+    public short getDefaultValue() {
+        return 255;
     }
 }

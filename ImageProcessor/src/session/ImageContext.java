@@ -1,7 +1,6 @@
-package image;
+package session;
 
 import image.images_in_memory.InMemoryImage;
-import session.ImageWrapper;
 import util.FileNameHelper;
 
 import java.util.ArrayList;

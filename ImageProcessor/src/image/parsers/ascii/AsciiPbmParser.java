@@ -1,7 +1,7 @@
 package image.parsers.ascii;
 
 import exceptions.ApplicationException;
-import image.images_in_memory.InMemoryNetpbm;
+import image.images_in_memory.InMemoryImage;
 import image.images_in_memory.pbm.InMemoryPbmAscii;
 import image.signatures.FormatType;
 
@@ -14,7 +14,7 @@ public class AsciiPbmParser extends NetpbmAsciiParser {
     }
 
     @Override
-    protected InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, short maxColor) {
+    protected InMemoryImage readPixels(BufferedInputStream bis, int width, int height, short maxColor) {
         InMemoryPbmAscii image = new InMemoryPbmAscii(width, height);
 
         for (int i = 0; i < height; i++)

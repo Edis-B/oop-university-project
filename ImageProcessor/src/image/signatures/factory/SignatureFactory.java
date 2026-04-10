@@ -5,6 +5,7 @@ import image.signatures.netpbm.AsciiPbmSignature;
 import image.signatures.FormatSignature;
 import util.ClassHelper;
 
+import java.lang.classfile.Signature;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,20 +23,20 @@ public class SignatureFactory {
     }
 
     public List<FormatSignature> getSignatures() {
-        AsciiPbmSignature asciiPbmSignature = new AsciiPbmSignature();
-        List<Class<?>> classes = ClassHelper.getClassesOfPackage(asciiPbmSignature.getClass().getPackageName());
+        List<Class<FormatSignature>> classes = ClassHelper.getClassesImplementationsInPackage(
+                FormatSignature.class.getPackageName(),
+                FormatSignature.class
+        );
 
         List<FormatSignature> signatures = new ArrayList<>();
         for (var clazz : classes) {
-            if (ClassHelper.isConcrete(clazz) &&
-                    FormatSignature.class.isAssignableFrom(clazz)) {
-                try {
-                    var formatSignatureObj = clazz
-                            .asSubclass(FormatSignature.class).getConstructor().newInstance();
-                    signatures.add(formatSignatureObj);
-                } catch (Exception e) {
-                    throw new ApplicationException("Error creating FormatSignature!", e);
-                }
+            try {
+                FormatSignature formatSignatureObj = (FormatSignature) clazz
+                        .getConstructor().newInstance();
+
+                signatures.add(formatSignatureObj);
+            } catch (Exception e) {
+                throw new ApplicationException("Error creating FormatSignature!", e);
             }
         }
 

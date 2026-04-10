@@ -1,18 +1,16 @@
 package cli;
 
 import cli.commands.Command;
-import cli.commands.registry.CommandRegistryBase;
+import cli.commands.registry.AbstractCommandFactory;
 import session.SessionManager;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class CommandLineInterface {
-    private final CommandRegistryBase registry;
+    private final AbstractCommandFactory factory;
 
-    public CommandLineInterface(CommandRegistryBase registry) {
-        this.registry = registry;
+    public CommandLineInterface(AbstractCommandFactory registry) {
+        this.factory = registry;
     }
 
     public void start(Scanner sc, SessionManager sessionManager) throws Exception {
@@ -20,7 +18,7 @@ public class CommandLineInterface {
         String[] tokens = input.split("\\s+");
         String commandName = tokens[0];
 
-        Command cmd = registry.getCommand(commandName);
+        Command cmd = factory.getCommand(commandName);
         if (cmd != null) {
             cmd.execute(tokens, sessionManager);
         } else {

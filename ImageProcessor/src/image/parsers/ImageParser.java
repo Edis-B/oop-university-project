@@ -1,4 +1,4 @@
-package image.parsers.contracts;
+package image.parsers;
 
 import image.images_in_memory.InMemoryImage;
 import image.signatures.FormatType;

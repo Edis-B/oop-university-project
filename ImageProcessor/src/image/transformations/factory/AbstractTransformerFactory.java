@@ -7,18 +7,17 @@ import image.transformations.ImageTransformer;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AbstractTransformerFactory implements TransformerFactory
-{
-    protected final Map<FormatType, ImageTransformer<? extends InMemoryImage>> tranformerMap
+public abstract class AbstractTransformerFactory<T extends ImageTransformer<? extends InMemoryImage>> implements TransformerFactory<T> {
+    protected final Map<FormatType, Class<T>> tranformerMap
             = new HashMap<>();
 
     @Override
-    public ImageTransformer<? extends InMemoryImage> getTransformer(FormatType formatType) {
+    public Class<T> getTransformer(FormatType formatType) {
         return tranformerMap.get(formatType);
     }
 
     @Override
-    public void register(FormatType formatType, ImageTransformer<? extends InMemoryImage> imageTransformer) {
-        tranformerMap.put(formatType, imageTransformer);
+    public void register(FormatType formatType, Class<T> transformerClass) {
+        tranformerMap.put(formatType, transformerClass);
     }
 }

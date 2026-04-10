@@ -4,8 +4,10 @@ import image.images_in_memory.InMemoryImage;
 import image.signatures.FormatType;
 import image.transformations.ImageTransformer;
 
-public interface TransformerFactory {
-    ImageTransformer<? extends InMemoryImage> getTransformer(FormatType type);
+public interface TransformerFactory<T extends ImageTransformer<? extends InMemoryImage>> {
+    Class<T> getTransformer(FormatType type);
 
-    void register(FormatType formatType, ImageTransformer<? extends InMemoryImage> imageTransformer);
+    Class<T> getTransformerType();
+
+    void register(FormatType formatType, Class<T> imageTransformer);
 }

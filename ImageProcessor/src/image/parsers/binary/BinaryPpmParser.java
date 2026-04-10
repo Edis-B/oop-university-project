@@ -1,7 +1,7 @@
 package image.parsers.binary;
 
 import exceptions.ApplicationException;
-import image.images_in_memory.InMemoryNetpbm;
+import image.images_in_memory.InMemoryImage;
 import image.images_in_memory.ppm.InMemoryPpmBinary;
 import image.signatures.FormatType;
 import util.Color;
@@ -21,7 +21,7 @@ public class BinaryPpmParser extends NetpbmBinaryParser {
     }
 
     @Override
-    protected InMemoryNetpbm readPixels(BufferedInputStream bis, int width, int height, short maxColor) {
+    protected InMemoryImage readPixels(BufferedInputStream bis, int width, int height, short maxColor) {
         InMemoryPpmBinary image = new InMemoryPpmBinary(width, height, maxColor);
 
         for (int i = 0; i < height; i++)
