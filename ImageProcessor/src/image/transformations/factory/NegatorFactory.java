@@ -1,7 +1,7 @@
 package image.transformations.factory;
 
 import image.images_in_memory.InMemoryImage;
-import image.transformations.negating.Negator;
+import image.transformations.negative.Negator;
 
 public class NegatorFactory extends AbstractTransformerFactory<Negator<InMemoryImage>> {
     @Override

@@ -20,9 +20,9 @@ public class LoadCommand extends Command {
         return "load";
     }
 
-    public LoadCommand(ImageLoaderService _imageLoaderService, ConsoleLoggingProvider _consoleLogginProvider) {
-        imageLoaderService = _imageLoaderService;
-        consoleLoggingProvider = _consoleLogginProvider;
+    public LoadCommand(ImageLoaderService imageLoaderService, ConsoleLoggingProvider consoleLoggingProvider) {
+        this.imageLoaderService = imageLoaderService;
+        this.consoleLoggingProvider = consoleLoggingProvider;
     }
 
     @Override

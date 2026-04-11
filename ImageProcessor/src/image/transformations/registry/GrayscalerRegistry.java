@@ -1,7 +1,7 @@
 package image.transformations.registry;
 
 import exceptions.ApplicationException;
-import image.transformations.grayscaling.Grayscaler;
+import image.transformations.grayscale.Grayscaler;
 import image.images_in_memory.InMemoryImage;
 
 public class GrayscalerRegistry implements TransformerRegistry<Grayscaler<InMemoryImage>> {

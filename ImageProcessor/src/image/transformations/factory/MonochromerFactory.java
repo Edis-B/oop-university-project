@@ -1,7 +1,7 @@
 package image.transformations.factory;
 
 import image.images_in_memory.InMemoryImage;
-import image.transformations.monochroming.Monochromer;
+import image.transformations.monochrome.Monochromer;
 
 public class MonochromerFactory extends AbstractTransformerFactory<Monochromer<InMemoryImage>> {
     @Override

@@ -1,4 +1,4 @@
-package image.transformations.grayscaling;
+package image.transformations.grayscale;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;

@@ -2,7 +2,7 @@ package image.transformations.registry;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.transformations.rotating.Rotator;
+import image.transformations.rotate.Rotator;
 
 public class RotatorRegistry implements TransformerRegistry<Rotator<InMemoryImage>> {
     @Override

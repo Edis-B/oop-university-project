@@ -1,4 +1,4 @@
-package image.transformations.negating;
+package image.transformations.negative;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;

@@ -3,7 +3,7 @@ package image.transformations.registry;
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
 
-import image.transformations.negating.Negator;
+import image.transformations.negative.Negator;
 
 public class NegatorRegistry implements TransformerRegistry<Negator<InMemoryImage>> {
     @Override

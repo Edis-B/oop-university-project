@@ -1,7 +1,7 @@
 package image.transformations.factory;
 
 import image.images_in_memory.InMemoryImage;
-import image.transformations.rotating.Rotator;
+import image.transformations.rotate.Rotator;
 
 public class RotatorFactory extends AbstractTransformerFactory<Rotator<InMemoryImage>> {
     @Override

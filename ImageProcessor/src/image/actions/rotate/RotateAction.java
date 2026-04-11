@@ -1,11 +1,11 @@
 package image.actions.rotate;
 
 import exceptions.ApplicationException;
-import image.actions.Action;
+import image.actions.TransformationAction;
 import image.transformations.ImageTransformer;
 import image.transformations.factory.RotatorFactory;
 
-public class RotateAction extends Action {
+public class RotateAction extends TransformationAction {
     private final RotateDirection direction;
 
     public RotateAction(int imageCount, RotateDirection direction, RotatorFactory rotatorFactory) {

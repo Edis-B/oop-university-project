@@ -1,7 +1,7 @@
 package session;
 
 import exceptions.ApplicationException;
-import image.actions.Action;
+import image.actions.TransformationAction;
 import image.images_in_memory.InMemoryImage;
 
 import java.util.HashMap;
@@ -36,7 +36,7 @@ public class SessionManager {
         return true;
     }
 
-    public void addCommandToSession(Action action) {
+    public void addCommandToSession(TransformationAction action) {
         if (session == null)
             throw new ApplicationException("Session is invalid!");
 

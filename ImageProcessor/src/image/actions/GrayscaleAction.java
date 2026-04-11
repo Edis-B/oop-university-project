@@ -4,9 +4,7 @@ import exceptions.ApplicationException;
 import image.transformations.ImageTransformer;
 import image.transformations.factory.GrayscalerFactory;
 
-import java.lang.reflect.InvocationTargetException;
-
-public class GrayscaleAction extends Action {
+public class GrayscaleAction extends TransformationAction {
     public GrayscaleAction(int imageCount, GrayscalerFactory transformerFactory) {
         super(imageCount, transformerFactory);
     }

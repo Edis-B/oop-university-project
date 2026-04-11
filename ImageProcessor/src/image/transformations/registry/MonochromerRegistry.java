@@ -2,7 +2,7 @@ package image.transformations.registry;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.transformations.monochroming.Monochromer;
+import image.transformations.monochrome.Monochromer;
 
 public class MonochromerRegistry implements TransformerRegistry<Monochromer<InMemoryImage>> {
     @Override

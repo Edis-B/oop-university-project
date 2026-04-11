@@ -1,7 +1,7 @@
 package image.transformations.factory;
 
 import image.images_in_memory.InMemoryImage;
-import image.transformations.grayscaling.Grayscaler;
+import image.transformations.grayscale.Grayscaler;
 
 public class GrayscalerFactory extends AbstractTransformerFactory<Grayscaler<InMemoryImage>> {
     @Override

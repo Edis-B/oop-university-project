@@ -4,9 +4,7 @@ import exceptions.ApplicationException;
 import image.transformations.ImageTransformer;
 import image.transformations.factory.MonochromerFactory;
 
-import java.lang.reflect.InvocationTargetException;
-
-public class MonochromeAction extends Action {
+public class MonochromeAction extends TransformationAction {
     public MonochromeAction(int imageCount, MonochromerFactory transformerFactory) {
         super(imageCount, transformerFactory);
     }

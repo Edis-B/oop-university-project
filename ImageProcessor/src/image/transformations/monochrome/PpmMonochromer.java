@@ -1,4 +1,4 @@
-package image.transformations.monochroming;
+package image.transformations.monochrome;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;

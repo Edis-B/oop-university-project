@@ -1,4 +1,4 @@
-package image.transformations.grayscaling;
+package image.transformations.grayscale;
 
 import image.images_in_memory.InMemoryImage;
 import image.transformations.ImageTransformer;

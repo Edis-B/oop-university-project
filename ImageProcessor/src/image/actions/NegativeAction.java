@@ -4,9 +4,7 @@ import exceptions.ApplicationException;
 import image.transformations.ImageTransformer;
 import image.transformations.factory.NegatorFactory;
 
-import java.lang.reflect.InvocationTargetException;
-
-public class NegativeAction extends Action {
+public class NegativeAction extends TransformationAction {
 
     public NegativeAction(int imageCount, NegatorFactory transformerFactory) {
         super(imageCount, transformerFactory);

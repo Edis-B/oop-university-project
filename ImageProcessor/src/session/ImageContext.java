@@ -31,15 +31,15 @@ public class ImageContext {
         return fileName;
     }
 
-    public int getImageCount() {
+    public int getImageWrapperCount() {
         return imageArray.size();
     }
 
-    public List<ImageWrapper> getImageArray() {
+    public List<ImageWrapper> getImageWrapperArray() {
         return imageArray;
     }
 
-    public ImageWrapper getImageByName(String name) {
+    public ImageWrapper getImageWrapperByName(String name) {
         return nameMap.get(name);
     }
 }
