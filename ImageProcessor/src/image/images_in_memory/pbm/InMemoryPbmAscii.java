@@ -14,7 +14,7 @@ public class InMemoryPbmAscii extends InMemoryPbm {
     }
 
     @Override
-    public InMemoryImage createBlank(int width, int height) {
-        return new InMemoryPbmBinary(width, height);
+    public InMemoryPbmAscii createBlank(int width, int height) {
+        return new InMemoryPbmAscii(width, height);
     }
 }

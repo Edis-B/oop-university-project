@@ -3,7 +3,7 @@ package cli.commands.image;
 import cli.commands.Command;
 import exceptions.ApplicationException;
 import image.actions.MonochromeAction;
-import image.transformations.factory.MonochromerFactory;
+import image.manipulators.transformations.factory.MonochromerFactory;
 import session.SessionManager;
 
 public class MonochromeCommand extends Command {

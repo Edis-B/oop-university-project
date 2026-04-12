@@ -1,8 +1,8 @@
 package image.actions;
 
 import exceptions.ApplicationException;
-import image.transformations.ImageTransformer;
-import image.transformations.factory.NegatorFactory;
+import image.manipulators.transformations.ImageTransformer;
+import image.manipulators.transformations.factory.NegatorFactory;
 
 public class NegativeAction extends TransformationAction {
 

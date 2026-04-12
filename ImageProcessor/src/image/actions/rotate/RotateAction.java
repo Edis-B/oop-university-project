@@ -2,8 +2,8 @@ package image.actions.rotate;
 
 import exceptions.ApplicationException;
 import image.actions.TransformationAction;
-import image.transformations.ImageTransformer;
-import image.transformations.factory.RotatorFactory;
+import image.manipulators.transformations.ImageTransformer;
+import image.manipulators.transformations.factory.RotatorFactory;
 
 public class RotateAction extends TransformationAction {
     private final RotateDirection direction;

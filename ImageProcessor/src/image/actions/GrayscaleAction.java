@@ -1,8 +1,8 @@
 package image.actions;
 
 import exceptions.ApplicationException;
-import image.transformations.ImageTransformer;
-import image.transformations.factory.GrayscalerFactory;
+import image.manipulators.transformations.ImageTransformer;
+import image.manipulators.transformations.factory.GrayscalerFactory;
 
 public class GrayscaleAction extends TransformationAction {
     public GrayscaleAction(int imageCount, GrayscalerFactory transformerFactory) {

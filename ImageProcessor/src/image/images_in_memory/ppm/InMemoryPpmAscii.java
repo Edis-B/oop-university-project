@@ -18,12 +18,12 @@ public class InMemoryPpmAscii extends InMemoryPpm {
     }
 
     @Override
-    public InMemoryImage createBlank(int width, int height, short maxValue) {
+    public InMemoryPpmAscii createBlank(int width, int height, short maxValue) {
         return new InMemoryPpmAscii(width, height, maxValue);
     }
 
     @Override
-    public InMemoryImage createBlank(int width, int height) {
+    public InMemoryPpmAscii createBlank(int width, int height) {
         return new InMemoryPpmAscii(width, height);
     }
 }

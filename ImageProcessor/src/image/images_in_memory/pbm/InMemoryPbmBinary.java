@@ -14,7 +14,7 @@ public class InMemoryPbmBinary extends InMemoryPbm {
     }
 
     @Override
-    public InMemoryImage createBlank(int width, int height) {
+    public InMemoryPbmBinary createBlank(int width, int height) {
         return new InMemoryPbmBinary(width, height);
     }
 }

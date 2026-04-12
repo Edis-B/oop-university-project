@@ -1,6 +1,5 @@
 package image.images_in_memory.pgm;
 
-import image.images_in_memory.InMemoryImage;
 import image.signatures.FormatType;
 
 public class InMemoryPgmBinary extends InMemoryPgm {
@@ -18,12 +17,12 @@ public class InMemoryPgmBinary extends InMemoryPgm {
     }
 
     @Override
-    public InMemoryImage createBlank(int width, int height, short maxValue) {
+    public InMemoryPgmBinary createBlank(int width, int height, short maxValue) {
         return new InMemoryPgmBinary(width, height, maxValue);
     }
 
     @Override
-    public InMemoryImage createBlank(int width, int height) {
+    public InMemoryPgmBinary createBlank(int width, int height) {
         return new InMemoryPgmBinary(width, height);
     }
 }

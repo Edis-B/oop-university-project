@@ -19,13 +19,12 @@ public class InMemoryPgmAscii extends InMemoryPgm {
     }
 
     @Override
-    public InMemoryImage createBlank(int width, int height, short maxValue) {
+    public InMemoryPgmAscii createBlank(int width, int height, short maxValue) {
         return new InMemoryPgmAscii(width, height, maxValue);
     }
 
     @Override
-    public InMemoryImage createBlank(int width, int height) {
+    public InMemoryPgmAscii createBlank(int width, int height) {
         return new InMemoryPgmAscii(width, height);
     }
-
 }

@@ -2,8 +2,8 @@ package image.actions;
 
 import session.ImageContext;
 import image.images_in_memory.InMemoryImage;
-import image.transformations.ImageTransformer;
-import image.transformations.factory.TransformerFactory;
+import image.manipulators.transformations.ImageTransformer;
+import image.manipulators.transformations.factory.TransformerFactory;
 import session.ImageWrapper;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public abstract class TransformationAction implements Action {
             InMemoryImage currImage = imageWrappers.get(i).getImage();
 
             Class<? extends ImageTransformer<?>> transformerClass =
-                    transformerFactory.getTransformer(currImage.getFormat());
+                    transformerFactory.search(currImage.getFormat());
 
             ImageTransformer<?> imageTransformer = getTransformerInstance(transformerClass);
 

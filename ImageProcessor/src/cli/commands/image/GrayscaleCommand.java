@@ -3,7 +3,7 @@ package cli.commands.image;
 import cli.commands.Command;
 import exceptions.ApplicationException;
 import image.actions.GrayscaleAction;
-import image.transformations.factory.GrayscalerFactory;
+import image.manipulators.transformations.factory.GrayscalerFactory;
 import session.SessionManager;
 
 public class GrayscaleCommand extends Command {

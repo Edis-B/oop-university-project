@@ -5,7 +5,7 @@ import common.constants.ErrorMessages;
 import exceptions.ApplicationException;
 import image.actions.rotate.RotateAction;
 import image.actions.rotate.RotateDirection;
-import image.transformations.factory.RotatorFactory;
+import image.manipulators.transformations.factory.RotatorFactory;
 import session.SessionManager;
 
 public class RotateCommand extends Command {
@@ -25,7 +25,7 @@ public class RotateCommand extends Command {
         if (sessionManager.getCurrentSession() == null)
             throw new ApplicationException("Cannot apply transformation - not in session!");
 
-        if (tokens.length >= 3)
+        if (tokens.length != 2)
             throw new ApplicationException(ErrorMessages.unsupportedArgumentCount);
 
         String rotateDirectionString = tokens[1].replace('-', '_').toUpperCase();

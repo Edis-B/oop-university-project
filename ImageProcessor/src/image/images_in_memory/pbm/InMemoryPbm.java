@@ -18,4 +18,5 @@ public abstract class InMemoryPbm extends InMemoryImage {
     public boolean getPixel(int h, int w) {
         return pixels[h][w];
     }
+
 }

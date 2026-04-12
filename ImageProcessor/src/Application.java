@@ -10,11 +10,13 @@ import java.util.Scanner;
 public class Application {
     public static void main(String[] args) {
         try {
-            List<Command> commandList = (new CommandRegistry()).createAllCommands();
-            CommandFactory cmdRegistry = new CommandFactory(commandList);
-            cmdRegistry.discoverCommands();
+            CommandRegistry commandRegistry = new CommandRegistry();
+            List<Command> commandList = commandRegistry.createAllCommands();
 
-            CommandLineInterface cli = new CommandLineInterface(cmdRegistry);
+            CommandFactory commandFactory = new CommandFactory(commandList);
+            commandFactory.discoverCommands();
+
+            CommandLineInterface cli = new CommandLineInterface(commandFactory);
 
             Scanner sc = new Scanner(System.in);
             SessionManager sessionManager = new SessionManager();

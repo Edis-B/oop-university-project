@@ -17,5 +17,5 @@ public abstract class InMemoryMaxValuable extends InMemoryImage {
         this.maxValue = maxValue;
     }
 
-    public abstract InMemoryImage createBlank(int width, int height, short maxValue);
+    public abstract InMemoryMaxValuable createBlank(int width, int height, short maxValue);
 }
