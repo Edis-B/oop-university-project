@@ -5,11 +5,11 @@ import image.images_in_memory.InMemoryImage;
 import image.images_in_memory.ppm.InMemoryPpm;
 import image.images_in_memory.ppm.InMemoryPpmAscii;
 import image.images_in_memory.ppm.InMemoryPpmBinary;
+import image.manipulators.annotation.SupportedFormats;
 import image.signatures.FormatType;
 import util.Color;
 
-import java.util.List;
-
+@SupportedFormats({FormatType.ASCII_PPM, FormatType.BINARY_PPM})
 public class PpmMonochromer implements Monochromer<InMemoryPpm> {
     @Override
     public InMemoryImage transform(InMemoryPpm original) {
@@ -59,13 +59,5 @@ public class PpmMonochromer implements Monochromer<InMemoryPpm> {
 
     private short calculateLuminance(Color color) {
         return (short) (color.getRed() * 0.299 + color.getGreen() * 0.587 + color.getBlue() * 0.114);
-    }
-
-    @Override
-    public List<FormatType> getSupportedFormats() {
-        return List.of(
-                FormatType.ASCII_PPM,
-                FormatType.BINARY_PPM
-        );
     }
 }

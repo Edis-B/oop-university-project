@@ -8,5 +8,5 @@ import session.ImageContext;
 import java.util.List;
 
 public interface ImageCompositor<T extends InMemoryImage> extends ImageManipulator<T> {
-    void execute(ImageContext imageContext);
+    InMemoryImage execute(ImageContext imageContext);
 }

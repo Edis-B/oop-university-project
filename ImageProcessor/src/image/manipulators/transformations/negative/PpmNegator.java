@@ -5,11 +5,12 @@ import image.images_in_memory.InMemoryImage;
 import image.images_in_memory.ppm.InMemoryPpm;
 import image.images_in_memory.ppm.InMemoryPpmAscii;
 import image.images_in_memory.ppm.InMemoryPpmBinary;
+import image.manipulators.annotation.SupportedFormats;
 import image.signatures.FormatType;
 import util.Color;
 
-import java.util.List;
-
+@SupportedFormats({FormatType.ASCII_PPM,
+        FormatType.BINARY_PPM})
 public class PpmNegator implements Negator<InMemoryPpm> {
     @Override
     public InMemoryImage transform(InMemoryPpm original) {
@@ -40,14 +41,6 @@ public class PpmNegator implements Negator<InMemoryPpm> {
                 (short) (maxVal - color.getRed()),
                 (short) (maxVal - color.getGreen()),
                 (short) (maxVal - color.getBlue())
-        );
-    }
-
-    @Override
-    public List<FormatType> getSupportedFormats() {
-        return List.of(
-                FormatType.ASCII_PPM,
-                FormatType.BINARY_PPM
         );
     }
 }

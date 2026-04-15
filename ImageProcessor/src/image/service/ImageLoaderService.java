@@ -3,7 +3,7 @@ package image.service;
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
 import image.signatures.factory.FormatExtractor;
-import image.parsers.factory.ParserFactory;
+import image.io.parsers.factory.ParserFactory;
 import image.signatures.FormatType;
 
 import java.io.BufferedInputStream;

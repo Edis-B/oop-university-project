@@ -5,10 +5,10 @@ import image.images_in_memory.InMemoryImage;
 import image.images_in_memory.pgm.InMemoryPgm;
 import image.images_in_memory.pgm.InMemoryPgmAscii;
 import image.images_in_memory.pgm.InMemoryPgmBinary;
+import image.manipulators.annotation.SupportedFormats;
 import image.signatures.FormatType;
 
-import java.util.List;
-
+@SupportedFormats({FormatType.ASCII_PGM, FormatType.BINARY_PGM})
 public class PgmMonochromer implements Monochromer<InMemoryPgm> {
     @Override
     public InMemoryImage transform(InMemoryPgm original) {
@@ -44,13 +44,5 @@ public class PgmMonochromer implements Monochromer<InMemoryPgm> {
                 graySum += image.getPixel(j, i);
 
         return (short) Math.toIntExact(graySum / (width * height));
-    }
-
-    @Override
-    public List<FormatType> getSupportedFormats() {
-        return List.of(
-                FormatType.ASCII_PGM,
-                FormatType.BINARY_PGM
-        );
     }
 }

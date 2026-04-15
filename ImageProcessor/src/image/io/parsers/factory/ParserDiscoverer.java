@@ -1,7 +1,7 @@
-package image.parsers.factory;
+package image.io.parsers.factory;
 
 import exceptions.ApplicationException;
-import image.parsers.ImageParser;
+import image.io.parsers.ImageParser;
 import util.ClassHelper;
 
 import java.util.List;

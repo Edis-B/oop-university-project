@@ -7,7 +7,7 @@ public abstract class InMemoryPbm extends InMemoryImage {
     private final boolean[][] pixels;
 
     public InMemoryPbm(int width, int height) {
-        pixels = new boolean[width][height];
+        pixels = new boolean[height][width];
         super(width, height);
     }
 

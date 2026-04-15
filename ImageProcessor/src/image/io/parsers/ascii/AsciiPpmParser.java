@@ -1,13 +1,14 @@
-package image.parsers.ascii;
+package image.io.parsers.ascii;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.pgm.InMemoryPgmAscii;
+import image.images_in_memory.ppm.InMemoryPpmAscii;
 import image.signatures.FormatType;
+import util.Color;
 
 import java.io.BufferedInputStream;
 
-public class AsciiPgmParser extends NetpbmAsciiParser {
+public class AsciiPpmParser extends NetpbmAsciiParser {
     @Override
     protected boolean requiresMaxValue() {
         return true;
@@ -15,22 +16,26 @@ public class AsciiPgmParser extends NetpbmAsciiParser {
 
     @Override
     public FormatType getSupportedFormat() {
-        return FormatType.ASCII_PGM;
+        return FormatType.ASCII_PPM;
     }
 
     @Override
     protected InMemoryImage readPixels(BufferedInputStream bis, int width, int height, short maxColor) {
-        InMemoryPgmAscii image = new InMemoryPgmAscii(width, height, maxColor);
+        InMemoryPpmAscii image = new InMemoryPpmAscii(width, height, maxColor);
 
-        for (int i = 0; i < height; i++)
+        for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                int b = getNextInt(bis);
-                if (b == -1)
+                short r = (short) getNextInt(bis);
+                short g = (short) getNextInt(bis);
+                short b = (short) getNextInt(bis);
+
+                if (r == -1 || g == -1 || b == -1)
                     throw new ApplicationException(String.format(
                             "Unexpected EOF: Premature end of file at pixel (%d, %d).", j, i));
 
-                image.setPixel(i, j, (short) b);
+                image.setPixel(i, j, new Color(r, g, b));
             }
+        }
 
         return image;
     }

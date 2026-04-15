@@ -3,7 +3,9 @@ package cli.commands.registry;
 import cli.commands.Command;
 import cli.commands.image.*;
 import cli.commands.session.*;
+import image.manipulators.compositors.collage.Collager;
 import image.manipulators.compositors.factory.CollagerFactory;
+import image.manipulators.compositors.factory.registry.CollagerRegistry;
 import image.manipulators.transformations.factory.*;
 import image.manipulators.transformations.grayscale.Grayscaler;
 import image.manipulators.transformations.monochrome.Monochromer;
@@ -14,8 +16,8 @@ import image.manipulators.transformations.factory.registry.MonochromerRegistry;
 import image.manipulators.transformations.factory.registry.NegatorRegistry;
 import image.manipulators.transformations.factory.registry.RotatorRegistry;
 import image.signatures.factory.FormatExtractor;
-import image.parsers.factory.ParserFactory;
-import image.parsers.factory.ParserDiscoverer;
+import image.io.parsers.factory.ParserFactory;
+import image.io.parsers.factory.ParserDiscoverer;
 import image.service.ImageLoaderService;
 import image.signatures.FormatSignature;
 import image.signatures.factory.SignatureFactory;
@@ -57,7 +59,10 @@ public class CommandRegistry {
 
         list.add(new SwitchCommand());
 
-        list.add(new CollageCommand());
+        CollagerFactory collagerFactory = new CollagerFactory();
+        CollagerRegistry collagerRegistry = new CollagerRegistry();
+        collagerRegistry.registerAll(collagerFactory, Collager.class.getPackageName());
+        list.add(new CollageCommand(collagerFactory));
 
         // Session handling
         list.add(new CloseCommand());

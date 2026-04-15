@@ -8,12 +8,12 @@ public abstract class InMemoryPpm extends InMemoryMaxValuable {
     private final Color[][] pixels;
 
     public InMemoryPpm(int width, int height, short maxValue) {
-        this.pixels = new Color[width][height];
+        this.pixels = new Color[height][width];
         super(width, height, maxValue);
     }
 
     public InMemoryPpm(int width, int height) {
-        this.pixels = new Color[width][height];
+        this.pixels = new Color[height][width];
         super(width, height);
     }
 

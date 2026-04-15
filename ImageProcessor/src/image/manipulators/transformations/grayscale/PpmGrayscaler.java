@@ -5,11 +5,11 @@ import image.images_in_memory.InMemoryImage;
 import image.images_in_memory.ppm.InMemoryPpm;
 import image.images_in_memory.ppm.InMemoryPpmAscii;
 import image.images_in_memory.ppm.InMemoryPpmBinary;
+import image.manipulators.annotation.SupportedFormats;
 import image.signatures.FormatType;
 import util.Color;
 
-import java.util.List;
-
+@SupportedFormats({FormatType.ASCII_PPM, FormatType.BINARY_PPM})
 public class PpmGrayscaler implements Grayscaler<InMemoryPpm> {
 
     public PpmGrayscaler() {
@@ -40,13 +40,5 @@ public class PpmGrayscaler implements Grayscaler<InMemoryPpm> {
         }
 
         return grayImage;
-    }
-
-    @Override
-    public List<FormatType> getSupportedFormats() {
-        return List.of(
-                FormatType.ASCII_PPM,
-                FormatType.BINARY_PPM
-        );
     }
 }

@@ -1,12 +1,13 @@
 package session;
 
+import image.actions.Action;
 import image.actions.TransformationAction;
 import image.images_in_memory.InMemoryImage;
 
 import java.util.*;
 
 public class Session {
-    private final Stack<TransformationAction> commandHistory = new Stack<>();
+    private final Stack<Action> commandHistory = new Stack<>();
     private final ImageContext imageContext = new ImageContext();
     private final int id;
 
@@ -30,7 +31,7 @@ public class Session {
         this.id = id;
     }
 
-    public void appendAction(TransformationAction action) {
+    public void appendAction(Action action) {
         commandHistory.push(action);
     }
 
@@ -38,8 +39,8 @@ public class Session {
         commandHistory.pop();
     }
 
-    public Stack<TransformationAction> getCommandHistory() {
-        Stack<TransformationAction> copy = new Stack<>();
+    public Stack<Action> getCommandHistory() {
+        Stack<Action> copy = new Stack<>();
         copy.addAll(this.commandHistory);
         return copy;
     }

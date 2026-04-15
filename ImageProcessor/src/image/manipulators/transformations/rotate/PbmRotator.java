@@ -1,10 +1,11 @@
 package image.manipulators.transformations.rotate;
 
 import image.images_in_memory.pbm.InMemoryPbm;
+import image.manipulators.annotation.SupportedFormats;
 import image.signatures.FormatType;
 
-import java.util.List;
-
+@SupportedFormats({FormatType.ASCII_PBM,
+        FormatType.BINARY_PBM})
 public class PbmRotator extends AbstractRotator<InMemoryPbm> {
     public PbmRotator(byte cwSpins) {
         super(cwSpins);
@@ -13,13 +14,5 @@ public class PbmRotator extends AbstractRotator<InMemoryPbm> {
     @Override
     protected void setPixel(int i, int j, InMemoryPbm rotated, int rotI, int rotJ, InMemoryPbm original) {
         rotated.setPixel(i, j, original.getPixel(rotI, rotJ));
-    }
-
-    @Override
-    public List<FormatType> getSupportedFormats() {
-        return List.of(
-                FormatType.ASCII_PBM,
-                FormatType.BINARY_PBM
-        );
     }
 }

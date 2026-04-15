@@ -5,10 +5,11 @@ import image.images_in_memory.InMemoryImage;
 import image.images_in_memory.pbm.InMemoryPbm;
 import image.images_in_memory.pbm.InMemoryPbmAscii;
 import image.images_in_memory.pbm.InMemoryPbmBinary;
+import image.manipulators.annotation.SupportedFormats;
 import image.signatures.FormatType;
 
-import java.util.List;
-
+@SupportedFormats({FormatType.ASCII_PBM,
+        FormatType.BINARY_PBM})
 public class PbmNegator implements Negator<InMemoryPbm> {
     @Override
     public InMemoryImage transform(InMemoryPbm original) {
@@ -29,13 +30,5 @@ public class PbmNegator implements Negator<InMemoryPbm> {
         }
 
         return negativeImage;
-    }
-
-    @Override
-    public List<FormatType> getSupportedFormats() {
-        return List.of(
-                FormatType.ASCII_PBM,
-                FormatType.BINARY_PBM
-        );
     }
 }

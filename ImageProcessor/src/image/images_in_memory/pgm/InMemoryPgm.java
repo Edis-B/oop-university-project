@@ -7,12 +7,12 @@ public abstract class InMemoryPgm extends InMemoryMaxValuable {
     private final short[][] pixels;
 
     public InMemoryPgm(int width, int height, short maxValue) {
-        this.pixels = new short[width][height];
+        this.pixels = new short[height][width];
         super(width, height, maxValue);
     }
 
     public InMemoryPgm(int width, int height) {
-        this.pixels = new short[width][height];
+        this.pixels = new short[height][width];
         super(width, height);
     }
 

@@ -1,6 +1,6 @@
-package image.parsers.ascii;
+package image.io.parsers.ascii;
 
-import image.parsers.NetpbmParser;
+import image.io.parsers.NetpbmParser;
 
 
 public abstract class NetpbmAsciiParser extends NetpbmParser {

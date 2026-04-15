@@ -1,18 +1,17 @@
-package image.parsers.binary;
+package image.io.parsers.binary;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.ppm.InMemoryPpmBinary;
+import image.images_in_memory.pgm.InMemoryPgmBinary;
 import image.signatures.FormatType;
-import util.Color;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 
-public class BinaryPpmParser extends NetpbmBinaryParser {
+public class BinaryPgmParser extends NetpbmBinaryParser {
     @Override
     public FormatType getSupportedFormat() {
-        return FormatType.BINARY_PPM;
+        return FormatType.BINARY_PGM;
     }
 
     @Override
@@ -22,20 +21,19 @@ public class BinaryPpmParser extends NetpbmBinaryParser {
 
     @Override
     protected InMemoryImage readPixels(BufferedInputStream bis, int width, int height, short maxColor) {
-        InMemoryPpmBinary image = new InMemoryPpmBinary(width, height, maxColor);
+        InMemoryPgmBinary image = new InMemoryPgmBinary(width, height, maxColor);
 
         for (int i = 0; i < height; i++)
             for (int j = 0; j < width; j++) {
                 try {
-                    short r = (short) bis.read();
-                    short g = (short) bis.read();
-                    short b = (short) bis.read();
+                    int b;
+                    b = bis.read();
 
-                    if (r == -1 || g == -1 || b == -1)
+                    if (b == -1)
                         throw new ApplicationException(String.format(
                                 "Unexpected EOF: Premature end of file at pixel (%d, %d).", j, i));
 
-                    image.setPixel(i, j, new Color(r, g, b));
+                    image.setPixel(i, j, (short) b);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

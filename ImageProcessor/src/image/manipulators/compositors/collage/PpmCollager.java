@@ -2,19 +2,19 @@ package image.manipulators.compositors.collage;
 
 import image.actions.collage.CollageDirection;
 import image.images_in_memory.ppm.InMemoryPpm;
+import image.manipulators.annotation.SupportedFormats;
 import image.signatures.FormatType;
 import util.Color;
 
-import java.util.List;
-
+@SupportedFormats({FormatType.ASCII_PPM, FormatType.BINARY_PPM})
 public class PpmCollager extends MaxValuedCollager<InMemoryPpm> {
     public PpmCollager(InMemoryPpm image1, InMemoryPpm image2, CollageDirection collageDirection) {
         super(image1, image2, collageDirection);
     }
 
     @Override
-    protected InMemoryPpm getOutImage(int outWidth, int outHeight) {
-        return null;
+    protected InMemoryPpm getOutImage() {
+        return (InMemoryPpm) image1.createBlank(outWidth, outHeight, outValue);
     }
 
     @Override
@@ -33,13 +33,5 @@ public class PpmCollager extends MaxValuedCollager<InMemoryPpm> {
         }
 
         result.setPixel(resI, resJ, resultPixel);
-    }
-
-    @Override
-    public List<FormatType> getSupportedFormats() {
-        return List.of(
-                FormatType.ASCII_PPM,
-                FormatType.BINARY_PPM
-        );
     }
 }

@@ -2,8 +2,10 @@ package image.manipulators.compositors.collage;
 
 import image.actions.collage.CollageDirection;
 import image.images_in_memory.InMemoryMaxValuable;
+import image.images_in_memory.ppm.InMemoryPpm;
 
 public abstract class MaxValuedCollager<T extends InMemoryMaxValuable> extends Collager<T> {
+    protected short outValue;
     private double coefficient = -1;
 
     protected double getCoefficient() {
@@ -25,5 +27,6 @@ public abstract class MaxValuedCollager<T extends InMemoryMaxValuable> extends C
 
     public MaxValuedCollager(T image1, T image2, CollageDirection collageDirection) {
         super(image1, image2, collageDirection);
+        outValue = (short) Math.max(image1.getMaxValue(), image2.getMaxValue());
     }
 }

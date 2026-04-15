@@ -1,4 +1,4 @@
-package image.parsers.binary;
+package image.io.parsers.binary;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
