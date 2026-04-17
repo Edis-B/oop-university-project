@@ -31,7 +31,7 @@ public class PpmGrayscaler implements Grayscaler<InMemoryPpm> {
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                Color oldColor = original.getPixel(j, i);
+                Color oldColor = original.getPixel(i, j);
                 short gray =
                         (short) (oldColor.getRed() * 0.299 + oldColor.getGreen() * 0.587 + oldColor.getBlue() * 0.114);
 

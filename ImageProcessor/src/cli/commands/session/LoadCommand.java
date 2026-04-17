@@ -38,7 +38,7 @@ public class LoadCommand extends Command {
 
         for (int i = 1; i < tokens.length; i++) {
             String filePath = tokens[i];
-            InMemoryImage newImage = imageLoaderService.load(tokens[1]);
+            InMemoryImage newImage = imageLoaderService.load(filePath);
             sessionManager.insertImageIntoSession(
                 newImage, filePath
             );

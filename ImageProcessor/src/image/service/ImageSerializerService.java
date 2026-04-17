@@ -1,6 +1,7 @@
 package image.service;
 
 import common.constants.RandomConstants;
+import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
 import image.io.serializers.ImageSerializer;
 import image.io.serializers.factory.SerializerFactory;
@@ -27,11 +28,19 @@ public class ImageSerializerService {
             BufferedOutputStream bos = new BufferedOutputStream(os);
             Class<ImageSerializer<? extends InMemoryImage>> serializerClass = serializerFactory.search(image.getFormat());
 
+            if (serializerClass == null) {
+                throw new ApplicationException(String.format("No serializer found for format %s!", image.getFormat()));
+            }
+
             ImageSerializer<? extends InMemoryImage> serializer = serializerClass.newInstance();
 
             serializeSafely(bos, serializer, image);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+
+        } catch (RuntimeException e) {
+            throw e;
+        }
+        catch (Exception e) {
+            throw new ApplicationException("Error serializing image " + wrapper.getName() + "!", e);
         }
     }
 

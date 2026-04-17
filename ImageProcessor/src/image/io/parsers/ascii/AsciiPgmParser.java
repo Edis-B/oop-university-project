@@ -27,7 +27,7 @@ public class AsciiPgmParser extends NetpbmAsciiParser {
                 int b = getNextInt(bis);
                 if (b == -1)
                     throw new ApplicationException(String.format(
-                            "Unexpected EOF: Premature end of file at pixel (%d, %d).", j, i));
+                            "Unexpected EOF: Premature end of file at pixel (%d, %d).", i, j));
 
                 image.setPixel(i, j, (short) b);
             }

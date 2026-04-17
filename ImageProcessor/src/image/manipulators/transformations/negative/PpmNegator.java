@@ -9,8 +9,7 @@ import image.manipulators.annotation.SupportedFormats;
 import image.signatures.FormatType;
 import util.Color;
 
-@SupportedFormats({FormatType.ASCII_PPM,
-        FormatType.BINARY_PPM})
+@SupportedFormats({FormatType.ASCII_PPM, FormatType.BINARY_PPM})
 public class PpmNegator implements Negator<InMemoryPpm> {
     @Override
     public InMemoryImage transform(InMemoryPpm original) {
@@ -29,7 +28,7 @@ public class PpmNegator implements Negator<InMemoryPpm> {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 negativeImage.setPixel(i, j,
-                        negatePixel(negativeImage.getPixel(i, j), maxVal));
+                        negatePixel(original.getPixel(i, j), maxVal));
             }
         }
 

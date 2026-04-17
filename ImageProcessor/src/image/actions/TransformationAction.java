@@ -1,5 +1,6 @@
 package image.actions;
 
+import exceptions.ApplicationException;
 import session.ImageContext;
 import image.images_in_memory.InMemoryImage;
 import image.manipulators.transformations.ImageTransformer;
@@ -29,6 +30,9 @@ public abstract class TransformationAction implements Action {
 
             Class<? extends ImageTransformer<?>> transformerClass =
                     transformerFactory.search(currImage.getFormat());
+
+            // Transformation not viable for image
+            if (transformerClass == null) continue;
 
             ImageTransformer<?> imageTransformer = getTransformerInstance(transformerClass);
 

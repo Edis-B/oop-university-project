@@ -27,7 +27,7 @@ public class PgmNegator implements Negator<InMemoryPgm> {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 negativeImage.setPixel(i, j, (short)
-                        (maxVal - negativeImage.getPixel(i, j)));
+                        (maxVal - original.getPixel(i, j)));
             }
         }
 

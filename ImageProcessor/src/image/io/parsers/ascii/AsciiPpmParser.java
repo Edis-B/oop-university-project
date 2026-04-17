@@ -31,7 +31,7 @@ public class AsciiPpmParser extends NetpbmAsciiParser {
 
                 if (r == -1 || g == -1 || b == -1)
                     throw new ApplicationException(String.format(
-                            "Unexpected EOF: Premature end of file at pixel (%d, %d).", j, i));
+                            "Unexpected EOF: Premature end of file at pixel (%d, %d).", i, j));
 
                 image.setPixel(i, j, new Color(r, g, b));
             }

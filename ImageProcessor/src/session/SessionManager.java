@@ -43,8 +43,8 @@ public class SessionManager {
         session.appendAction(action);
     }
 
-    public void insertImageIntoSession(InMemoryImage image, String fileName) {
-        session.addImage(image, fileName);
+    public void insertImageIntoSession(InMemoryImage image, String filePath) {
+        session.addImage(image, filePath);
     }
 
     public int getCurrentSessionImageCount() {

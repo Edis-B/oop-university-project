@@ -10,7 +10,7 @@ public abstract class AbstractRotator<T extends InMemoryImage> implements Rotato
     }
 
     private final int[][] diff = {
-            {1, 1}, {-1, 1}, {-1, -1}, {1, -1}
+            {1, 1}, {1, -1}, {-1, -1}, {-1, 1}
     };
 
     @Override
@@ -24,15 +24,32 @@ public abstract class AbstractRotator<T extends InMemoryImage> implements Rotato
         @SuppressWarnings("unchecked")
         T result = (T) original.createBlank(width, height);
 
-        int[][] start = {
+        int[][] outStart = {
                 {0, 0}, {0, origWidth - 1}, {origWidth - 1, origHeight - 1}, {0, origHeight - 1}
         };
 
-        int startRow = start[cwSpins][0], startCol = start[cwSpins][1];
         for (int i = 0; i < origHeight; i++) {
             for (int j = 0; j < origWidth; j++) {
-                int rotI = startRow + (diff[cwSpins][0] * i),
-                        rotJ = startCol + (diff[cwSpins][1] * j);
+                int rotI, rotJ;
+
+                switch (cwSpins) {
+                    case 1:
+                        rotI = j;
+                        rotJ = (origHeight - 1) - i;
+                        break;
+                    case 2:
+                        rotI = (origHeight - 1) - i;
+                        rotJ = (origWidth - 1) - j;
+                        break;
+                    case 3:
+                        rotI = (origWidth - 1) - j;
+                        rotJ = i;
+                        break;
+                    default:
+                        rotI = i;
+                        rotJ = j;
+                        break;
+                }
 
                 setPixel(i, j, result, rotI, rotJ, original);
             }
