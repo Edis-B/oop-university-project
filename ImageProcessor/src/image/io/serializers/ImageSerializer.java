@@ -6,6 +6,7 @@ import image.manipulators.annotation.SupportedFormats;
 import image.signatures.FormatType;
 
 import java.io.BufferedOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 public interface ImageSerializer<T extends InMemoryImage> {

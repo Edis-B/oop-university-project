@@ -1,9 +1,9 @@
 package image.images_in_memory.netpbm.ppm;
 
-import image.images_in_memory.netpbm.InMemoryMaxValuable;
+import image.images_in_memory.netpbm.InMemoryMaxValued;
 import util.Color;
 
-public abstract class InMemoryPpm extends InMemoryMaxValuable {
+public abstract class InMemoryPpm extends InMemoryMaxValued {
     private final Color[][] pixels;
 
     public InMemoryPpm(int width, int height, short maxValue) {

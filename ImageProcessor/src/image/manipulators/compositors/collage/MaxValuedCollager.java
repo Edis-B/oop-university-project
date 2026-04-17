@@ -1,9 +1,9 @@
 package image.manipulators.compositors.collage;
 
 import image.actions.collage.CollageDirection;
-import image.images_in_memory.netpbm.InMemoryMaxValuable;
+import image.images_in_memory.netpbm.InMemoryMaxValued;
 
-public abstract class MaxValuedCollager<T extends InMemoryMaxValuable> extends Collager<T> {
+public abstract class MaxValuedCollager<T extends InMemoryMaxValued> extends Collager<T> {
     protected short outValue;
     private double coefficient = -1;
 
