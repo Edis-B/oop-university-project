@@ -2,7 +2,7 @@ package image.io.parsers.binary;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.ppm.InMemoryPpmBinary;
+import image.images_in_memory.netpbm.ppm.InMemoryPpmBinary;
 import image.signatures.FormatType;
 import util.Color;
 

@@ -2,9 +2,9 @@ package image.manipulators.transformations.monochrome;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.pgm.InMemoryPgm;
-import image.images_in_memory.pgm.InMemoryPgmAscii;
-import image.images_in_memory.pgm.InMemoryPgmBinary;
+import image.images_in_memory.netpbm.pgm.InMemoryPgm;
+import image.images_in_memory.netpbm.pgm.InMemoryPgmAscii;
+import image.images_in_memory.netpbm.pgm.InMemoryPgmBinary;
 import image.manipulators.annotation.SupportedFormats;
 import image.signatures.FormatType;
 

@@ -1,9 +1,9 @@
-package image.images_in_memory.pbm;
+package image.images_in_memory.netpbm.pbm;
 
 import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.InMemoryMaxValuable;
+import image.images_in_memory.netpbm.InMemoryNetpbm;
 
-public abstract class InMemoryPbm extends InMemoryImage {
+public abstract class InMemoryPbm extends InMemoryNetpbm {
     private final boolean[][] pixels;
 
     public InMemoryPbm(int width, int height) {

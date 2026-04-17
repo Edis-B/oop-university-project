@@ -1,4 +1,4 @@
-package image.images_in_memory.pgm;
+package image.images_in_memory.netpbm.pgm;
 
 import image.signatures.FormatType;
 

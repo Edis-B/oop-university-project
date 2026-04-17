@@ -2,7 +2,7 @@ package image.io.parsers.binary;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.pgm.InMemoryPgmBinary;
+import image.images_in_memory.netpbm.pgm.InMemoryPgmBinary;
 import image.signatures.FormatType;
 
 import java.io.BufferedInputStream;

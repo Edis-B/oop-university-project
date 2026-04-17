@@ -2,7 +2,7 @@ package image.io.parsers.ascii;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.ppm.InMemoryPpmAscii;
+import image.images_in_memory.netpbm.ppm.InMemoryPpmAscii;
 import image.signatures.FormatType;
 import util.Color;
 

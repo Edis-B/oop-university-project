@@ -1,4 +1,6 @@
 package image.io.serializers;
 
-public class NetpbmSerializer {
+import image.images_in_memory.InMemoryImage;
+
+public class NetpbmSerializer implements ImageSerializer<InMemoryImage> {
 }

@@ -1,7 +1,6 @@
-package image.images_in_memory.pgm;
+package image.images_in_memory.netpbm.pgm;
 
-import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.InMemoryMaxValuable;
+import image.images_in_memory.netpbm.InMemoryMaxValuable;
 
 public abstract class InMemoryPgm extends InMemoryMaxValuable {
     private final short[][] pixels;

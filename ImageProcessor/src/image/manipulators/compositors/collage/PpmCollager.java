@@ -1,7 +1,7 @@
 package image.manipulators.compositors.collage;
 
 import image.actions.collage.CollageDirection;
-import image.images_in_memory.ppm.InMemoryPpm;
+import image.images_in_memory.netpbm.ppm.InMemoryPpm;
 import image.manipulators.annotation.SupportedFormats;
 import image.signatures.FormatType;
 import util.Color;

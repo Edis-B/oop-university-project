@@ -2,7 +2,7 @@ package image.io.parsers.ascii;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.pgm.InMemoryPgmAscii;
+import image.images_in_memory.netpbm.pgm.InMemoryPgmAscii;
 import image.signatures.FormatType;
 
 import java.io.BufferedInputStream;

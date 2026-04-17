@@ -1,6 +1,5 @@
-package image.images_in_memory.ppm;
+package image.images_in_memory.netpbm.ppm;
 
-import image.images_in_memory.InMemoryImage;
 import image.signatures.FormatType;
 
 public class InMemoryPpmAscii extends InMemoryPpm {

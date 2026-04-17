@@ -1,7 +1,5 @@
-package image.images_in_memory.pgm;
+package image.images_in_memory.netpbm.pgm;
 
-import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.pbm.InMemoryPbm;
 import image.signatures.FormatType;
 
 public class InMemoryPgmAscii extends InMemoryPgm {

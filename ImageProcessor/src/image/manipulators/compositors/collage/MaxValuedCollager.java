@@ -1,8 +1,7 @@
 package image.manipulators.compositors.collage;
 
 import image.actions.collage.CollageDirection;
-import image.images_in_memory.InMemoryMaxValuable;
-import image.images_in_memory.ppm.InMemoryPpm;
+import image.images_in_memory.netpbm.InMemoryMaxValuable;
 
 public abstract class MaxValuedCollager<T extends InMemoryMaxValuable> extends Collager<T> {
     protected short outValue;

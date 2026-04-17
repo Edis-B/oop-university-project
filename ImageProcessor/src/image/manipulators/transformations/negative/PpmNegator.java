@@ -2,9 +2,9 @@ package image.manipulators.transformations.negative;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.ppm.InMemoryPpm;
-import image.images_in_memory.ppm.InMemoryPpmAscii;
-import image.images_in_memory.ppm.InMemoryPpmBinary;
+import image.images_in_memory.netpbm.ppm.InMemoryPpm;
+import image.images_in_memory.netpbm.ppm.InMemoryPpmAscii;
+import image.images_in_memory.netpbm.ppm.InMemoryPpmBinary;
 import image.manipulators.annotation.SupportedFormats;
 import image.signatures.FormatType;
 import util.Color;
