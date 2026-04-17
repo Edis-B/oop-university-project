@@ -7,17 +7,6 @@ import image.signatures.FormatType;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class ManipulatorFactory<T extends ImageManipulator<? extends InMemoryImage>> implements ClassFactory<T, FormatType> {
-    protected final Map<FormatType, Class<T>> map
-            = new HashMap<>();
+public abstract class ManipulatorFactory<T extends ImageManipulator<? extends InMemoryImage>> extends AbstractFactory<T, FormatType> {
 
-    @Override
-    public Class<T> search(FormatType query) {
-        return map.get(query);
-    }
-
-    @Override
-    public void register(FormatType query, Class<T> transformerClass) {
-        map.put(query, transformerClass);
-    }
 }

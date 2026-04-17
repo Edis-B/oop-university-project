@@ -3,6 +3,11 @@ package cli.commands.registry;
 import cli.commands.Command;
 import cli.commands.image.*;
 import cli.commands.session.*;
+import image.images_in_memory.netpbm.InMemoryNetpbm;
+import image.io.serializers.ImageSerializer;
+import image.io.serializers.NetpbmSerializer;
+import image.io.serializers.factory.SerializerFactory;
+import image.io.serializers.factory.SerializerRegistry;
 import image.manipulators.compositors.collage.Collager;
 import image.manipulators.compositors.factory.CollagerFactory;
 import image.manipulators.compositors.factory.registry.CollagerRegistry;
@@ -15,6 +20,7 @@ import image.manipulators.transformations.factory.registry.GrayscalerRegistry;
 import image.manipulators.transformations.factory.registry.MonochromerRegistry;
 import image.manipulators.transformations.factory.registry.NegatorRegistry;
 import image.manipulators.transformations.factory.registry.RotatorRegistry;
+import image.service.ImageSerializerService;
 import image.signatures.factory.FormatExtractor;
 import image.io.parsers.factory.ParserFactory;
 import image.io.parsers.factory.ParserDiscoverer;
@@ -66,7 +72,9 @@ public class CommandRegistry {
 
         // Session handling
         list.add(new CloseCommand());
+
         list.add(new ExitCommand());
+
         list.add(new HelpCommand());
 
         List<FormatSignature> imageSignatures = SignatureFactory.getInstance().getSignatures();
@@ -79,7 +87,11 @@ public class CommandRegistry {
         list.add(new LoadCommand(imageLoaderService, clp));
         list.add(new AddCommand(imageLoaderService));
 
-        list.add(new SaveCommand());
+        SerializerFactory serializerFactory = new SerializerFactory();
+        SerializerRegistry serializerRegistry = new SerializerRegistry();
+        serializerRegistry.registerAll(serializerFactory, ImageSerializer.class.getPackageName());
+        ImageSerializerService imageSerializerService = new ImageSerializerService(serializerFactory);
+        list.add(new SaveCommand(imageSerializerService));
 
         return list;
     }

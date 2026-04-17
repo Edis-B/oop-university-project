@@ -27,9 +27,6 @@ public class LoadCommand extends Command {
 
     @Override
     public void execute(String[] tokens, SessionManager sessionManager) {
-        if (sessionManager.getCurrentSession() != null)
-            throw new ApplicationException("Already in session!");
-
         if (tokens.length == 1)
             throw new ApplicationException("Please enter at least 1 image!");
 
