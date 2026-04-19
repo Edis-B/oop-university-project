@@ -9,10 +9,6 @@ public abstract class AbstractRotator<T extends InMemoryImage> implements Rotato
         this.cwSpins = cwSpins;
     }
 
-    private final int[][] diff = {
-            {1, 1}, {1, -1}, {-1, -1}, {-1, 1}
-    };
-
     @Override
     public InMemoryImage transform(T original) {
         int origHeight = original.getHeight(),
@@ -24,26 +20,22 @@ public abstract class AbstractRotator<T extends InMemoryImage> implements Rotato
         @SuppressWarnings("unchecked")
         T result = (T) original.createBlank(width, height);
 
-        int[][] outStart = {
-                {0, 0}, {0, origWidth - 1}, {origWidth - 1, origHeight - 1}, {0, origHeight - 1}
-        };
-
         for (int i = 0; i < origHeight; i++) {
             for (int j = 0; j < origWidth; j++) {
                 int rotI, rotJ;
 
                 switch (cwSpins) {
                     case 1:
-                        rotI = j;
-                        rotJ = (origHeight - 1) - i;
+                        rotI = (origWidth - 1) - j;
+                        rotJ = i;
                         break;
                     case 2:
                         rotI = (origHeight - 1) - i;
                         rotJ = (origWidth - 1) - j;
                         break;
                     case 3:
-                        rotI = (origWidth - 1) - j;
-                        rotJ = i;
+                        rotI = j;
+                        rotJ = (origHeight - 1) - i;
                         break;
                     default:
                         rotI = i;

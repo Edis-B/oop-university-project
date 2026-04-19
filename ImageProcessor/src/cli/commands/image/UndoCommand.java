@@ -15,6 +15,9 @@ public class UndoCommand extends Command {
         if (sessionManager.getCurrentSession() == null)
             throw new ApplicationException("Cannot apply transformation - not in session!");
 
+        if (sessionManager.getCurrentTransformationsCount() == 0)
+            throw new ApplicationException("No transformations to undo!");
+
         sessionManager.getCurrentSession().undoAction();
     }
 }

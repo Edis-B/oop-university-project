@@ -1,7 +1,7 @@
 package image.images_in_memory.netpbm;
 
 public abstract class InMemoryMaxValued extends InMemoryNetpbm {
-    private final short maxValue;
+    protected final short maxValue;
 
     public abstract short getDefaultValue();
 

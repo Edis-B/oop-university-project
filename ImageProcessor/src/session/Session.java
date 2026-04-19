@@ -39,6 +39,10 @@ public class Session {
         commandHistory.pop();
     }
 
+    public int getTransformationCount() {
+        return commandHistory.size();
+    }
+
     public Stack<Action> getCommandHistory() {
         Stack<Action> copy = new Stack<>();
         copy.addAll(this.commandHistory);

@@ -3,9 +3,11 @@ package session;
 import exceptions.ApplicationException;
 import image.actions.Action;
 import image.images_in_memory.InMemoryImage;
+import image.images_in_memory.netpbm.ppm.InMemoryPpm;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 public class SessionManager {
     private Session session;
@@ -51,14 +53,18 @@ public class SessionManager {
         return session.getImageCount();
     }
 
-    public ImageContext executeActions() {
-        ImageContext imageContext = session.getImageContext();
-        var commandActions = session.getCommandHistory();
+    public int getCurrentTransformationsCount() {
+        return session.getTransformationCount();
+    }
 
-        for (var action : commandActions) {
-            action.execute(imageContext);
+    public ImageContext executeActions() {
+        ImageContext copiedContext = new ImageContext(session.getImageContext());
+        Stack<Action> commandActions = session.getCommandHistory();
+
+        for (Action action : commandActions) {
+            action.execute(copiedContext);
         }
 
-        return imageContext;
+        return copiedContext;
     }
 }

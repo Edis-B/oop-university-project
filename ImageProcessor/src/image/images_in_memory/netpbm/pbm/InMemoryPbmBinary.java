@@ -1,5 +1,6 @@
 package image.images_in_memory.netpbm.pbm;
 
+import image.images_in_memory.InMemoryImage;
 import image.signatures.FormatType;
 
 public class InMemoryPbmBinary extends InMemoryPbm {

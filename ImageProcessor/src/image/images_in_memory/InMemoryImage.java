@@ -21,5 +21,7 @@ public abstract class InMemoryImage {
 
     public abstract FormatType getFormat();
 
+    public abstract InMemoryImage copy();
+
     public abstract InMemoryImage createBlank(int width, int height);
 }
