@@ -23,7 +23,7 @@ public class ImageLoaderService {
         this.parserFactory = parserFactory;
     }
 
-    public InMemoryImage load(String filePath) {
+    public InMemoryImage load(String filePath) throws IOException {
         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(filePath))) {
             bis.mark(1024);
             FormatType format = extractor.extract(bis);
@@ -31,7 +31,7 @@ public class ImageLoaderService {
 
             return parserFactory.getParser(format).parse(bis);
         } catch (IOException e) {
-            throw new ApplicationException("Could not load image: " + e.getMessage());
+            throw new IOException("Could not load image: " + e.getMessage(), e);
         }
     }
 }

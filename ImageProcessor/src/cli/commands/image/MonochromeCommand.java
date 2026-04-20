@@ -23,10 +23,13 @@ public class MonochromeCommand extends Command {
         if (sessionManager.getCurrentSession() == null)
             throw new ApplicationException("Cannot apply transformation - not in session!");
 
+        String command = String.join(" ", tokens);
+
         sessionManager.addCommandToSession(
                 new MonochromeAction(
                         sessionManager.getCurrentSessionImageCount(),
-                        monochromerFactory)
+                        monochromerFactory,
+                        command)
         );
     }
 }

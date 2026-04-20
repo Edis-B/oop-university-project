@@ -31,11 +31,14 @@ public class RotateCommand extends Command {
         String rotateDirectionString = tokens[1].replace('-', '_').toUpperCase();
         RotateDirection rotateDirection = RotateDirection.valueOf(rotateDirectionString);
 
+        String command = String.join(" ", tokens);
+
         sessionManager.addCommandToSession(
                 new RotateAction(sessionManager.getCurrentSessionImageCount(),
                         rotateDirection,
-                        rotatorFactory
-                        )
+                        rotatorFactory,
+                        command
+                )
         );
     }
 }

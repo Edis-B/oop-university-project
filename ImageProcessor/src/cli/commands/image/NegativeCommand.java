@@ -23,9 +23,11 @@ public class NegativeCommand extends Command {
         if (sessionManager.getCurrentSession() == null)
             throw new ApplicationException("Cannot apply transformation - not in session!");
 
+        String command = String.join(" ", tokens);
+
         sessionManager.addCommandToSession(
                 new NegativeAction(sessionManager.getCurrentSessionImageCount(),
-                        negatorFactory)
+                        negatorFactory, command)
         );
     }
 }

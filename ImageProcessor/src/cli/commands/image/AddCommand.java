@@ -4,18 +4,19 @@ import cli.commands.Command;
 import common.constants.ErrorMessages;
 import exceptions.ApplicationException;
 import image.service.ImageLoaderService;
+import logging.ConsoleLoggingProvider;
 import session.ImageWrapper;
 import session.SessionManager;
 
+import java.io.IOException;
+
 public class AddCommand extends Command {
+    private final ConsoleLoggingProvider consoleLoggingProvider;
     private final ImageLoaderService imageLoaderService;
 
-    private AddCommand() {
-        this(null);
-    }
-
-    public AddCommand(ImageLoaderService _imageLoaderService) {
-        imageLoaderService = _imageLoaderService;
+    public AddCommand(ImageLoaderService imageLoaderService, ConsoleLoggingProvider consoleLoggingProvider) {
+        this.imageLoaderService = imageLoaderService;
+        this.consoleLoggingProvider = consoleLoggingProvider;
     }
 
     @Override
@@ -31,10 +32,18 @@ public class AddCommand extends Command {
         if (tokens.length != 2)
             throw new ApplicationException(ErrorMessages.unsupportedArgumentCount);
 
-        String filePath = tokens[1];
-        var newImage = imageLoaderService.load(tokens[1]);
-        sessionManager.insertImageIntoSession(
-            newImage, filePath
-        );
+        try {
+            String filePath = tokens[1];
+            var newImage = imageLoaderService.load(tokens[1]);
+            sessionManager.insertImageIntoSession(
+                    newImage, filePath
+            );
+
+            var newImageName = sessionManager.getCurrentImageContext().getImageWrapperArray().getLast().getName();
+
+            consoleLoggingProvider.sendMessageNewline("Image \"" + newImageName + "\" added");
+        } catch (IOException e) {
+            throw new ApplicationException("Error loading image: " + tokens[1]);
+        }
     }
 }

@@ -6,6 +6,9 @@ import image.actions.GrayscaleAction;
 import image.manipulators.transformations.factory.GrayscalerFactory;
 import session.SessionManager;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class GrayscaleCommand extends Command {
     private final GrayscalerFactory grayscalerFactory;
 
@@ -23,9 +26,12 @@ public class GrayscaleCommand extends Command {
         if (sessionManager.getCurrentSession() == null)
             throw new ApplicationException("Cannot apply transformation - not in session!");
 
+        String command = String.join(" ", tokens);
+
         sessionManager.addCommandToSession(
                 new GrayscaleAction(sessionManager.getCurrentSessionImageCount(),
-                        grayscalerFactory)
+                        grayscalerFactory,
+                        command)
         );
     }
 }

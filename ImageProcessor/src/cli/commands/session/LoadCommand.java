@@ -7,6 +7,8 @@ import image.service.ImageLoaderService;
 import logging.ConsoleLoggingProvider;
 import session.SessionManager;
 
+import java.io.IOException;
+
 public class LoadCommand extends Command {
     private final ImageLoaderService imageLoaderService;
     private final ConsoleLoggingProvider consoleLoggingProvider;
@@ -31,17 +33,26 @@ public class LoadCommand extends Command {
             throw new ApplicationException("Please enter at least 1 image!");
 
         consoleLoggingProvider.sendMessageNewline(
-            String.format(
-                "Session with ID: %d started", sessionManager.newSession()
-            )
+                String.format(
+                        "Session with ID: %d started", sessionManager.newSession()
+                )
         );
 
         for (int i = 1; i < tokens.length; i++) {
-            String filePath = tokens[i];
-            InMemoryImage newImage = imageLoaderService.load(filePath);
-            sessionManager.insertImageIntoSession(
-                newImage, filePath
-            );
+            try {
+                String filePath = tokens[i];
+                InMemoryImage newImage = imageLoaderService.load(filePath);
+                sessionManager.insertImageIntoSession(
+                        newImage, filePath
+                );
+
+                String newImageName = sessionManager.getCurrentImageContext().getImageWrapperArray().getLast().getName();
+                consoleLoggingProvider.sendMessageNewline(
+                        "Image \"" + newImageName + "\" added"
+                );
+            } catch (IOException e) {
+                throw new ApplicationException("Count not load image: " + tokens[i], e);
+            }
         }
     }
 }

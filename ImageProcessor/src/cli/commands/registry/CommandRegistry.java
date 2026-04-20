@@ -34,7 +34,7 @@ public class CommandRegistry {
     public List<Command> createAllCommands() {
         List<Command> list = new ArrayList<>(20);
 
-        ConsoleLoggingProvider clp = new ConsoleLoggingProvider();
+        ConsoleLoggingProvider consoleLoggingProvider = new ConsoleLoggingProvider();
 
         // Image Manipulation
         GrayscalerFactory grayscalerFactory = new GrayscalerFactory();
@@ -61,12 +61,12 @@ public class CommandRegistry {
 
         list.add(new SessionCommand());
 
-        list.add(new SwitchCommand());
+        list.add(new SwitchCommand(consoleLoggingProvider));
 
         CollagerFactory collagerFactory = new CollagerFactory();
         CollagerRegistry collagerRegistry = new CollagerRegistry();
         collagerRegistry.registerAll(collagerFactory, Collager.class.getPackageName());
-        list.add(new CollageCommand(collagerFactory));
+        list.add(new CollageCommand(collagerFactory, consoleLoggingProvider));
 
         // Session handling
         list.add(new CloseCommand());
@@ -82,8 +82,8 @@ public class CommandRegistry {
         ParserDiscoverer.registerAll(pf);
 
         ImageLoaderService imageLoaderService = new ImageLoaderService(fe, pf);
-        list.add(new LoadCommand(imageLoaderService, clp));
-        list.add(new AddCommand(imageLoaderService));
+        list.add(new LoadCommand(imageLoaderService, consoleLoggingProvider));
+        list.add(new AddCommand(imageLoaderService, consoleLoggingProvider));
 
         SerializerFactory serializerFactory = new SerializerFactory();
         SerializerRegistry serializerRegistry = new SerializerRegistry();

@@ -11,9 +11,6 @@ public class Session {
     private final ImageContext imageContext = new ImageContext();
     private final int id;
 
-    public int getId() {
-        return id;
-    }
 
     public ImageContext getImageContext() {
         return imageContext;
@@ -21,10 +18,6 @@ public class Session {
 
     public void addImage(InMemoryImage image, String filePath) {
         imageContext.insertImage(image, filePath);
-    }
-
-    public int getImageCount() {
-        return imageContext.getImageWrapperCount();
     }
 
     protected Session(int id) {
@@ -39,8 +32,16 @@ public class Session {
         commandHistory.pop();
     }
 
+    public int getId() {
+        return id;
+    }
+
     public int getTransformationCount() {
         return commandHistory.size();
+    }
+
+    public int getImageCount() {
+        return imageContext.getImageWrapperCount();
     }
 
     public Stack<Action> getCommandHistory() {

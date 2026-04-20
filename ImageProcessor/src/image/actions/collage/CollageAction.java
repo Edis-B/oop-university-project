@@ -1,6 +1,7 @@
 package image.actions.collage;
 
 import exceptions.ApplicationException;
+import image.actions.AbstractAction;
 import image.actions.Action;
 import image.images_in_memory.InMemoryImage;
 import image.manipulators.compositors.collage.Collager;
@@ -9,14 +10,20 @@ import image.signatures.FormatType;
 import session.ImageContext;
 import session.ImageWrapper;
 
-public class CollageAction implements Action {
+public class CollageAction extends AbstractAction {
     private final String image1Name;
     private final String image2Name;
     private final CollageDirection collageDirection;
     private final String imageOutName;
     private final CollagerFactory collagerFactory;
 
-    public CollageAction(CollageDirection collageDirection, String image1Name, String image2Name, String imageOutName, CollagerFactory collagerFactory) {
+    public CollageAction(CollageDirection collageDirection,
+                         String image1Name,
+                         String image2Name,
+                         String imageOutName,
+                         CollagerFactory collagerFactory,
+                         String commandString) {
+        super(commandString);
         this.image1Name = image1Name;
         this.image2Name = image2Name;
         this.collageDirection = collageDirection;

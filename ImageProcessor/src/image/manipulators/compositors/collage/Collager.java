@@ -47,7 +47,7 @@ public abstract class Collager<T extends InMemoryImage> implements ImageComposit
 
         for (int i = 0; i < image2Height; i++) {
             for (int j = 0; j < image2Width; j++) {
-                setPixel(i + startRow, j + startCol, outImage, i, j, image1);
+                setPixel(i + startRow, j + startCol, outImage, i, j, image2);
             }
         }
 

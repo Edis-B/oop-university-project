@@ -8,8 +8,8 @@ import image.manipulators.transformations.factory.RotatorFactory;
 public class RotateAction extends TransformationAction {
     private final RotateDirection direction;
 
-    public RotateAction(int imageCount, RotateDirection direction, RotatorFactory rotatorFactory) {
-        super(imageCount, rotatorFactory);
+    public RotateAction(int imageCount, RotateDirection direction, RotatorFactory rotatorFactory, String commandString) {
+        super(imageCount, rotatorFactory, commandString);
         this.direction = direction;
     }
 

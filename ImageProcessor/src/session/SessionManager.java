@@ -3,7 +3,6 @@ package session;
 import exceptions.ApplicationException;
 import image.actions.Action;
 import image.images_in_memory.InMemoryImage;
-import image.images_in_memory.netpbm.ppm.InMemoryPpm;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +19,10 @@ public class SessionManager {
 
     public Session getCurrentSession() {
         return session;
+    }
+
+    public int getCurrentSessionId() {
+        return session.getId();
     }
 
     public int newSession() {
@@ -40,13 +43,21 @@ public class SessionManager {
 
     public void addCommandToSession(Action action) {
         if (session == null)
-            throw new ApplicationException("Session is invalid!");
+            throw new ApplicationException("Cannot add command to session: not in Session!");
 
         session.appendAction(action);
     }
 
     public void insertImageIntoSession(InMemoryImage image, String filePath) {
+        if (session == null)
+            throw new ApplicationException("Cannot add image to session: not in Session!");
+
         session.addImage(image, filePath);
+    }
+
+    public ImageContext getCurrentImageContext() {
+        if (session == null) return null;
+        return session.getImageContext();
     }
 
     public int getCurrentSessionImageCount() {
@@ -57,7 +68,7 @@ public class SessionManager {
         return session.getTransformationCount();
     }
 
-    public ImageContext executeActions() {
+    public ImageContext executeCurrentSessionActions() {
         ImageContext copiedContext = new ImageContext(session.getImageContext());
         Stack<Action> commandActions = session.getCommandHistory();
 

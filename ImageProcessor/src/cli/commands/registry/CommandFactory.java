@@ -7,8 +7,8 @@ import java.util.List;
 public class CommandFactory extends AbstractCommandFactory {
     private final List<Command> commandList;
 
-    public CommandFactory(List<Command> _commandList) {
-        commandList = _commandList;
+    public CommandFactory(List<Command> commandList) {
+        this.commandList = commandList;
     }
 
     @Override

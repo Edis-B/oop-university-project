@@ -9,11 +9,14 @@ import session.ImageWrapper;
 
 import java.util.List;
 
-public abstract class TransformationAction implements Action {
+public abstract class TransformationAction extends AbstractAction {
     protected final int imageCount;
     protected final TransformerFactory<? extends ImageTransformer<?>> transformerFactory;
 
-    public TransformationAction(int imageCount, TransformerFactory<?> transformerFactory) {
+    public TransformationAction(int imageCount,
+                                TransformerFactory<?> transformerFactory,
+                                String commandString) {
+        super(commandString);
         this.imageCount = imageCount;
         this.transformerFactory = transformerFactory;
     }
