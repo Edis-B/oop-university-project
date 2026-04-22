@@ -13,7 +13,7 @@ public class PpmCollager extends MaxValuedCollager<InMemoryPpm> {
     }
 
     @Override
-    protected InMemoryPpm getOutImage() {
+    protected InMemoryPpm getBlankOutImage() {
         return (InMemoryPpm) image1.createBlank(outWidth, outHeight, outValue);
     }
 

@@ -28,8 +28,8 @@ public class Session {
         commandHistory.push(action);
     }
 
-    public void undoAction() {
-        commandHistory.pop();
+    public Action undoAction() {
+        return commandHistory.pop();
     }
 
     public int getId() {

@@ -2,9 +2,16 @@ package cli.commands.image;
 
 import cli.commands.Command;
 import exceptions.ApplicationException;
+import logging.ConsoleLoggingProvider;
 import session.SessionManager;
 
 public class UndoCommand extends Command {
+    private final ConsoleLoggingProvider consoleLoggingProvider;
+
+    public UndoCommand(ConsoleLoggingProvider consoleLoggingProvider) {
+        this.consoleLoggingProvider = consoleLoggingProvider;
+    }
+
     @Override
     public String getName() {
         return "undo";
@@ -18,6 +25,8 @@ public class UndoCommand extends Command {
         if (sessionManager.getCurrentTransformationsCount() == 0)
             throw new ApplicationException("No transformations to undo!");
 
-        sessionManager.getCurrentSession().undoAction();
+        var undone = sessionManager.getCurrentSession().undoAction();
+
+        consoleLoggingProvider.sendMessageNewline("Transformation undone: " + undone.getCommandString());
     }
 }

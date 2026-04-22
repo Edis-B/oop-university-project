@@ -2,7 +2,12 @@ package cli.commands.session;
 
 import cli.commands.Command;
 import image.service.ImageSerializerService;
+import session.ImageContext;
+import session.ImageWrapper;
 import session.SessionManager;
+
+import java.util.List;
+import java.util.Objects;
 
 public class SaveCommand extends Command {
     private final ImageSerializerService imageSerializerService;
@@ -18,9 +23,16 @@ public class SaveCommand extends Command {
 
     @Override
     public void execute(String[] tokens, SessionManager sessionManager) {
-        var transformedImages = sessionManager.executeCurrentSessionActions();
+        ImageContext transformedImages = sessionManager.executeCurrentSessionActions();
+        List<ImageWrapper> wrappers = transformedImages.getImageWrapperArray();
 
-        for (var imageWrapper : transformedImages.getImageWrapperArray())
-            imageSerializerService.serialize(imageWrapper);
+        int n = wrappers.size();
+        if (tokens.length >= 2 && tokens[1].equalsIgnoreCase("as")) {
+            n = 1;
+        }
+
+        for (int i = 0; i < n; i++) {
+            imageSerializerService.serialize(wrappers.get(i));
+        }
     }
 }

@@ -12,7 +12,7 @@ public class PbmCollager extends Collager<InMemoryPbm> {
     }
 
     @Override
-    protected InMemoryPbm getOutImage() {
+    protected InMemoryPbm getBlankOutImage() {
         return (InMemoryPbm) image1.createBlank(outWidth, outHeight);
     }
 

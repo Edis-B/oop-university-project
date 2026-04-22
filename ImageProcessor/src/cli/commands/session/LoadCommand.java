@@ -13,10 +13,6 @@ public class LoadCommand extends Command {
     private final ImageLoaderService imageLoaderService;
     private final ConsoleLoggingProvider consoleLoggingProvider;
 
-    private LoadCommand() {
-        this(null, null);
-    }
-
     @Override
     public String getName() {
         return "load";
@@ -47,6 +43,7 @@ public class LoadCommand extends Command {
                 );
 
                 String newImageName = sessionManager.getCurrentImageContext().getImageWrapperArray().getLast().getName();
+
                 consoleLoggingProvider.sendMessageNewline(
                         "Image \"" + newImageName + "\" added"
                 );

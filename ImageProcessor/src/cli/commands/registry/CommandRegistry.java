@@ -57,9 +57,9 @@ public class CommandRegistry {
         rotatorRegistry.registerAll(rotatorFactory, Rotator.class.getPackageName());
         list.add(new RotateCommand(rotatorFactory));
 
-        list.add(new UndoCommand());
+        list.add(new UndoCommand(consoleLoggingProvider));
 
-        list.add(new SessionCommand());
+        list.add(new SessionCommand(consoleLoggingProvider));
 
         list.add(new SwitchCommand(consoleLoggingProvider));
 

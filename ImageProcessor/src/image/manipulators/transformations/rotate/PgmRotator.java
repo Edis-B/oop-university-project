@@ -11,7 +11,7 @@ public class PgmRotator extends AbstractRotator<InMemoryPgm> {
     }
 
     @Override
-    protected void setPixel(int i, int j, InMemoryPgm rotated, int rotI, int rotJ, InMemoryPgm original) {
-        rotated.setPixel(i, j, original.getPixel(rotI, rotJ));
+    protected void setPixel(int rotI, int rotJ, InMemoryPgm rotated, int i, int j, InMemoryPgm original) {
+        rotated.setPixel(rotI, rotJ, original.getPixel(i, j));
     }
 }

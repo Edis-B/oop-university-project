@@ -1,6 +1,7 @@
 package image.manipulators.transformations.rotate;
 
 import image.images_in_memory.InMemoryImage;
+import image.images_in_memory.netpbm.ppm.InMemoryPpm;
 
 public abstract class AbstractRotator<T extends InMemoryImage> implements Rotator<T> {
     private final byte cwSpins;
@@ -26,16 +27,16 @@ public abstract class AbstractRotator<T extends InMemoryImage> implements Rotato
 
                 switch (cwSpins) {
                     case 1:
-                        rotI = (origWidth - 1) - j;
-                        rotJ = i;
+                        rotI = j;
+                        rotJ = (origHeight - 1) - i;
                         break;
                     case 2:
                         rotI = (origHeight - 1) - i;
                         rotJ = (origWidth - 1) - j;
                         break;
                     case 3:
-                        rotI = j;
-                        rotJ = (origHeight - 1) - i;
+                        rotI = (origWidth - 1) - j;
+                        rotJ = i;
                         break;
                     default:
                         rotI = i;
@@ -43,12 +44,12 @@ public abstract class AbstractRotator<T extends InMemoryImage> implements Rotato
                         break;
                 }
 
-                setPixel(i, j, result, rotI, rotJ, original);
+                setPixel(rotI, rotJ, result, i, j, original);
             }
         }
 
         return result;
     }
 
-    protected abstract void setPixel(int i, int j, T rotated, int rotI, int rotJ, T original);
+    protected abstract void setPixel(int rotI, int rotJ, T rotated, int i, int j, T original);
 }

@@ -2,6 +2,7 @@ package image.service;
 
 import exceptions.ApplicationException;
 import image.images_in_memory.InMemoryImage;
+import image.signatures.FormatSignature;
 import image.signatures.factory.FormatExtractor;
 import image.io.parsers.factory.ParserFactory;
 import image.signatures.FormatType;
@@ -9,14 +10,11 @@ import image.signatures.FormatType;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 public class ImageLoaderService {
     private final ParserFactory parserFactory;
     private final FormatExtractor extractor;
-
-    private ImageLoaderService() {
-        this(null, null);
-    }
 
     public ImageLoaderService(FormatExtractor extractor, ParserFactory parserFactory) {
         this.extractor = extractor;

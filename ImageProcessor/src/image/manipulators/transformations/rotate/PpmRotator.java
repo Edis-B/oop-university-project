@@ -11,7 +11,7 @@ public class PpmRotator extends AbstractRotator<InMemoryPpm> {
     }
 
     @Override
-    protected void setPixel(int i, int j, InMemoryPpm rotated, int rotI, int rotJ, InMemoryPpm original) {
-        rotated.setPixel(i, j, original.getPixel(rotI, rotJ));
+    protected void setPixel(int rotI, int rotJ, InMemoryPpm rotated, int i, int j, InMemoryPpm original) {
+        rotated.setPixel(rotI, rotJ, original.getPixel(i, j));
     }
 }

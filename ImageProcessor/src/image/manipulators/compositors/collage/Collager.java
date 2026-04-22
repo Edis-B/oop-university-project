@@ -34,7 +34,7 @@ public abstract class Collager<T extends InMemoryImage> implements ImageComposit
                 {0, image1Width}, {image1Height, 0}
         };
 
-        T outImage = getOutImage();
+        T outImage = getBlankOutImage();
 
         for (int i = 0; i < image1Height; i++) {
             for (int j = 0; j < image1Width; j++) {
@@ -54,7 +54,7 @@ public abstract class Collager<T extends InMemoryImage> implements ImageComposit
         return outImage;
     }
 
-    protected abstract T getOutImage();
+    protected abstract T getBlankOutImage();
 
     protected abstract void setPixel(int resI, int resJ, T result, int i, int j, T source);
 }

@@ -41,7 +41,7 @@ public class PgmMonochromer implements Monochromer<InMemoryPgm> {
         long graySum = 0;
         for (int i = 0; i < height; i++)
             for (int j = 0; j < width; j++)
-                graySum += image.getPixel(j, i);
+                graySum += image.getPixel(i, j);
 
         return (short) Math.toIntExact(graySum / (width * height));
     }

@@ -42,8 +42,8 @@ public class AddCommand extends Command {
             var newImageName = sessionManager.getCurrentImageContext().getImageWrapperArray().getLast().getName();
 
             consoleLoggingProvider.sendMessageNewline("Image \"" + newImageName + "\" added");
-        } catch (IOException e) {
-            throw new ApplicationException("Error loading image: " + tokens[1]);
+        } catch (Exception e) {
+            throw new ApplicationException(String.format("Error loading image (%s): ", tokens[1]) + e.getMessage());
         }
     }
 }

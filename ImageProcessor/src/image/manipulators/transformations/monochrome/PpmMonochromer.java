@@ -28,7 +28,7 @@ public class PpmMonochromer implements Monochromer<InMemoryPpm> {
         short threshold = getThreshold(original);
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                Color color = original.getPixel(j, i);
+                Color color = original.getPixel(i, j);
                 short gray = calculateLuminance(color);
 
                 Color newColor = gray >= threshold ?
@@ -49,7 +49,7 @@ public class PpmMonochromer implements Monochromer<InMemoryPpm> {
         long graySum = 0;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                Color color = original.getPixel(j, i);
+                Color color = original.getPixel(i, j);
                 graySum += calculateLuminance(color);
             }
         }
