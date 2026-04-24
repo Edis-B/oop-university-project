@@ -2,14 +2,23 @@ package cli.commands.image;
 
 import cli.commands.Command;
 import exceptions.ApplicationException;
-import logging.ConsoleLoggingProvider;
+import logging.Logger;
 import session.SessionManager;
 
-public class UndoCommand extends Command {
-    private final ConsoleLoggingProvider consoleLoggingProvider;
+import java.util.List;
 
-    public UndoCommand(ConsoleLoggingProvider consoleLoggingProvider) {
-        this.consoleLoggingProvider = consoleLoggingProvider;
+public class UndoCommand extends Command {
+    private final Logger logger;
+
+    public UndoCommand(Logger logger) {
+        this.logger = logger;
+    }
+
+    @Override
+    public List<String> helpSnippets() {
+        return List.of(
+                ""
+        );
     }
 
     @Override
@@ -27,6 +36,6 @@ public class UndoCommand extends Command {
 
         var undone = sessionManager.getCurrentSession().undoAction();
 
-        consoleLoggingProvider.sendMessageNewline("Transformation undone: " + undone.getCommandString());
+        logger.sendMessageNewline("Transformation undone: " + undone.getCommandString());
     }
 }

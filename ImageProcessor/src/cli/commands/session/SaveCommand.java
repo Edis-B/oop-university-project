@@ -7,7 +7,6 @@ import session.ImageWrapper;
 import session.SessionManager;
 
 import java.util.List;
-import java.util.Objects;
 
 public class SaveCommand extends Command {
     private final ImageSerializerService imageSerializerService;
@@ -17,22 +16,29 @@ public class SaveCommand extends Command {
     }
 
     @Override
+    public List<String> helpSnippets() {
+        return List.of(
+                "",
+                "as"
+        );
+    }
+
+    @Override
     public String getName() {
         return "save";
     }
 
     @Override
     public void execute(String[] tokens, SessionManager sessionManager) {
-        ImageContext transformedImages = sessionManager.executeCurrentSessionActions();
-        List<ImageWrapper> wrappers = transformedImages.getImageWrapperArray();
-
-        int n = wrappers.size();
+        ImageContext imageContext;
         if (tokens.length >= 2 && tokens[1].equalsIgnoreCase("as")) {
-            n = 1;
+            imageContext = sessionManager.executeCurrentSessionActionsOnAllImages();
+        } else {
+            imageContext = sessionManager.executeCurrentSessionActionsOnTheFirstImage();
         }
 
-        for (int i = 0; i < n; i++) {
-            imageSerializerService.serialize(wrappers.get(i));
+        for (var imageWrapper : imageContext.getImageWrapperArray()) {
+            imageSerializerService.serialize(imageWrapper);
         }
     }
 }

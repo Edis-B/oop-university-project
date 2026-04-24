@@ -1,12 +1,12 @@
 package logging;
 
-import cli.commands.session.LoadCommand;
-
-public class ConsoleLoggingProvider {
+public class ConsoleLoggerProvider implements Logger {
+    @Override
     public void sendMessageNewline(String message) {
         System.out.println(message);
     }
 
+    @Override
     public void sendMessage(String message) {
         System.out.print(message);
     }

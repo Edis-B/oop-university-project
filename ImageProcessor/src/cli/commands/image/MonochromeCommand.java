@@ -6,11 +6,20 @@ import image.actions.MonochromeAction;
 import image.manipulators.transformations.factory.MonochromerFactory;
 import session.SessionManager;
 
+import java.util.List;
+
 public class MonochromeCommand extends Command {
     private final MonochromerFactory monochromerFactory;
 
     public MonochromeCommand(MonochromerFactory monochromerFactory) {
         this.monochromerFactory = monochromerFactory;
+    }
+
+    @Override
+    public List<String> helpSnippets() {
+        return List.of(
+                ""
+        );
     }
 
     @Override

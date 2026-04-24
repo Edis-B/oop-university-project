@@ -8,11 +8,20 @@ import image.actions.rotate.RotateDirection;
 import image.manipulators.transformations.factory.RotatorFactory;
 import session.SessionManager;
 
+import java.util.List;
+
 public class RotateCommand extends Command {
     private final RotatorFactory rotatorFactory;
 
     public RotateCommand(RotatorFactory rotatorFactory) {
         this.rotatorFactory = rotatorFactory;
+    }
+
+    @Override
+    public List<String> helpSnippets() {
+        return List.of(
+                "<direction> - left, right, upside-down"
+        );
     }
 
     @Override

@@ -4,19 +4,25 @@ import cli.commands.Command;
 import common.constants.ErrorMessages;
 import exceptions.ApplicationException;
 import image.service.ImageLoaderService;
-import logging.ConsoleLoggingProvider;
-import session.ImageWrapper;
+import logging.Logger;
 import session.SessionManager;
 
-import java.io.IOException;
+import java.util.List;
 
 public class AddCommand extends Command {
-    private final ConsoleLoggingProvider consoleLoggingProvider;
+    private final Logger logger;
     private final ImageLoaderService imageLoaderService;
 
-    public AddCommand(ImageLoaderService imageLoaderService, ConsoleLoggingProvider consoleLoggingProvider) {
+    public AddCommand(ImageLoaderService imageLoaderService, Logger logger) {
         this.imageLoaderService = imageLoaderService;
-        this.consoleLoggingProvider = consoleLoggingProvider;
+        this.logger = logger;
+    }
+
+    @Override
+    public List<String> helpSnippets() {
+        return List.of(
+                "<image>"
+        );
     }
 
     @Override
@@ -41,7 +47,7 @@ public class AddCommand extends Command {
 
             var newImageName = sessionManager.getCurrentImageContext().getImageWrapperArray().getLast().getName();
 
-            consoleLoggingProvider.sendMessageNewline("Image \"" + newImageName + "\" added");
+            logger.sendMessageNewline("Image \"" + newImageName + "\" added");
         } catch (Exception e) {
             throw new ApplicationException(String.format("Error loading image (%s): ", tokens[1]) + e.getMessage());
         }

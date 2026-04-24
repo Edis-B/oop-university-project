@@ -6,19 +6,25 @@ import exceptions.ApplicationException;
 import image.actions.collage.CollageAction;
 import image.actions.collage.CollageDirection;
 import image.manipulators.compositors.factory.CollagerFactory;
-import logging.ConsoleLoggingProvider;
+import logging.Logger;
 import session.SessionManager;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import java.util.List;
 
 public class CollageCommand extends Command {
     private final CollagerFactory collagerFactory;
-    private final ConsoleLoggingProvider consoleLoggingProvider;
+    private final Logger logger;
 
-    public CollageCommand(CollagerFactory collagerFactory, ConsoleLoggingProvider consoleLoggingProvider) {
+    public CollageCommand(CollagerFactory collagerFactory, Logger logger) {
         this.collagerFactory = collagerFactory;
-        this.consoleLoggingProvider = consoleLoggingProvider;
+        this.logger = logger;
+    }
+
+    @Override
+    public List<String> helpSnippets() {
+        return List.of(
+                "<direction> <image1> <image2> <outimage>"
+        );
     }
 
     @Override
@@ -52,6 +58,6 @@ public class CollageCommand extends Command {
 
         String newImageName = sessionManager.getCurrentImageContext().getImageWrapperArray().getLast().getName();
 
-        consoleLoggingProvider.sendMessageNewline("New collage " + newImageName + " created");
+        logger.sendMessageNewline("New collage " + newImageName + " created");
     }
 }

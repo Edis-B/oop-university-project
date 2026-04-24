@@ -25,7 +25,8 @@ import image.io.parsers.factory.ParserDiscoverer;
 import image.service.ImageLoaderService;
 import image.signatures.FormatSignature;
 import image.signatures.factory.SignatureFactory;
-import logging.ConsoleLoggingProvider;
+import logging.ConsoleLoggerProvider;
+import logging.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class CommandRegistry {
     public List<Command> createAllCommands() {
         List<Command> list = new ArrayList<>(20);
 
-        ConsoleLoggingProvider consoleLoggingProvider = new ConsoleLoggingProvider();
+        Logger consoleLoggerProvider = new ConsoleLoggerProvider();
 
         // Image Manipulation
         GrayscalerFactory grayscalerFactory = new GrayscalerFactory();
@@ -57,23 +58,23 @@ public class CommandRegistry {
         rotatorRegistry.registerAll(rotatorFactory, Rotator.class.getPackageName());
         list.add(new RotateCommand(rotatorFactory));
 
-        list.add(new UndoCommand(consoleLoggingProvider));
+        list.add(new UndoCommand(consoleLoggerProvider));
 
-        list.add(new SessionCommand(consoleLoggingProvider));
+        list.add(new SessionCommand(consoleLoggerProvider));
 
-        list.add(new SwitchCommand(consoleLoggingProvider));
+        list.add(new SwitchCommand(consoleLoggerProvider));
 
         CollagerFactory collagerFactory = new CollagerFactory();
         CollagerRegistry collagerRegistry = new CollagerRegistry();
         collagerRegistry.registerAll(collagerFactory, Collager.class.getPackageName());
-        list.add(new CollageCommand(collagerFactory, consoleLoggingProvider));
+        list.add(new CollageCommand(collagerFactory, consoleLoggerProvider));
 
         // Session handling
-        list.add(new CloseCommand());
+        list.add(new CloseCommand(consoleLoggerProvider));
 
-        list.add(new ExitCommand());
+        list.add(new ExitCommand(consoleLoggerProvider));
 
-        list.add(new HelpCommand());
+        list.add(new HelpCommand(consoleLoggerProvider, list));
 
         List<FormatSignature> imageSignatures = SignatureFactory.getInstance().getSignatures();
         FormatExtractor fe = new FormatExtractor(imageSignatures);
@@ -82,8 +83,8 @@ public class CommandRegistry {
         ParserDiscoverer.registerAll(pf);
 
         ImageLoaderService imageLoaderService = new ImageLoaderService(fe, pf);
-        list.add(new LoadCommand(imageLoaderService, consoleLoggingProvider));
-        list.add(new AddCommand(imageLoaderService, consoleLoggingProvider));
+        list.add(new LoadCommand(imageLoaderService, consoleLoggerProvider));
+        list.add(new AddCommand(imageLoaderService, consoleLoggerProvider));
 
         SerializerFactory serializerFactory = new SerializerFactory();
         SerializerRegistry serializerRegistry = new SerializerRegistry();

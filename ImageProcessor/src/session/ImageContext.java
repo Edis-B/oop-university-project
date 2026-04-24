@@ -42,6 +42,11 @@ public class ImageContext {
         return fileName;
     }
 
+    public void insertWrapper(ImageWrapper imageWrapper) {
+        imageArray.add(imageWrapper);
+        nameMap.put(imageWrapper.getName(), imageWrapper);
+    }
+
     public int getImageWrapperCount() {
         return imageArray.size();
     }

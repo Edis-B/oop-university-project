@@ -34,8 +34,14 @@ public class SessionManager {
     }
 
     public boolean switchToSession(int newId) {
-        if (!sessionMap.containsKey(newId))
+        if (newId == 0) {
+            session = null;
+            return true;
+        }
+
+        if (!sessionMap.containsKey(newId)) {
             throw new ApplicationException(String.format("Session with id: %d, does not exist", newId));
+        }
 
         session = sessionMap.get(newId);
         return true;
@@ -68,8 +74,23 @@ public class SessionManager {
         return session.getTransformationCount();
     }
 
-    public ImageContext executeCurrentSessionActions() {
+    public ImageContext executeCurrentSessionActionsOnAllImages() {
         ImageContext copiedContext = new ImageContext(session.getImageContext());
+        Stack<Action> commandActions = session.getCommandHistory();
+
+        for (Action action : commandActions) {
+            action.execute(copiedContext);
+        }
+
+        return copiedContext;
+    }
+
+    public ImageContext executeCurrentSessionActionsOnTheFirstImage() {
+        ImageContext context = session.getImageContext();
+
+        ImageContext copiedContext = new ImageContext();
+        ImageWrapper copiedFirstWrapper = new ImageWrapper(context.getImageWrapperArray().getFirst());
+        copiedContext.insertWrapper(copiedFirstWrapper);
         Stack<Action> commandActions = session.getCommandHistory();
 
         for (Action action : commandActions) {

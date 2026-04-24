@@ -7,6 +7,7 @@ import image.manipulators.transformations.factory.GrayscalerFactory;
 import session.SessionManager;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class GrayscaleCommand extends Command {
@@ -14,6 +15,13 @@ public class GrayscaleCommand extends Command {
 
     public GrayscaleCommand(GrayscalerFactory grayscalerFactory) {
         this.grayscalerFactory = grayscalerFactory;
+    }
+
+    @Override
+    public List<String> helpSnippets() {
+        return List.of(
+                ""
+        );
     }
 
     @Override

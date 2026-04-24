@@ -6,11 +6,20 @@ import image.actions.NegativeAction;
 import image.manipulators.transformations.factory.NegatorFactory;
 import session.SessionManager;
 
+import java.util.List;
+
 public class NegativeCommand extends Command {
     private final NegatorFactory negatorFactory;
 
     public NegativeCommand(NegatorFactory negatorFactory) {
         this.negatorFactory = negatorFactory;
+    }
+
+    @Override
+    public List<String> helpSnippets() {
+        return List.of(
+                ""
+        );
     }
 
     @Override
