@@ -1,6 +1,6 @@
 ### IntelliJ IDEA ###
 out/
-result_images/
+result_images/**
 .idea/
 *.iml
 !**/src/main/**/out/

@@ -2,19 +2,23 @@ package cli;
 
 import cli.commands.Command;
 import cli.commands.registry.AbstractCommandFactory;
+import logging.Logger;
 import session.SessionManager;
 
 import java.util.Scanner;
 
 public class CommandLineInterface {
     private final AbstractCommandFactory factory;
+    private final Logger logger;
 
-    public CommandLineInterface(AbstractCommandFactory registry) {
+    public CommandLineInterface(AbstractCommandFactory registry, Logger logger) {
         this.factory = registry;
+        this.logger = logger;
     }
 
     public void start(Scanner sc, SessionManager sessionManager) throws Exception {
-        var input = sc.nextLine().trim();
+        logger.sendMessage("> ");
+        String input = sc.nextLine().trim();
         String[] tokens = input.split("\\s+");
         String commandName = tokens[0];
 

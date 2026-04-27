@@ -29,10 +29,15 @@ public class HelpCommand extends Command {
 
     @Override
     public void execute(String[] tokens, SessionManager sessionManager) {
+        logger.sendMessageNewline("");
+        logger.sendMessageNewline("--- Available Commands ---");
+
         for (Command c : commandListObjects) {
             for (var f : c.helpSnippets()) {
-                logger.sendMessageNewline(String.format("> %s %s", c.getName(), f));
+                logger.sendMessageNewline(String.format("> %-10s %s", c.getName(), f));
             }
         }
+
+        logger.sendMessageNewline("");
     }
 }

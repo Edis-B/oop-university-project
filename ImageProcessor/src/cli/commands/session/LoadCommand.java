@@ -34,8 +34,9 @@ public class LoadCommand extends Command {
 
     @Override
     public void execute(String[] tokens, SessionManager sessionManager) {
-        if (tokens.length == 1)
+        if (tokens.length == 1) {
             throw new ApplicationException("Please enter at least 1 image!");
+        }
 
         logger.sendMessageNewline(
                 String.format(
