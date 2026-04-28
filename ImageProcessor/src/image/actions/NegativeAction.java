@@ -6,8 +6,8 @@ import image.manipulators.transformations.factory.NegatorFactory;
 
 public class NegativeAction extends TransformationAction {
 
-    public NegativeAction(int imageCount, NegatorFactory transformerFactory, String commandString) {
-        super(imageCount, transformerFactory, commandString);
+    public NegativeAction(NegatorFactory transformerFactory, String commandString) {
+        super(transformerFactory, commandString);
     }
 
     @Override

@@ -37,8 +37,7 @@ public class GrayscaleCommand extends Command {
         String command = String.join(" ", tokens);
 
         sessionManager.addCommandToSession(
-                new GrayscaleAction(sessionManager.getCurrentSessionImageCount(),
-                        grayscalerFactory,
+                new GrayscaleAction(grayscalerFactory,
                         command)
         );
     }

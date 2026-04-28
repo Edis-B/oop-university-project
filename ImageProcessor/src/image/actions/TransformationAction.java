@@ -10,24 +10,18 @@ import session.ImageWrapper;
 import java.util.List;
 
 public abstract class TransformationAction extends AbstractAction {
-    protected final int imageCount;
     protected final TransformerFactory<? extends ImageTransformer<?>> transformerFactory;
 
-    public TransformationAction(int imageCount,
-                                TransformerFactory<?> transformerFactory,
+    public TransformationAction(TransformerFactory<?> transformerFactory,
                                 String commandString) {
         super(commandString);
-        this.imageCount = imageCount;
         this.transformerFactory = transformerFactory;
-    }
-
-    public int getImageCount() {
-        return imageCount;
     }
 
     @Override
     public void execute(ImageContext imageContext) {
         List<ImageWrapper> imageWrappers = imageContext.getImageWrapperArray();
+        int imageCount = imageWrappers.size();
         for (int i = 0; i < imageCount; i++) {
             InMemoryImage currImage = imageWrappers.get(i).getImage();
 

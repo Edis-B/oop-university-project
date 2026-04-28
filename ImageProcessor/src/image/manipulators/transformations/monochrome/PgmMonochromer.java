@@ -27,7 +27,7 @@ public class PgmMonochromer implements Monochromer<InMemoryPgm> {
         short threshold = getThreshold(original);
         for (int i = 0; i < height; i++)
             for (int j = 0; j < width; j++) {
-                var pixel = monochromeImage.getPixel(i, j);
+                var pixel = original.getPixel(i, j);
                 monochromeImage.setPixel(i, j, pixel >= threshold ? maxVal : 0);
             }
 

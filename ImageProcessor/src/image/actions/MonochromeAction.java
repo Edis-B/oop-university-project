@@ -5,8 +5,8 @@ import image.manipulators.transformations.ImageTransformer;
 import image.manipulators.transformations.factory.MonochromerFactory;
 
 public class MonochromeAction extends TransformationAction {
-    public MonochromeAction(int imageCount, MonochromerFactory transformerFactory, String commandString) {
-        super(imageCount, transformerFactory, commandString);
+    public MonochromeAction(MonochromerFactory transformerFactory, String commandString) {
+        super(transformerFactory, commandString);
     }
 
     @Override

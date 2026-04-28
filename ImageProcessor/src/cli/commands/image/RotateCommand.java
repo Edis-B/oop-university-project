@@ -43,8 +43,7 @@ public class RotateCommand extends Command {
         String command = String.join(" ", tokens);
 
         sessionManager.addCommandToSession(
-                new RotateAction(sessionManager.getCurrentSessionImageCount(),
-                        rotateDirection,
+                new RotateAction(rotateDirection,
                         rotatorFactory,
                         command
                 )

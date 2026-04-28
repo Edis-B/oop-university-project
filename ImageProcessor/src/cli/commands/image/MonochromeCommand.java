@@ -35,10 +35,7 @@ public class MonochromeCommand extends Command {
         String command = String.join(" ", tokens);
 
         sessionManager.addCommandToSession(
-                new MonochromeAction(
-                        sessionManager.getCurrentSessionImageCount(),
-                        monochromerFactory,
-                        command)
+                new MonochromeAction(monochromerFactory, command)
         );
     }
 }

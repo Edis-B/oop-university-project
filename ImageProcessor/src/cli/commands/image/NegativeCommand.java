@@ -35,8 +35,7 @@ public class NegativeCommand extends Command {
         String command = String.join(" ", tokens);
 
         sessionManager.addCommandToSession(
-                new NegativeAction(sessionManager.getCurrentSessionImageCount(),
-                        negatorFactory, command)
+                new NegativeAction(negatorFactory, command)
         );
     }
 }

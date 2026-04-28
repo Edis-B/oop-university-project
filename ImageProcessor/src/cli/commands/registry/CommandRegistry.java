@@ -90,7 +90,7 @@ public class CommandRegistry {
         SerializerRegistry serializerRegistry = new SerializerRegistry();
         serializerRegistry.registerAll(serializerFactory, ImageSerializer.class.getPackageName());
         ImageSerializerService imageSerializerService = new ImageSerializerService(serializerFactory);
-        list.add(new SaveCommand(imageSerializerService));
+        list.add(new SaveCommand(consoleLoggerProvider, imageSerializerService));
 
         return list;
     }

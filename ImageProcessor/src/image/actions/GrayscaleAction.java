@@ -5,10 +5,9 @@ import image.manipulators.transformations.ImageTransformer;
 import image.manipulators.transformations.factory.GrayscalerFactory;
 
 public class GrayscaleAction extends TransformationAction {
-    public GrayscaleAction(int imageCount,
-                           GrayscalerFactory transformerFactory,
+    public GrayscaleAction(GrayscalerFactory transformerFactory,
                            String commandString) {
-        super(imageCount, transformerFactory, commandString);
+        super(transformerFactory, commandString);
     }
 
     @Override

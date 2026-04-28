@@ -74,7 +74,7 @@ public class SessionManager {
         return session.getTransformationCount();
     }
 
-    public ImageContext executeCurrentSessionActionsOnAllImages() {
+    public ImageContext executeActionsOnAllImages() {
         ImageContext copiedContext = new ImageContext(session.getImageContext());
         Stack<Action> commandActions = session.getCommandHistory();
 
@@ -85,7 +85,7 @@ public class SessionManager {
         return copiedContext;
     }
 
-    public ImageContext executeCurrentSessionActionsOnTheFirstImage() {
+    public ImageContext executeActionsOnTheFirstImage() {
         ImageContext context = session.getImageContext();
 
         ImageContext copiedContext = new ImageContext();

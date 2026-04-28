@@ -22,7 +22,7 @@ public class FileNameHelper {
     }
 
     public static String extractFileName(String fileName) {
-        String[] arr = fileName.split("\\\\");
+        String[] arr = fileName.split("[\\\\/]");
         return arr[arr.length - 1];
     }
 
