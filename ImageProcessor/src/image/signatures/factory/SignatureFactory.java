@@ -10,18 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SignatureFactory {
-    private SignatureFactory() {
-    }
-
-    public static SignatureFactory instance;
-
-    public static SignatureFactory getInstance() {
-        if (instance == null)
-            instance = new SignatureFactory();
-
-        return instance;
-    }
-
     public List<FormatSignature> getSignatures() {
         List<Class<FormatSignature>> classes = ClassHelper.getClassesImplementationsInPackage(
                 FormatSignature.class.getPackageName(),

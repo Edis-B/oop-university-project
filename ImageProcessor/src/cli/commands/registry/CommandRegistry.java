@@ -76,13 +76,14 @@ public class CommandRegistry {
 
         list.add(new HelpCommand(consoleLoggerProvider, list));
 
-        List<FormatSignature> imageSignatures = SignatureFactory.getInstance().getSignatures();
-        FormatExtractor fe = new FormatExtractor(imageSignatures);
+        SignatureFactory signatureFactory = new SignatureFactory();
+        List<FormatSignature> imageSignatures = signatureFactory.getSignatures();
+        FormatExtractor formatExtractor = new FormatExtractor(imageSignatures);
 
-        ParserFactory pf = ParserFactory.getInstance();
-        ParserDiscoverer.registerAll(pf);
+        ParserFactory parserFactory = new ParserFactory();
+        ParserDiscoverer.registerAll(parserFactory);
 
-        ImageLoaderService imageLoaderService = new ImageLoaderService(fe, pf);
+        ImageLoaderService imageLoaderService = new ImageLoaderService(formatExtractor, parserFactory);
         list.add(new LoadCommand(imageLoaderService, consoleLoggerProvider));
         list.add(new AddCommand(imageLoaderService, consoleLoggerProvider));
 
@@ -90,6 +91,7 @@ public class CommandRegistry {
         SerializerRegistry serializerRegistry = new SerializerRegistry();
         serializerRegistry.registerAll(serializerFactory, ImageSerializer.class.getPackageName());
         ImageSerializerService imageSerializerService = new ImageSerializerService(serializerFactory);
+
         list.add(new SaveCommand(consoleLoggerProvider, imageSerializerService));
 
         return list;

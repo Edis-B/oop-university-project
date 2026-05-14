@@ -11,17 +11,6 @@ import java.util.Map;
 public class ParserFactory {
     private final Map<FormatType, ImageParser> formatDict = new HashMap<>();
 
-    private ParserFactory() {
-    }
-
-    private static ParserFactory instance;
-    public static ParserFactory getInstance() {
-        if (instance == null)
-            instance = new ParserFactory();
-
-        return instance;
-    }
-
     public void register(FormatType formatType, ImageParser imageParser) {
         formatDict.put(formatType, imageParser);
     }
